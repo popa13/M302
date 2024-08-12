@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{What Is The Method Of Variation Of Parameters}{2}{section*.1}%
+\contentsline {subsection}{General Procedure}{4}{subsection*.2}%

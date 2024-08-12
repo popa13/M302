@@ -1,0 +1,343 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 8 Solutions \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{5.5}{1}{10}
+	\\
+	\underline{\textbf{Find the general solutions to the complementary equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' + 3y' + 2y = 0
+		\end{align*}
+	The characteristic equation associated to the complementary equation is $r^2 + 3r' + 2 = 0$. Therefore, the roots are $r_1 = -1$ and $r_2 = -2$. The general solution is
+		\begin{align*}
+		y_h (x) = c_1 e^{-x} + c_2 e^{-2x} .
+		\end{align*}
+	
+	\underline{\textbf{Find a particular solution.}}\\
+	The right-hand side contains $\cos x$ and $\sin x$. Those functions are not contained in the complementary equation. We therefore suggest
+		\begin{align*}
+		y_{par} (x) = A \cos x + B \sin x .
+		\end{align*}
+	We have
+		\begin{align*}
+		y' &= -A \sin x + B \cos x \\
+		y'' &= -A \cos x - B \sin x .
+		\end{align*}
+	Replacing in the ODE, we get
+		\begin{align*}
+		y'' + 3y' + 2y &= -A \cos x - B \sin x - 3A \sin x + 3B \cos x + 2 A \cos x + 2B \sin x \\
+		&= (A + 3B ) \cos x + (-3A + B) \sin x .
+		\end{align*}
+	This last expression should be equal to the right-hand side
+		\begin{align*}
+		(A + 3B ) \cos x + (-3A + B) \sin x = 7 \cos x - \sin x .
+		\end{align*}
+	We therefore have to find $A$, $B$ satisfying
+		\begin{align*}
+		\left\{
+		\begin{matrix}
+		A + 3B = 7 \\
+		-3A + B = -1
+		\end{matrix} \right.
+		\end{align*}
+	The solution is $A = 1$ and $B = 2$. The expression of the particular solution is 
+		\begin{align*}
+		y_{par} (x) = \cos x + 2\sin x .
+		\end{align*}
+		
+	\underline{\textbf{General solution.}}\\
+	Combining $y_h$ and $y_{par}$, we get
+		\begin{align*}
+		y (x) = y_h (x) + y_{par} (x) = c_1 e^{-x} + c_2e^{-2x}+  \cos x + 2 \sin x .
+		\end{align*}
+		
+	\newpage
+		
+	\exo{5.5}{3}{10}
+	\\
+	\underline{\textbf{Find the general solution to the complementary equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' + 2y' + y = 0 .
+		\end{align*}
+	The characteristic equation associated to the complementary equation is $r^2 + 2r + 1 = 0$. There is only one root: $r_1 = -1$. The solution to the complementary equation is therefore
+		\begin{align*}
+		y_h (x) = c_1 e^{-x} + c_2 xe^{-x} .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	The right-hand side contains the functions $e^x \cos x$ and $e^x \sin x$. Those are not contained in the solution to the complementary equation. Therefore, we suggest
+		\begin{align*}
+		y_{par} (x) = e^x (A\cos x + B \sin x) .
+		\end{align*}
+	We have
+		\begin{align*}
+		y' (x) &= e^x (A\cos x + B \sin x) + e^x (-A\sin x + B \cos x) \\
+		y''(x) &=  e^x (A \cos x + B \sin x) + 2 e^x (-A \sin x + B \cos x) + e^x (-A \cos x - B \sin x ) .
+		\end{align*}
+	Replacing in the ODE, we get
+		\begin{align*}
+		y'' + 2y' + y &= e^x (A \cos x + B \sin x) + 2 e^x (-A \sin x + B \cos x) + e^x (-A \cos x - B \sin x) \\
+		& \phantom{=} + 2 e^x (A \cos x + B \sin x) + 2 e^x (-A \sin x + B \cos x) + e^x(A\cos x + B \sin x) \\
+		&= e^x \big( (3A + 3B) \cos x + (3B - 4A) \sin x \big)
+		\end{align*}
+	The right-hand side is $e^x (6\cos x + 17 \sin x)$. Therefore, we must have
+		\begin{align*}
+		3A + 3B = 6 \quad \text{ and } \quad 3B - 4A = 17 .
+		\end{align*}
+	The solution is $A = -11/7$ and $B = 25/7$. The particular solution is therefore
+		\begin{align*}
+		y_{par} (x) = -\frac{11e^x}{7} \cos x + \frac{25e^x}{7} \sin x .
+		\end{align*}
+		
+	\underline{\textbf{General solution.}}\\
+	The general solution is therefore
+		\begin{align*}
+		y(x)= y_h (x) + y_{par} (x) = c_1 e^{-x} + c_2 xe^{-x} -\frac{11e^x}{7} \cos x + \frac{25e^x}{7} \sin x  .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{5.5}{11}{10}
+	\\
+	
+	\underline{\textbf{Complementary Equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' -2y' + 5y = 0 .
+		\end{align*}
+	The characteristic polynomial associated to the complementary equation is $r^2 - 2r + 5 = 0$. The roots are complex numbers and they are
+		\begin{align*}
+		r_1 = 1 + 2i \quad \text{ and } \quad r_2 = 1 - 2i .
+		\end{align*} 
+	Therefore, the solution is
+		\begin{align*}
+		y_h (x) = c_1 e^x \cos (2x) + c_2 e^x \sin (2x) .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	The right-hand side unfortunately contains $e^x \cos (2x)$ and $e^x \sin (2x)$. These functions are also multiplied by a polynomial of degree $1$. We therefore suggest 
+		\begin{align*}
+		y_{par} (x) = xe^x \big( (Ax + B) \cos (2x) + (Cx + D) \sin (2x) \big) .
+		\end{align*}
+	Following the hint, we have
+		\begin{align*}
+		A = 1 , \, B = -1 \, , C = 1 \text{ and } D = 1 .
+		\end{align*}
+	Therefore, the solution is
+		\begin{align*}
+		y_{par} (x) = xe^x \big( (x - 1) \cos (2x) + (x + 1) \sin (2x) \big) .
+		\end{align*}
+	%	\begin{align*}
+	%	y' &= xe^x (-2 \sin(2 x) (A x + B) + A \cos(2 x) + 2 \cos(2 x) (C x + D) + C \sin(2 x)) \\
+	%	&\phantom{=} + e^x (\cos(2 x) (A x + B) + \sin(2 x) (C x + D)) + xe^x (\cos(2 x) (A x + B) + \sin(2 x) (C x + D)) \\
+	%	&= xe^x \Big( (A + 2C)x + (A + B + 2D) \big) \cos (2x)
+	%	\end{align*}
+	
+	\underline{\textbf{General solution.}}\\
+	Combining $y_h$ and $y_{par}$, we obtain
+		\begin{align*}
+		y(x) = y_h (x) + y_{par} (x) = c_1 e^x \cos (2x) + c_2 e^x \sin (2x) + xe^x \big( (x - 1) \cos (2x) + (x + 1) \sin (2x) \big).
+		\end{align*}
+		
+	\newpage
+	
+	\exo{5.5}{23}{15}
+	\\
+	\underline{\textbf{Complementary Equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' -2y' + 2y = 0 .
+		\end{align*}
+	The characteristic polynomial associated to the complementary equation is $r^2 - 2r + 2 = 0$. The roots are complex and they are
+		\begin{align*}
+		r_1 = 1 + i \quad \text{ and } \quad r_2 = 1 - i .
+		\end{align*} 
+	Therefore, the solution is
+		\begin{align*}
+		y_h (x) = c_1 e^x \cos (x) + c_2 e^x \sin (x) .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	The right-hand side unfortunately contains $e^x \cos (x)$ and $e^x \sin (x)$. Since these functions are only multiplied by constants, we therefore suggest 
+		\begin{align*}
+		y_{par} (x) = xe^x \big( A \cos (x) + B \sin (x) \big) .
+		\end{align*}
+	We find that
+		\begin{align*}
+		y' (x) &= e^x \big( A \cos x + B \sin x \big) + xe^x \big( A \cos x + B \sin x \big) + xe^x \big( -A \sin x + B \cos x \big) \\
+		&= e^x \Big( \big( (A + B)x + A \big) \cos (x) + \big( (B-A)x + B \big) \sin (x) \Big)
+		\end{align*}
+	and
+		\begin{align*}
+		y'' (x) &= e^x \Big( \big( (A + B)x + A \big) \cos (x) + \big( (B-A)x + B \big) \sin (x) \Big) \\
+		& \phantom{=} + e^x \Big( (A + B) \cos (x) - \big( (A + B) x + A \big) \sin x + (B - A) \sin (x) + \big( (B-A)x + B \big) \cos (x) \Big) \\
+		&= e^x \Big( \big( 2Bx + 2(A + B) \big) \cos (x) + \big( -2A x + 2 (B - A) \big) \sin (x) \Big) 
+		\end{align*}
+	We replace in the left-hand side of the ODE to get
+		\begin{align*}
+		y'' - 2y' + 2y &= e^x \Big( 2B \cos (x) - 2A \sin (x) \Big) .
+		\end{align*}
+	The right-hand side is $e^x (-6\cos x - 4 \sin x )$. Therefore, we must have
+		\begin{align*}
+		2B = -6 \quad \text{ and } \quad -2A = -4 .
+		\end{align*}
+	We conclude that $B = -3$ and $A = 2$ and the solution is
+		\begin{align*}
+		y_{par} (x) = xe^x \big( 2 \cos x - 3 \sin x \big) .
+		\end{align*}
+	
+	\underline{\textbf{General solution.}}\\
+	Combining $y_h$ and $y_{par}$, we obtain
+		\begin{align*}
+		y(x) = y_h (x) + y_{par} (x) = c_1 e^x \cos (x) + c_2 e^x \sin (x) + xe^x \big( 2 \cos x - 3 \sin x \big) .
+		\end{align*}
+		
+	\underline{\textbf{Initial Value Problem.}}\\
+	We have $y(0) = 1$, so
+		\begin{align*}
+		c_1 = 1 .
+		\end{align*}
+	The expression of the derivative of the particular solution was computed in the second step. Replacing $A$ and $B$ by their values, we have
+		\begin{align*}
+		y' (x) = c_1 e^x \cos x + c_2 e^x \sin x - c_1 e^x \sin x + c_2 e^x \cos x + e^x \Big( \big( 2 - x \big) \cos x + \big( -5x - 3 \big) \sin x \Big) .
+		\end{align*}	
+	Since $y'(0) = 4$, we obtain
+		\begin{align*}
+		c_1 + c_2 + 2 = 4 \iff c_1 + c_2 = 2 .
+		\end{align*}
+	Solving for $c_1$ and $c_2$, we get
+		\begin{align*}
+		c_2 = 1 .
+		\end{align*}
+	Therefore, the solution to the IVP is
+		\begin{align*}
+		y(x) =  e^x \cos (x) +  e^x \sin (x) + xe^x \big( 2 \cos x - 3 \sin x \big) .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{5.6}{3}{5}
+	\\
+	
+	We set 
+		$$
+		y = u y_1 = ux .
+		$$
+	Then the derivative and second derivative are
+		\begin{align*}
+		y' &= u' x + u \\
+		y'' &= u'' x + 2u' .
+		\end{align*}
+	Subtituting in the ODE, we obtain
+		\begin{align*}
+		x^2 (u'' x + 2u') - x (u'x + u) + ux = x
+		\end{align*}
+	This simplifies to
+		\begin{align*}
+		x^3 u'' + x^2 u' = x .
+		\end{align*}
+	Dividing through $x$, we get
+		\begin{align*}
+		x^2 u'' + x u' = 1 .
+		\end{align*}
+		
+	Set $v = u'$ so that $v' = u''$. Therefore, the ODE is reduced to
+		\begin{align*}
+		x^2 v' + x v = 1 .
+		\end{align*}
+	Dividing again by $x$, we get
+		\begin{align*}
+		x v' + v = \frac{1}{x} .
+		\end{align*}
+	The left-hand side can be rewritten as
+		\begin{align*}
+		\frac{d}{dx} \big( xv \big) = \frac{1}{x} .
+		\end{align*}
+	Integrating with respect to $x$, we obtain
+		\begin{align*}
+		xv = \ln|x| + c_1 \quad \Ra \quad v(x) = \frac{\ln|x|}{x} + \frac{c_1}{x} .
+		\end{align*}
+	Since $v(x) = u' (x)$, integrating again with respect to $x$ the expression of $v$, we obtain
+		\begin{align*}
+		u(x) = \frac{\op \ln |x| \fp^2}{2} + c_1 \ln|x| + c_2 .
+		\end{align*}
+		
+	Replacing in $y(x)$, we conclude that the general solution is
+		\begin{align*}
+		y(x) = \frac{x (\ln |x|)^2}{2} + c_1 x \ln|x| + c_2 x .
+		\end{align*}
+	From this, we see that a foundamental set of solution for the complementary equation is $\{ x  , x \ln |x| \}$.
+	
+	\vfill
+	
+	\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+	
+	
+\end{document}

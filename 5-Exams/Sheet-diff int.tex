@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{fullpage}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+
+\begin{Large}\textbf{Derivation rules}\end{Large}\\
+~\\
+{\renewcommand{\arraystretch}{2}
+\noindent\begin{tabular}{|ll|ll|ll|}
+  \hline
+  1. & $\frac{d}{dx}x=1$ &   2. & $\frac{d}{dx}cf(x)=cf'(x)$ &   3. & $\frac{d}{dx}\left(f(x)+g(x)\right)=f'+g'$ \\
+  \hline
+  4. & $\frac{d}{dx}\left(f(x)g(x)\right)=f'g+fg'$ & 5. & $\frac{d}{dx}\left(\frac{f(x)}{g(x)}\right)=\frac{f'g-fg'}{g^2}$ & 6. & $\frac{d}{dx}f(g(x))=\frac{df}{dg}\frac{dg}{dx}$\\
+  \hline
+  7. & $\frac{d}{dx}u^n=nu^{n-1}\frac{du}{dx}$ & 8. & $\frac{d}{dx}e^u=e^u\frac{du}{dx}$ & 9. & $\frac{d}{dx}\ln\vert u\vert=\frac{1}{u}\frac{du}{dx}$ \\
+  \hline
+  10. & $\frac{d}{dx}\sin(u)=\cos(u)\frac{du}{dx}$ & 11. & $\frac{d}{dx}\cos(u)=-\sin(u)\frac{du}{dx}$ & 12. & $\frac{d}{dx}\tan(u)=\sec^2(u)\frac{du}{dx}$ \\
+  \hline
+  13. & $\frac{d}{dx}\csc(u)=-\csc(u)\cot(u)\frac{du}{dx}$ & 14. & $\frac{d}{dx}\sec(u)=\sec(u)\tan(u)\frac{du}{dx}$ & 15. & $\frac{d}{dx}\cot(u)=-\csc^2(u)\frac{du}{dx}$ \\
+  \hline
+  16. & $\frac{d}{dx}\arcsin(u)=\frac{1}{\sqrt{1-u^2}}\frac{du}{dx}$ & 17. & $\frac{d}{dx}\arccos(u)=\frac{-1}{\sqrt{1-u^2}}\frac{du}{dx}$ & 18. & $\frac{d}{dx}\arctan(u)=\frac{1}{1+u^2}\frac{du}{dx}$ \\
+  \hline
+\end{tabular}}\\
+~\\
+~\\
+\begin{Large}\textbf{Integration rules}\end{Large}\\
+~\\
+{\renewcommand{\arraystretch}{2}%
+\noindent\begin{tabular}{|ll|ll|ll|}
+  \hline
+  1. & $\int\frac{df(x)}{dx}dx=f(x)+k$ &   2. & $\int cf(x)dx=c\int f(x)dx$ &   3. & $\int\left(f+g\right)dx=\int fdx+\int gdx$ \\
+  \hline
+  4. & $\int x^ndx=\frac{x^{n+1}}{n+1}+k,\quad n\neq-1$ & 5. & $\int \frac{dx}{x}=\ln\vert x\vert +k$ & 6. & $\int e^xdx=e^x+k$ \\
+  \hline
+  7. & $\int\sin(x)dx=-\cos(x)+k$ & 8. & $\int\cos(x)dx=\sin(x)+k$ & 9. & $\int\tan(x)dx=\ln\vert\sec(x)\vert+k$ \\
+  \hline
+  10. & $\int\cot(x)dx=\ln\vert\sin(x)\vert+k$ & 11. & $\int\sec^2(x)dx=\tan(x)+k$ & 12. & $\int\csc^2(x)=-\cot(x)+k$ \\
+  \hline
+\end{tabular}\\
+\begin{tabular}{|ll|ll|}
+  \hline
+  13. & $\int\csc(x)dx=-\ln\vert\csc(x)+\cot(x)\vert+k$ & 14. & $\int\sec(x)dx=\ln\vert\sec(x)+\tan(x)\vert+k$ \\
+  \hline
+  15. & $\int\sec(x)\tan(x)dx=\sec(x)+k$ & 16. & $\int\csc(x)\cot(x)dx=-\csc(x)+k$ \\
+  \hline
+  17. & $\int\frac{dx}{\sqrt{a^2-x^2}}=\arcsin\left(\frac{x}{a}\right)+c$ & 18. & $\int\frac{dx}{a^2+x^2}=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c$ \\
+  \hline
+  19. & $\int\frac{dx}{\sqrt{x^2\pm a^2}}=\ln\left\vert x+\sqrt{x^2\pm a^2}\right\vert+k$ & 20. & $\int udv=uv-\int vdu$ \\
+  \hline
+\end{tabular}}\\
+~\\~\\
+\begin{Large}\textbf{Trigonometric identities}\end{Large}\\
+~\\
+{\renewcommand{\arraystretch}{2}%
+\noindent\begin{tabular}{|ll|ll|ll|}
+  \hline
+  1. & $\sin^2(x)+\cos^2(x)=1$ & 2. & $\sin(x)\sin(y)=\frac{1}{2}(\cos(x-y)-\cos(x+y))$ & 3. & $\tan(x)=\frac{\sin(x)}{\cos(x)}$ \\
+  \hline
+  4. & $\sec^2(x)-\tan^2(x)=1$ & 5. & $\sin(x)\cos(y)=\frac{1}{2}(\sin(x+y)+\sin(x-y))$ & 6. & $\csc(x)=\frac{1}{\sin(x)}$ \\
+  \hline
+  7. & $\csc^2(x)-\cot^2(x)=1$ & 8. & $\cos(x)\cos(y)=\frac{1}{2}(\cos(x+y)+\cos(x-y))$ & 9. & $\sec(x)=\frac{1}{\cos(x)}$ \\
+  \hline
+  10. & $\sin^2(x)=\frac{1}{2}(1-\cos(2x))$ & 11. & $\sin(x+y)=\sin(x)\cos(y)+\cos(x)\sin(y)$ & 12. & $\cot(x)=\frac{\cos(x)}{\sin(x)}$ \\
+  \hline
+  13. & $\cos^2(x)=\frac{1}{2}(1+\cos(2x))$ & 14. & $\sin(x-y)=\sin(x)\cos(y)-\cos(x)\sin(y)$ & 15. & $\cot(x)=\frac{1}{\tan(x)}$ \\
+  \hline
+  16. & $\sin(2x)=2\sin(x)\cos(x)$ & 17. & $\cos(x+y)=\cos(x)\cos(y)-\sin(x)\sin(y)$ & 18. & $\sin(-x)=-\sin(x)$ \\
+  \hline
+  19. & $\cos(2x)=\cos^2(x)-\sin^2(x)$ & 20. & $\cos(x-y)=\cos(x)\cos(y)+\sin(x)\sin(y)$ & 21. & $\cos(-x)=\cos(x)$ \\
+  \hline
+\end{tabular}}
+
+\end{center}
+
+
+\end{document}

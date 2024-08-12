@@ -1,0 +1,293 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 6 Solutions \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{5.3}{1}{10}
+	\\
+	\underline{\textbf{Find the general solutions to the complementary equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' + 5y' - 6y = 0 .
+		\end{align*}
+	The characteristic equation is $r^2 + 5r - 6 = 0$. The roots are $r = 1$ and $r= 5$. So the general solution of the complementary equation is
+		\begin{align*}
+		y_h (x) = c_1 e^{x} + c_2e^{5x} .
+		\end{align*}
+	
+	\underline{\textbf{Find a particular solution.}}\\
+	We have a degree 2 polynomial on the right-hand side of the ODE. We therefore suggest
+		\begin{align*}
+		y_{par}(x) = Ax^2 + Bx + C .
+		\end{align*}
+	We have $y' = 2Ax + B$ and $y'' = 2A$. Therefore, after pluging in the ODE:
+		\begin{align*}
+		2A + 5(2Ax + B) + Ax^2 + Bx + C = 22 + 18x - 18x^2 .
+		\end{align*}
+	Gathering similar terms, we obtain the equation
+		\begin{align*}
+		2A + 5B + C + (10A + B)x + Ax^2 = 22 + 18x - 18x^2 .
+		\end{align*}
+	We therefore get $A = -18$, $10A + B = 18$, and $2A + 5B + C = -18$. So 
+		\begin{align*}
+		B = 18 + 180 = 198 .
+		\end{align*}
+	Finally, $C = 36 -990 = -954$. Therefore, the particular solution we were seeking for is
+		\begin{align*}
+		y_{par} (x) = -18x^2 + 198 x - 954 .
+		\end{align*}
+		
+	\underline{\textbf{General solution.}}\\
+	Combining $y_h$ and $y_{par}$, we get
+		\begin{align*}
+		y (x) = y_h (x) + y_{par} (x) = c_1 e^x + c_2 e^{5x} -18x^2 + 198x - 954 .
+		\end{align*}
+		
+	\newpage
+		
+	\exo{5.3}{3}{10}
+	\\
+	\underline{\textbf{Find the general solution to the complementary equation.}}\\
+	The complementary equation is 
+		\begin{align*}
+		y'' + 8y' + 7y = 0 .
+		\end{align*}
+	The characteristic equation is $r^2 + 8r + 7 = 0$. The roots are $r = -1$ and $r = -7$. Therefore, the general solution to the complementary equation is
+		\begin{align*}
+		y_h (x) = c_1 e^{-x} + c_2 e^{-7x} .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	We have a degree three polynomial on the right-hand side of the polynomial. We therefore suggest
+		\begin{align*}
+		y_{par} (x) = Ax^3 + Bx^2 + Cx + D .
+		\end{align*}
+	We have $y' (x) = 3Ax^2 + 2Bx + C$ and $y'' (x) = 6Ax + 2B$. After plugging in the ODE, we get
+		\begin{align*}
+		6Ax + 2B + 8(3Ax^2 + 2Bx + C) + 7(Ax^3 + Bx^2 + Cx + D) = -8 - x + 24x^2 + 7x^3 .
+		\end{align*}
+	Collecting the terms with the same power of $x$, we get
+		\begin{align*}
+		2B + 8C + 7D + (6A + 16B + 7C)x + (24A + 7B)x^2 + 24Ax^3 = -8 - x + 24x^2 + 7x^3 .
+		\end{align*}
+	Therefore, we see that $24A = 7$, $24A + 7B = 24$, $6A + 16B + 7C = -1$, and $2B + 8C + 7D = -8$. After the dominoes effect, we find that
+		\begin{align*}
+		A = 7/24 , \, B = 17/7, \, C = -1165/196, \, D = 1700/343 .
+		\end{align*}
+	A particular solution is
+		\begin{align*}
+		y_{par} (x) = (7/24)x^3 + (17/7)x^2 - (1165/196)x + (1700/343) .
+		\end{align*}
+		
+	\underline{\textbf{General solution.}}\\
+	The general solution is therefore
+		\begin{align*}
+		y(x)= y_h (x) + y_{par} (x) = c_1 e^{-x} + c_2 e^{-7x} + (7/24)x^3 + (17/7)x^2 - (1165/196)x + (1700/343) .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{5.3}{7}{5}
+	\\
+	Suppose that we could find a particular solution of the form $y_{par} (x) = A + Bx + Cx^2$. Replacing in the ODE $y'$ and $y''$, we find
+		\begin{align*}
+		2C + B + 2Cx = 1 + 2x + x^2 \iff (2C + B) + (2C)x + 0x^2 = 1 +2x + x^2 .
+		\end{align*}
+	But, $0$ in front of the $x^2$ on the left-hand side can't be equal to the $1$ in front of the $x^2$ on the right-hand side. Therefore, the particular solution can't be of the form $A + Bx + Cx^2$.
+	
+	\newpage
+	
+	\exo{5.3}{15}{5}
+	\\
+	Suppose that $y_{par} (x) = Ax^{\alpha}$, where $A$ is a non-zero constant. To be a solution, the function $y_{par}$ should satisfy the ODE. We have
+		\begin{align*}
+		y' = A\alpha x^{\alpha - 1} \quad \text{ and } \quad y'' = A\alpha (\alpha - 1) x^{\alpha - 2} .
+		\end{align*}
+	Substituting in the ODE, we get
+		\begin{align*}
+		ax^2 (A \alpha (\alpha - 1)x^{\alpha - 2}) + bx (A\alpha x^{\alpha - 1}) + c Ax^\alpha = M x^\alpha .
+		\end{align*}
+	After simplifying, we obtain
+		\begin{align*}
+		aA \alpha (\alpha - 1) x^{\alpha} + b A \alpha x^{\alpha} + cA x^\alpha = M x^\alpha .
+		\end{align*}
+	Dividing through $Ax^{\alpha}$, we get
+		\begin{align*}
+		a\alpha (\alpha - 1)  + b \alpha + c = M/A .
+		\end{align*}
+	Since $M/A \neq 0$, then $a \alpha (\alpha - 1) + b\alpha + c$ can't be zero. This was the claim made.
+	
+	In the other direction, if $a \alpha (\alpha - 1) + b \alpha + c \neq 0$, then there is some constant $M\neq 0$ such that
+		\begin{align*}
+		a \alpha (\alpha - 1) + b \alpha + c = M .
+		\end{align*}
+	Multiplying by $x^{\alpha}$, we obtain
+		\begin{align*}
+		a \alpha (\alpha - 1) x^{\alpha} + b \alpha x^{\alpha} + c x^{\alpha} = M x^\alpha
+		\end{align*}
+	which can be rewritten as
+		\begin{align*}
+		a x^2 \alpha (\alpha - 1) x^{\alpha - 2} + b x \alpha x^{\alpha} + c x^{\alpha} = M x^{\alpha} .
+		\end{align*}
+	Letting $y (x) = x^{\alpha}$, we therefore see that
+		\begin{align*}
+		ax^2 y'' + bx x' + c y = Mx^{\alpha} .
+		\end{align*}
+	Therefore, $y = x^{\alpha}$ is a particular solution (here, with $A = 1$). 
+	
+	\newpage
+	
+	\exo{5.4}{15}{10}
+	\\
+	\underline{\textbf{Find the general solution to the complementary equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' - 3y' + 2y .
+		\end{align*}
+	The characteristic equation is $r^2 - 3r + 2 = 0$. Therefore, the roots are $r = 1$ and $r = 2$. So, the general solution to the complementary equation is
+		\begin{align*}
+		y_h (x) = c_1 e^{x} + c_2 e^{2x} .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	The right-hand side if of the form exponential times a polynomial. Also, one of the root does not appear in the exponential. We therefore suggest
+		\begin{align*}
+		y_{par} (x) = A e^{3x} + Bx e^{3x} .
+		\end{align*}
+	We have
+		\begin{align*}
+		y' = 3Ae^{3x} + Be^{3x} + 3Bxe^{3x} \quad \text{ and } \quad y'' = 9Ae^{3x} + 3Be^{3x} + 9Bxe^{3x} + 3Be^{3x} .
+		\end{align*}
+	Replacing this in the ODE, we find
+		\begin{align*}
+		9A e^{3x} + 3Be^{3x} + 9Bxe^{3x} + 3B e^{3x} - 3(3A e^{3x} + Be^{3x} + 3Bxe^{3x}) + 2(Ae^{3x} + Bxe^{3x}) = e^{3x} + xe^{3x} .
+		\end{align*}
+	Collecting similar terms together, we get
+		\begin{align*}
+		(2A + 3B)e^{3x} + (2B)xe^{3x} = e^{3x} + xe^{3x}
+		\end{align*}
+	We should have the same number of $e^{3x}$ and $xe^{3x}$ on both sides. Therefore, we find that
+		\begin{align*}
+		2B = 1 \quad \text{ and } 2A + 3B = 1 .
+		\end{align*}
+	We find that $B = 1/2$ and $A = -1/4$. The particular solution is therefore
+		\begin{align*}
+		y_{par} (x) = -\frac{e^{3x}}{4} + \frac{xe^{3x}}{2} .
+		\end{align*}
+	
+	\underline{\textbf{General solution.}}\\
+	The general solution is therefore
+		\begin{align*}
+		y (x) = y_{h} (x) + y_{par} (x) = c_1 e^x + c_2e^{2x} - \frac{e^{3x}}{4} + \frac{xe^{3x}}{2} .
+		\end{align*}
+	
+	\newpage
+	
+	\exo{5.4}{19}{10}
+	\\
+	\underline{\textbf{Find the general solution to the complementary equation.}}\\
+	The characteristic equation is $r^2 - 2r + 1 = 0$. There is only one root, $r = 1$. Therefore, the solution is
+		\begin{align*}
+		y_h (x) = c_1 e^{x} + c_2 x e^{x} .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	We have that both $e^{x}$ and $xe^x$ are solutions to the complementary equation. Therefore, based on the lecture notes, we suggest
+		\begin{align*}
+		y_{par} (x) = x^2 e^x (Ax + B) = Ax^3 e^x + Bx^2 e^x .
+		\end{align*}
+	We have 
+		\begin{align*}
+		y' &= 3Ax^2 e^x + Ax^3 e^x + 2Bxe^x + Bx^2 e^x \\ 
+		y'' &= Ax^3 e^x + (6A + B)x^2 e^x + (6A + 4B) xe^x + 2B e^x
+		\end{align*}
+	We plug this in the ODE:
+		\begin{align*}
+		Ax^3 e^x + (6A + B)x^2 e^x + (6A + 4B) xe^x + 2B e^x - 2(3Ax^2 e^x + Ax^3 e^x + 2Bxe^x + Bx^2 e^x)\\
+		+ Ax^3 e^x + Bx^2 e^x = 2e^x - 12xe^x .
+		\end{align*}
+	Collecting similar terms, we obtain
+		\begin{align*}
+		6A xe^x + 2B e^x = 2e^x - 12xe^x .
+		\end{align*}
+	We must have $6A = 2$ and $2B = -12$. Therefore, we conclude that $A = 1/3$ and $B = -6$. A particular solution to the ODE is
+		\begin{align*}
+		y_{par} (x) = \frac{1}{3} x^3 e^x -6 x^2 e^x .
+		\end{align*}
+	
+	\underline{\textbf{General solution.}}\\
+	The general solution is
+		\begin{align*}
+		y (x) = y_h (x) + y_{par} (x) = c_1 e^x + c_2 xe^x + \frac{x^3 e^x}{3} - 6 x^2 e^x .
+		\end{align*}
+	
+	\vfill
+	
+	\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+	
+	
+\end{document}

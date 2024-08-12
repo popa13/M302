@@ -1,0 +1,267 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumerate}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+	
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 1}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 1.2: Basic Concepts}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{What's a DE?}
+
+\begin{itemize}
+\item A \textbf{differential equation} (abbreviated by DE) is an equation that contains one or more derivatives of an unknown function.
+	\begin{itemize}
+	\item Examples: $T' = -k (T - T_m)$, $y' = x^2$, $x^2 y'' + xy' + 2 = 0$.
+	\end{itemize}
+\item The \textbf{order} of a DE is the order of the highest derivatives that it contains.
+	\begin{itemize}
+	\item Example: $y' = x^2$ is of order \underline{\phantom{222222}}.
+	\item Example: $x^2 y'' + xy' + 2 = 0$ is of order \underline{\phantom{222222}}.
+	\end{itemize}
+\item An \textbf{Ordinary Differential Equation} (abbreviated ODE) is a DE involving an unknown function of only one variable.
+\item An \textbf{Partial Differential Equation} (abbreviated PDE) is a DE involving an unknown function of more than one variable.
+\end{itemize}
+
+\vspace*{16pt}
+
+The simplest ODE is of the form
+	\begin{align*}
+	y' = f(x) \quad \text{ or } \quad y^{(n)} = f(x)
+	\end{align*}
+where $f$ is a known function of $x$.
+
+\vspace*{10pt}
+
+\begin{example}
+Find functions $y = y (x)$ satisfying
+	\begin{enumerate}
+	\item $y' = x^2$.
+	\item $y'' = \cos (x)$.
+	\end{enumerate}
+\end{example}
+
+\vfill
+
+Our goal is to study general ODEs of the form
+	\begin{align*}
+	y^{(n)} = f(x, y, y' , \ldots , y^{(n-1)}) .
+	\end{align*}
+	
+\newpage
+
+\section{What Is a Solution to an ODE?}
+
+A \textbf{solution} to the ODE 
+	$$
+	y^{(n)} (x) = f(x, y(x), y'(x), \ldots , y^{(n-1)}(x))
+	$$
+is a function $y = y(x)$ that verifies the ODE for any $x$ in some open interval $(a, b)$.
+
+	\vspace*{10pt}
+	\underline{Remark:} 
+	
+	\begin{itemize}
+	\item Functions that satisfy an ODE at isolated points are not considered solutions.
+	\end{itemize}
+	
+\vspace*{16pt}
+	
+\begin{example}\label{Ex:SolutionODE}
+Verify that
+	\begin{align*}
+	y = \frac{x^2}{3} + \frac{1}{x}
+	\end{align*}
+is a solution of
+	\begin{align*}
+	xy' + y = x^2
+	\end{align*}
+on $(-\infty , 0)$ and $(0, \infty )$.
+\end{example}
+
+\newpage
+
+\subsection{Solution and Integral Curves}
+
+\begin{itemize}
+\item The graph of a solution of an ODE is a \textbf{solution curve}.
+\item More generally, a curve $C$ in the plane is said to be an \textbf{integral curve} of an ODE if every function $y = y(x)$ whose graph is a segment of $C$ is a solution of the ODE. 
+\end{itemize}
+
+\vspace*{16pt}
+
+\begin{example}
+Plot the solutions obtained in Example \ref{Ex:SolutionODE}. Are they solution curves of the ODE?
+\end{example}
+
+\vspace*{20pt}
+
+\begin{example}
+If $a$ is any positive constant, check that the circle
+	\begin{align*}
+	x^2 + y^2 = a^2
+	\end{align*}
+is an integral curve of $y' = -x/y$.
+\end{example}
+
+\newpage
+
+\section{Initial Value Problems}
+
+\begin{example}
+Find a solution of
+	\begin{align*}
+	y' = x^3
+	\end{align*}
+satisfying the additional condition $y(1) = 2$.
+\end{example}
+
+\vspace*{6cm}
+
+\begin{example}
+All the solutions to
+	\begin{align*}
+	y'' - 2y' + 3y = 0
+	\end{align*}
+are the functions
+	\begin{align*}
+	y (x) = c_1 e^{x} + c_2 e^{-3x} 
+	\end{align*}
+where $c_1$, $c_2$ are arbitrary constants. Find the solution that satisfies $y(0) = 1$ and $y' (0) = 0$.
+\end{example}
+
+\newpage
+
+An \textbf{Initial Value Problem} (abbreviated by IVP) is an ODE with additional \textbf{Initial conditions}. The general form of an IVP is
+	\begin{align*}
+	y^{(n)}(x) = f(x, y(x) , y'(x) , \ldots , y^{(n-1)}(x)), \quad y(x_0) = k_0 , \, y' (x_0) = k_1 , \ldots , \, y^{(n-1)}(x_0) = k_{n-1} .
+	\end{align*}
+	
+\begin{itemize}
+\item The largest open interval that contains $x_0$ on which $y(x)$ is defined and satisfies the ODE is called the \textbf{interval of validity} of $y$.
+\end{itemize}
+
+\vspace*{16pt}
+
+\begin{example}
+Find the interval of validity of the solution to
+	\begin{align*}
+	y' = x^3 , \, y(1) = 2 .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\begin{example}
+Find the interval of validity of the solution to the following IVPs:
+	\begin{enumerate}
+	\item $xy' + y = x^2$, $y (1) = 4/3$.
+	\item $xy' + y = x^2$, $y (-1) = -2/3$.
+	\end{enumerate}
+\end{example}
+
+
+\end{document}

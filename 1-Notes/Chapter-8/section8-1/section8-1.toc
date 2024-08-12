@@ -1,0 +1,8 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{The Laplace Transform}{2}{section*.1}%
+\contentsline {subsection}{Discrete Process: Power series}{2}{subsection*.2}%
+\contentsline {subsection}{Continuous Process}{2}{subsection*.3}%
+\contentsline {section}{Some Comments on Existence}{4}{section*.4}%
+\contentsline {section}{Linearity of Laplace Transform}{5}{section*.5}%
+\contentsline {section}{First Shift Theorem}{6}{section*.6}%
+\contentsline {section}{Powers and Derivatives}{7}{section*.7}%

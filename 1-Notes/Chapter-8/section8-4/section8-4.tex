@@ -1,0 +1,374 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage[capitalise]{cleveref}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+\newif\ifhNotes 
+
+\hNotesfalse
+
+\ifhNotes
+	\newcommand{\hideNotes}[1]{%
+	\phantom{#1}
+	}
+	\newcommand{\hideNotesU}[1]{%
+	\underline{\hspace{1mm}\phantom{#1}\hspace{1mm}}
+	}
+\else
+	\newcommand{\hideNotes}[1]{#1}
+	\newcommand{\hideNotesU}[1]{\textcolor{blue}{#1}}
+\fi
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{notes}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 8}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 8.4: Convolution}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{What Does The Word ``Convolution'' Mean?}
+
+\subsection{The Story of The Matches}
+
+	\begin{itemize}
+	\item Suppose we have a number of matches we need to light.
+	\item At each second, so at $t = 0$, $t = 1$, $t = 2$, $t = 3$, $...$, $t = n$, we light a certain number of matches. Denote by $f(t)$ the number of matches lit at time $t$.
+	\item Each matches give off smoke. Denote by $g(t)$ the smoke produced by a match after $t$ seconds.
+	\end{itemize}
+	
+	\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+	\begin{scope}[scale=2]
+	\draw[brown, fill=brown] (-3, 0) -- (-3,2) -- (-2.7, 2) -- (-2.7, 0) -- (-3, 0);
+	\draw[red, fill=red] (-3.1, 2) -- (-2.6, 2) -- (-2.6, 2.4) -- (-3.1, 2.4) -- (-3.1, 2);
+	\draw[black, fill=black] (-2, 0.75) -- (-2, 1.25) -- (-1, 1.25) -- (-1, 1.5) -- (-.5, 1) -- (-1,0.5) -- (-1, 0.75) -- (-2, 0.75);
+	\draw[black] (-1.25, 1.75)node{light match};
+	\foreach \x in {3.4,3.5,3.6, 3.7, 3.8, 3.9}{%
+		\begin{scope}[shift={(\x, 0)}]
+		\draw[black!50] (-2.95, 2.75) ..controls +(-0.25,0.25) and +(0.25,-0.25) .. (-2.95, 3.25);
+		\end{scope}}
+	\begin{scope}[shift={(3.5, 0)}]
+	\draw[brown, fill=brown] (-3, 0) -- (-3,2) -- (-2.7, 2) -- (-2.7, 0) -- (-3, 0);
+	\draw[red, fill=red] (-2.85, 2) ..controls +(-0.5, 0) and +(-0.5,-0.25) .. (-2.85,2.7) ..controls +(0,-0.25) and +(0.75, 0) .. (-2.85, 2);
+	\draw[black, ->, >=latex, very thick] (-1.5, 3)node[right]{$g(t)$} -- (-2, 3);
+	\draw[black, ->, >=latex, very thick] (-1.5, 1.5)node[right]{$f(t)$} -- (-2, 1.5);
+	\end{scope}
+	\begin{scope}[shift={(2.05, 1)}, scale=0.5]
+	\draw[orange, fill=orange] (-2.85, 2) ..controls +(-0.5, 0) and +(-0.5,-0.25) .. (-2.85,2.7) ..controls +(0,-0.25) and +(0.75, 0) .. (-2.85, 2);
+	\end{scope}
+	\end{scope}
+	\end{tikzpicture}
+	\caption{The Matches Problem}
+	\end{figure}
+	
+\vspace*{16pt}
+	
+\underline{Question:} What is the total quantity of smoke in the air after a certain time $t$?
+
+\vspace*{12pt}
+
+\begin{center}
+\begin{tabular}{c|c}
+Times ($t$) & $Q(t)$ \\\hline\hline
+\phantom{2} & \phantom{22222222222222222222222222222222222222} \\[12pt]\hline
+\phantom{2} & \phantom{22222222222222222222222222222222222222} \\[12pt]\hline
+\phantom{2} & \phantom{22222222222222222222222222222222222222} \\[12pt]\hline
+\phantom{2} &  \phantom{22222222222222222222222222222222222222} \\[12pt]
+\end{tabular}
+\end{center}
+
+\vspace*{12pt}
+
+The total contribution of the matches after $n$ seconds:
+	\begin{align*}
+	Q(t) = \phantom{2222222222222222222222222222222222222222222222222222222222222222} 
+	\end{align*}
+	
+\vspace*{16pt}
+
+\underline{What if we have a continuous phenomena?}
+
+\newpage
+
+\section{Convolution And Laplace Transform}
+
+\subsection{Definition}
+The convolution of a function $f(t)$ with another function $g(t)$ is the new function $(f \ast g) (t)$ defined by
+	\begin{align*}
+	(f \ast g) (t) = \int_0^t f(x) g(t - x) \, dx .
+	\end{align*}
+	
+\vspace*{16pt}
+
+\begin{example}
+Let 
+	\begin{align*}
+	f(t) = u (t) - u(t - 1) \quad \text{ and } \quad g(t) = u (t) - u(t - 1) .
+	\end{align*}
+Compute $f \ast g$.
+\end{example}
+
+\vfill
+
+\newpage
+
+\phantom{2}
+
+\vfill
+
+\underline{Desmos:} \url{https://www.desmos.com/calculator/h50sct4xeq}
+
+\newpage
+
+\subsection{Laplace Transform}
+
+The nice properties of the convolution is a direct connection with the Laplace transform.
+
+\vspace*{16pt}
+
+	\begin{example}
+	Let $f(t) = e^t$ and $g(t) = e^{-t}$. 
+		\begin{enumerate}[label=\textbf{(\alph*)}]
+		\item Compute $f \ast g$.
+		\item Find $L (f \ast g )$.
+		\item Compare with $L(f) L(g)$.
+		\end{enumerate}
+	\end{example}
+	
+\vfill
+
+\underline{Tranform of Convolution:} If 
+	\begin{itemize}
+	\item $f(t)$ is a function with Laplace transform $F(s)$;
+	\item $g(t)$ is a function with Laplace transform $G(s)$;
+	\end{itemize}
+then
+	\begin{align*}
+	L(f \ast g ) = L(f) L(g) = F(s) G(s) .
+	\end{align*}
+	
+	\newpage
+	
+	\begin{example}
+	Find the inverse Laplace transform of the following function:
+		%\begin{enumerate}[label=\textbf{(\alph*)}]
+		%\item 
+		$$\displaystyle \frac{1}{s^2 (s^2 + 4)}.$$
+		%\item $\displaystyle \frac{s (s + 3)}{(s^2 + 4) (s^2 + 6s + 10)}$.
+		%\end{enumerate}
+	\end{example}
+	
+	\newpage
+	
+	\begin{comment}
+	\section{Applications to ODE}
+	
+	\begin{example}
+	Find the solution $y(t)$ to the following IVP:
+		\begin{align*}
+		y'' + 3y' + y = f(t) , \quad y(0) = 0,\, y' (0) = 0 .
+		\end{align*}
+	\end{example}
+	
+	\newpage
+	
+	\phantom{2}
+	
+	\vfill
+	
+	\underline{General Convolution Formula:}
+	The solution $y(t)$ to the following IVP
+		\begin{align*}
+		ay'' + by' + cy = f(t) , \quad y(0) = k_0 , \, y'(0)= k_1
+		\end{align*}
+	is
+		\begin{align*}
+		y (t) = k_0 y_1 (t) + k_1 y_2 (t) + (w \ast f) (t)
+		\end{align*}
+	where
+		\begin{itemize}
+		\item $y_1$ is a solution to the following IVP
+			\begin{align*}
+			ay_1'' + by_1'' + cy_1 = 0, \quad y_1 (0) = 1, \, y_1'(0) = 0 ;
+			\end{align*}
+		\item $y_2$ is a solution to the following IVP
+			\begin{align*}
+			ay_2'' + by_2'' + cy_2 = 0 , \quad y_2 (0) = 0 , \, y_2' (0) = 1 ;
+			\end{align*}
+		\item $w(t)$ satisfies
+			\begin{align*}
+			w(t) = \frac{1}{a} y_2 (t) .
+			\end{align*}
+		\end{itemize}
+		
+	\newpage
+	\end{comment}
+	
+	\section{Laplace Transforms of Integrals}
+	As a special case of the Laplace transform of a convolution, we can take the Laplace transform of an integral.
+	
+	\vspace*{16pt}
+	
+	\begin{example}
+	Suppose $f$ has a Laplace transform given by $F(s)$. Find the Laplace transform of
+		\begin{align*}
+		h(t) = \int_0^t f(x) \, dx .
+		\end{align*}
+	\end{example}
+	
+	\vfill
+	
+	\underline{Other related results:}
+		\begin{itemize}
+		\item For $g(t) = \displaystyle \int_0^t \int_0^{x} f(u) \, du \, dx$, we have $G(s) = F(s)/s^2$.
+		\item For a function $g(t)$ given as three integrals, then $G(s) = F(s)/s^3$.
+		\item For a function $g(t)$ given as $n$ integrals, then $G(s) = F(s)/s^n$.
+		\end{itemize}
+	
+	\newpage
+	
+	\section{Integro-Differential Equations}
+	We can solve more than just an ODE!
+	
+	\vspace*{16pt}
+	
+	\begin{example}
+	Find the solution to the following integro-differential equation
+		\begin{align*}
+		\int_0^t y(u) \, du + y'(t) = t,
+		\end{align*}
+	where $y(0) = 0$.
+	\end{example}
+	
+	\newpage
+	
+	\begin{example}
+	Find the general solution to the following integral equation
+		\begin{align*}
+		y(t) = \sin (t) - 2 \int_0^t y(u) \cos (t - u) \, du .
+		\end{align*}
+	\end{example}
+	
+	
+\end{document}

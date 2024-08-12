@@ -1,0 +1,281 @@
+\documentclass[addpoints, 12pt]{exam}%, answers]
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+\usepackage{arydshln}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{enumitem}
+
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{pifont}
+
+% MATH commands
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bD}{\mathbb{D}}
+
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fM}{\mathfrak{M}}
+
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\renewcommand{\Re}{\mathrm{Re}\,}
+\renewcommand{\Im}{\mathrm{Im}\,}
+\newcommand{\Arg}{\mathrm{Arg}\,}
+\newcommand{\Arctan}{\mathrm{Arctan}\,}
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\Log}{\mathrm{Log}\,}
+\newcommand{\cis}{\mathrm{cis}\,}
+
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\Sp}{\mathrm{span}\,}
+\newcommand{\Inv}{\mathrm{Inv}\,}
+\newcommand\smallO{
+  \mathchoice
+    {{\scriptstyle\mathcal{O}}}% \displaystyle
+    {{\scriptstyle\mathcal{O}}}% \textstyle
+    {{\scriptscriptstyle\mathcal{O}}}% \scriptstyle
+    {\scalebox{.7}{$\scriptscriptstyle\mathcal{O}$}}%\scriptscriptstyle
+  }
+\newcommand{\HOL}{\mathrm{Hol}}
+\newcommand{\cl}{\mathrm{clos}}
+\newcommand{\ve}{\varepsilon}
+
+\DeclareMathOperator{\dom}{dom}
+
+%%%%%% Définitions Theorems and al.
+%\declaretheoremstyle[preheadhook = {\vskip0.2cm}, mdframed = {linewidth = 2pt, backgroundcolor = yellow}]{myThmstyle}
+%\declaretheoremstyle[preheadhook = {\vskip0.2cm}, postfoothook = {\vskip0.2cm}, mdframed = {linewidth = 1.5pt, backgroundcolor=green}]{myDefstyle}
+%\declaretheoremstyle[bodyfont = \normalfont , spaceabove = 0.1cm , spacebelow = 0.25cm, qed = $\blacktriangle$]{myRemstyle}
+
+%\declaretheorem[ style = myThmstyle, name=Th\'eor\`eme]{theorem}
+%\declaretheorem[style =myThmstyle, name=Proposition]{proposition}
+%\declaretheorem[style = myThmstyle, name = Corollaire]{corollary}
+%\declaretheorem[style = myThmstyle, name = Lemme]{lemma}
+%\declaretheorem[style = myThmstyle, name = Conjecture]{conjecture}
+
+%\declaretheorem[style = myDefstyle, name = D\'efinition]{definition}
+
+%\declaretheorem[style = myRemstyle, name = Remarque]{remark}
+%\declaretheorem[style = myRemstyle, name = Remarques]{remarks}
+
+\newtheorem{theorem}{Théorème}
+\newtheorem{corollary}{Corollaire}
+\newtheorem{lemma}{Lemme}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}{Définition}[section]
+\newtheorem{example}{Exemple}[section]
+\newtheorem{remark}{\textcolor{red}{Remarque}}[section]
+\newtheorem{exer}{\textbf{Exercice}}[section]
+
+
+\tikzstyle{myboxT} = [draw=black, fill=black!0,line width = 1pt,
+    rectangle, rounded corners = 0pt, inner sep=8pt, inner ysep=8pt]
+
+\begin{document}
+	\noindent \hrulefill \\
+	\noindent MATH-302 \hfill Created by Pierre-O. Paris{\'e}\\
+	Midterm 01\hfill Fall 2022\\\vspace*{-0.7cm}
+
+\noindent\hrulefill
+	
+\vspace*{1cm}
+
+\noindent\makebox[\textwidth]{\textbf{Last name:}\enspace \hrulefill}
+\makebox[\textwidth]{\textbf{First name:}\enspace\hrulefill}
+
+\vspace*{1cm}
+\begin{center}
+\gradetable[h][questions]
+\end{center}
+\vspace*{1cm}
+
+{\bf Instructions:} Make sure to write your complete name on your copy. You must answer all the questions below and write your answers directly on the questionnaire. At the end of the 75 minutes, return your copy. 
+
+No devices such as a smart phone, cell phone, laptop, or tablet can be used during the exam. You are not allowed to use the lecture notes or the textbook. You may bring one 2-sided cheat sheet of handwriting notes. You may use a digital calculator (no graphical calculators or symbolic calculators will be allowed).
+
+You must show ALL your work to have full credit. An answer without justification is worth no point.
+
+\vspace*{2cm}
+\noindent May the Force be with you! \hfill Pierre-Olivier Parisé
+
+\vfill
+
+\noindent\textbf{Your Signature:} \hrulefill
+
+\vspace*{1cm}
+
+\begin{center}
+\begin{minipage}{0.29\textwidth}
+\begin{Huge}
+\textsc{University of Hawai'i}
+\end{Huge}
+\end{minipage}
+\begin{minipage}{0.12\textwidth}
+\includegraphics[scale=0.05]{../../../../manoaseal_transparent.png}
+\end{minipage}
+\end{center}
+
+\qformat{\rule{0.3\textwidth}{.4pt} \begin{large}{\textsc{Question}} \thequestion \end{large} \hspace*{0.2cm} \hrulefill \hspace*{0.1cm} \textbf{(\totalpoints\hspace*{0.1cm} pts)}}
+
+\vspace*{0.5cm}
+
+\newpage
+
+\begin{questions}
+
+\question[20]
+Find the solution to the following IVP:
+	\begin{align*}
+	y' + \op \frac{1 + x}{x} \fp y = 0 \quad \text{ and } \quad y(1) = 1 .
+	\end{align*}
+	
+\newpage
+	
+\question[20]
+
+Find the solutions to $3x^2 y dx + 2x^3 dy = 0$.
+	
+\newpage
+	
+\question[20]
+
+Solve the Bernoulli's equation $\displaystyle y' - xy = xy^{3/2}$.
+	
+	
+\newpage
+
+\question
+A tank with a maximal capacity of 1200 gallons initially contains 40 pounds of salt dissolved in 600 gallons of water. Starting at $t_0 = 0$, water that contains $1/2$ pound of salt per gallon is added to the tank at the rate of $6$ gal/min and the resulting mixture is drained from the tank at $6$gal/min. 
+	\begin{parts}
+	\part[5]
+	Find a differential equation for $Q(t)$, the quantity of salt in the tank at time $t$ (time is in minutes).
+	
+	\part[12]
+	Solve the equation obtained from part (a).
+	
+	\part[3]
+	Compute $\lim_{t \ra \infty} Q(t)$. What does it represent physically?
+	\end{parts}
+
+\newpage
+
+\question
+Answer the following questions.
+	\begin{parts}
+	\part[5]
+	Find \textbf{all} functions $M$ such that the following ODE is exact:
+		\begin{align*}
+		M(x, y) dx + (x^2 - y^2 ) dy = 0 .
+		\end{align*}
+	
+	\newpage
+	
+	\part[5]
+	The picture below represents a direction field for a certain differential equation. Draw five different integral curves on the picture below. Explain, with a short paragraph, how you drew the integral curves.
+		\begin{figure}[ht]
+		\centering
+		\includegraphics[scale=0.5]{figure_1.png}
+		\caption{Direction field of some ODE}
+		\end{figure}
+	
+	\end{parts}
+	
+\newpage
+
+\question
+Answer the following statements with \textbf{True} or \textbf{False}. Write your answer on the horizontal line at the end of each statement. Justify your answer in the white space underneath each statement.
+
+	\begin{parts}
+	\pointformat{(\hspace*{0.5cm}/ \thepoints)}
+	\pointname{}
+	%\pointsinrightmargin
+	
+	\part[2]
+	The DE $(x^2 + xy) dx + (y^3 + x) dy = 0$ is exact.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[False]
+	
+	\part[2]
+	The order of the DE $x^2 y^{(3)} + y^4 = \tan (x)$ is four.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[False]
+	
+	\part[2]
+	If $y_1 (x)$ is a solution to $y^2 + y' = 0$, then $2y_1$ is a solution to $y^2 + y' = 0$.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[True]
+	
+	\part[2]
+	Any solution to $y' + p(x) y = 0$ is of the form $y(x) = ce^{-\int p(x) \, dx}$.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[False]
+	
+	\part[2]
+	The function $y(x) = \frac{1}{x-1}$ is a solution to the following IVP: $y' + y^2 = 0$ and $y(0) = -1$.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[True]
+	
+	\end{parts}
+
+\end{questions}
+
+
+\end{document}

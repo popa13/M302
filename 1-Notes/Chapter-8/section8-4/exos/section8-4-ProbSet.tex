@@ -1,0 +1,308 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+\newcommand{\qu}[2]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}}\\}
+\newcommand{\prob}[2]{\noindent\textcolor{#2}{\fbox{\textbf{Problem {#1}}}}}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Problems set, Section 8.4 \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\prob{A}{blue}
+	
+	Find the inverse Laplace transform of the following functions. You may leave your answer as a convolution of two functions or as an integral.
+	\begin{multicols}{2}
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $\displaystyle \frac{1}{s^2 (s^2 + 4)}$.
+	\item $\displaystyle\frac{1}{s (s - 2)}$.
+	\item $\displaystyle\frac{s}{(s + 2)(s^2 + 9)}$.
+	\item $\displaystyle\frac{1}{(s - 1)^3(s + 2)^2}$.
+	\end{enumerate}
+	\end{multicols}
+	
+	\spc
+	
+	\prob{B}{blue}
+	
+	Solve the following integral equation:
+	\begin{align*}
+	y(t) = 1 + \int_0^t y(\tau ) \, d\tau\text{.}
+	\end{align*}
+	
+	\spc
+	
+	
+	\prob{C}{blue}
+	
+	Solve the following integro-differential equations:
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $y(t) = 1 - \displaystyle\int_0^t (t - \tau ) y (\tau ) \, d\tau$.
+	\item $y' (t) = \sin t + \displaystyle\int_0^t y (t - \tau ) \cos \tau \, d\tau$ avec $y(0) = 1$.
+	\item $y(t) = t e^t - 2e^t \displaystyle\int_0^t e^{-\tau} y(\tau ) \, d\tau$.
+	\end{enumerate}
+	
+	\spc
+	
+	\begin{comment}
+	\prob{D}{blue}
+	
+	Find the function $f$ satisfying the equation.
+\begin{multicols}{2}
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $f(t) \ast t^3 = t^5$.
+	\item $f \ast f = t^3 e^{-t}$.
+	\end{enumerate}
+\end{multicols}
+
+	\spc
+	
+	\prob{E}{blue}
+	
+	Find the solution $f$ and $g$ of the following system of equations.
+\begin{multicols}{2}
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $\oa \begin{matrix}
+	f \ast e^{-t} + g \ast e^t = t e^t \\
+	f \ast e^t - g \ast e^{-t} = 0 \text{.}
+	\end{matrix} \right.$
+	\item $\oa \begin{matrix}
+	f \ast 1 + g \ast t = t \\
+	f \ast t - g \ast 1 = 0 \text{.}
+	\end{matrix} \right.$
+	\end{enumerate}
+\end{multicols}
+	\end{comment}
+	
+\begin{comment}
+
+	\newpage
+	
+	\begin{center}
+	\large
+	\textcolor{red}{\textbf{Complete Solutions}}
+	\end{center}
+	
+	\noindent\textcolor{red}{\hrulefill}
+	
+	\prob{A}{red}
+	
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+	\item We have a product of two functions $\frac{1}{s^2}$ and $\frac{1}{s^2 + 4}$. Therefore, the original function (inverse Laplace transform) is given by the convolution of the inverse of $\frac{1}{s^2}$ and $\frac{1}{s^2 +4}$. We have
+		\begin{align*}
+		L^{-1} \Big( \frac{1}{s^2} \Big) = -t \quad \text{ and } \quad L^{-1} \Big( \frac{1}{s^2 + 4} \Big) = \sin (2t ) .
+		\end{align*}
+	Therefore, we get
+		\begin{align*}
+		h (t) = (-t) \ast \sin (2t) .
+		\end{align*}
+	We can leave our answer like this. If you computed the integral, then you should have
+		\begin{align*}
+		h(t) = \frac{1}{4} \big( \sin (2t) - 2t \big) .
+		\end{align*}
+	\item We have a product of $\frac{1}{s}$ and $\frac{1}{s - 2}$. We could use the method of partial fractions decomposition, but it is more straightforward to use the convolution. We have
+		\begin{align*}
+		L^{-1} \Big( \frac{1}{s} \Big) = 1 \quad \text{ and } \quad L^{-1} \Big( \frac{1}{s - 2} \Big) = e^{2t} .
+		\end{align*}
+	Therefore, the convolution Theorem tells us that 
+		\begin{align*}
+		f \ast g = L^{-1} \big( F (s) G(s) \big) .
+		\end{align*}
+	We get
+		\begin{align*}
+		h (t) = 1 \ast e^{2t} .
+		\end{align*}
+	The answer is correct in this form, but if you want the expression of $h(t)$, here it is:
+		\begin{align*}
+		h(t) = \frac{1}{2} (e^{2t} - 1 ) = e^t \sinh (t) .
+		\end{align*}
+	\item We will combine $s$ with $s^2 + 9$:
+		\begin{align*}
+		H(s) = \frac{s}{(s + 2) (s^2 + 9)} = \Big( \frac{1}{s + 2} \Big) \Big( \frac{s}{s^2 + 9} \Big) .
+		\end{align*}
+	We have
+		\begin{align*}
+		L^{-1} \Big( \frac{1}{s +2} \Big) = e^{-2t} \quad \text{ and } \quad L^{-1} \Big( \frac{s}{s^2 + 9} \Big) = \cos (3t) .
+		\end{align*}
+	Using the convolution, we obtain
+		\begin{align*}
+		h(t) = e^{-2t} \ast \cos (3t) .
+		\end{align*}
+	The answer is correct in this form, but we can integrate and get the exact expression of $h(t)$:
+		\begin{align*}
+		h(t) = \frac{1}{13} \big( 2e^{2t} + 3 \sin (3t) - 2 \cos (3t) \big) 
+		\end{align*}
+	\item We can rewrite the function as
+		\begin{align*}
+		H(s) = \Big( \frac{1}{(s-1)^3} \Big) \Big( \frac{1}{(s + 2)^2} \Big) .
+		\end{align*}
+	We have
+		\begin{align*}
+		L^{-1} \Big( \frac{1}{(s - 1)^3} \Big) = t^2e^t \quad \text{and} \quad L^{-1} \Big( \frac{1}{(s + 2)^2} \Big) = -t e^{-2t} .
+		\end{align*}
+	Using the convolution, we get
+		\begin{align*}
+		h(t) = ( t^2 e^t) \ast (-te^{-2t}) .
+		\end{align*}
+	If you computed the exact solution, you should find
+		\begin{align*}
+		h(t) = \frac{1}{27} e^{-2t} \big( e^{3t} (-3t^2 + 4t - 2) + 2 (t + 1) \big) .
+		\end{align*}
+	\end{enumerate}
+	
+	\spc
+	
+	\prob{B}{red}
+
+	Apply the Laplace transform on each side of the equation. We obtain
+		\begin{align*}
+		Y = \frac{1}{s} + \frac{Y}{s} .
+		\end{align*}
+	Multiplying by $s$ the equation and substracting by $Y$, we obtain
+		\begin{align*}
+		sY - Y = 1
+		\end{align*}	
+	which can be rewritten as
+		\begin{align*}
+		Y = \frac{1}{s - 1} .
+		\end{align*}	
+	Therefore, we get
+		\begin{align*}
+		y(t) = e^t .
+		\end{align*}	
+		
+	\underline{Remark:} We can also transform this integral equation into an ODE. Take the derivative (by assuming that $y$ is differentiable), then
+		\begin{align*}
+		y'(t) = 0 + y(t) = y(t) .
+		\end{align*}
+	The integral on the right-hand side becomes $y(t)$ because	of the Fundamental Theorem of Calculus:
+		\begin{align*}
+		\frac{d}{dt} \Big( \int_0^t y(\tau ) \, d\tau \Big) = y(t) .
+		\end{align*}
+	Notice also that since $\displaystyle \int_0^0 y(\tau ) \, d\tau = 0$, we have $y(0) = 1$. So we have to solve the following IVP:
+		\begin{align*}
+		y' = y,\quad y(0) = 1 .
+		\end{align*}
+	The solution is $y(t) = e^t$. This is the same solution that we obtained using the Laplace transform. The advantage of the Laplace transform is that we don't need to assume necessarily that $y(t)$ is differentiable. We may only assume that $y(t)$ has a Laplace transform and this is a weaker assumption than a differentiability condition.
+	
+	\newpage
+	
+	\prob{C}{red}
+	
+\begin{enumerate}[label= \textcolor{red}{\arabic*)}]
+\item The idea is to apply the Laplace transform on each side of the equation. The left-hand side is simply  $Y$. To obtain the expression of the right-hand side, we use the convolution. We have
+	\begin{align*}
+	\int_0^t (t - \tau ) y(\tau ) \, d\tau = y \ast t \text{.}
+	\end{align*}
+Therefore, the Laplace transform of the right-hand side is
+	\begin{align*}
+	\frac{1}{s} - L (y \ast t) = \frac{1}{s} - \frac{Y}{s^2} \text{.}
+	\end{align*}
+The expression of the transformed equation is
+	\begin{align*}
+	Y = \frac{1}{s} - \frac{Y}{s^2} \Ra Y \op 1 + \frac{1}{s^2} \fp = \frac{1}{s} \text{.}
+	\end{align*}
+After isolating $Y$, we get
+	\begin{align*}
+	Y = \frac{s}{s^2 + 1} 
+	\end{align*}
+and finding the inverse transform, we obtain the following solution:
+	\begin{align*}
+	y(t) = \cos (t) \text{.}
+	\end{align*}
+\item We apply the Laplace transform on each side of the equation and we consider the following facts:
+	\begin{align*}
+	\int_0^t y (t - \tau ) \cos (\tau ) \, d\tau = \cos (t) \ast y(t) \text{.}
+	\end{align*}
+The expression of the transformed equation is
+	\begin{align*}
+	sY - 1 = \frac{1}{s^2 + 1} + \frac{sY}{s^2 + 1}
+	\end{align*}
+and after isolating $Y$, we get
+	\begin{align*}
+	sY \op 1 - \frac{1}{s^2 + 1} \fp = 1 + \frac{1}{s^2 + 1} \Ra sY = \frac{s^2 + 2}{s^2} \Ra Y = \frac{s^2 + 2}{s^3} \text{.}
+	\end{align*}
+Taking the inverse transform, we get
+	\begin{align*}
+	y(t) = 1 + t^2 \text{.}
+	\end{align*}
+\item We notice that
+	\begin{align*}
+	e^t \int_0^t e^{-\tau} y (\tau ) \, d\tau = \int_0^t e^{t - \tau} y (\tau ) = y (t) \ast e^t \text{.}
+	\end{align*}
+Therefore, applying the Laplace transform, we get
+	\begin{align*}
+	Y = \frac{1}{(s - 1)^2} - 2 \frac{Y}{s - 1} \Ra Y \op 1 + \frac{2}{s - 1} \fp = \frac{1}{(s - 1)^2} \text{.}
+	\end{align*}
+After isolating $Y$, we obtain the following equation:
+	\begin{align*}
+	Y = \frac{1}{(s - 1)(s + 1)} = \frac{1}{s^2 - 1} \text{.}
+	\end{align*}
+Finally, taking the inverse Laplace transform, we obtain the following solution:
+	\begin{align*}
+	y(t) = \sinh (t) \text{.}
+	\end{align*}
+\end{enumerate}
+	
+\end{comment}
+	
+\end{document}

@@ -1,0 +1,383 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage[capitalise]{cleveref}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+\newif\ifhNotes 
+
+\hNotesfalse
+
+\ifhNotes
+	\newcommand{\hideNotes}[1]{%
+	\phantom{#1}
+	}
+	\newcommand{\hideNotesU}[1]{%
+	\underline{\hspace{1mm}\phantom{#1}\hspace{1mm}}
+	}
+\else
+	\newcommand{\hideNotes}[1]{#1}
+	\newcommand{\hideNotesU}[1]{\textcolor{blue}{#1}}
+\fi
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{notes}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 8}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 8.1: Laplace Transforms}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{The Laplace Transform}
+From now on,
+	\begin{itemize}
+	\item the variable $t$ stands for the independent variable (time).
+	\end{itemize}
+\subsection{Discrete Process: Power series}
+
+\begin{notes}
+Take a power series
+	\begin{align*}
+	L(x) = \sum_{n = 0}^\infty a_n x^n .
+	\end{align*}
+
+What is the relationship between $L (x)$ and $a_n$?
+	\begin{itemize}
+	\item $L(x)$ is the discrete sum of the $a_n$.
+	\item $L(x)$ represente the contributions of each $a_n$.
+	\end{itemize}
+\end{notes}
+
+\vspace*{8cm}
+	
+\subsection{Continuous Process}
+
+\begin{notes}
+	
+Imagine that we replace $a_n$ by a continuous $a(t)$, where $t \in [0, \infty )$. Then, the analogue of the series in the function world is the integral:
+	\begin{align*}
+	L(x) = \int_0^\infty a(t) x^t \, dt .
+	\end{align*}
+	\begin{itemize}
+	\item $L(x)$ is now the continuous sum of $a(t)$.
+	\item $L(x)$ represents the contributions of each $a(t)$.
+	\end{itemize}
+	
+The integral will be defined if $x^t < 1$, and so $x < 1$. Changing the variable $x$ to $e^{-s}$ for some variable $s$ gives
+	\begin{align*}
+	L(s) = \int_0^\infty a(t) e^{-st} \, dt .
+	\end{align*}
+This last expression is the Laplace Transform of the function $a(t)$!
+
+\underline{\textbf{Laplace Transform.}}
+
+The Laplace transform of a function $f$ is the new function $F(s)$ given by
+	\begin{align*}
+	F(s) = \int_0^\infty f(t) e^{-st} \, dt .
+	\end{align*}
+\end{notes}
+	
+\vfill
+	
+\underline{Remark:}
+	\begin{itemize}
+	\item Recall that, with power series, we were able to solve a differential equation by solving a recurrence relation (so, basically, doing some algebra with a discrete number of data).
+	\item With the Laplace transform, we will also be able to reduce an ODE problem into an algebra one.
+	\item We use the symbol $L(f(t))$ to also denote the Laplace transform $F(s)$.
+	\end{itemize}
+	
+\newpage
+
+\begin{example}
+Compute the Laplace transform of the function $f(t) = t$.
+\end{example}
+
+\vfill
+
+Here is a sample table of Laplace Transforms.
+
+\begin{table}[ht!]
+\centering
+{\renewcommand{\arraystretch}{2.49}
+	\setlength{\tabcolsep}{2pt}
+\begin{tabular}{|c|c||c|c|}
+\hline
+\hspace{0.75cm} \textbf{Function} \hspace{0.75cm} & \hspace{0.75cm} \textbf{Transform} \hspace{0.75cm} & \hspace{0.75cm} \textbf{Function} \hspace{0.75cm}  & \hspace{0.75cm} \textbf{Transform} \hspace{0.75cm} \\\hline
+\hfill $1$ \hfill\hfill & $\hideNotes{\displaystyle\frac{1}{s}}$ &  \hfill $\sin (\omega t )$ \hfill \hfill & $\hideNotes{\displaystyle\frac{\omega}{s^2 + \omega^2}}$ \\\hline
+ \hfill $t$ \hfill\hfill & $\hideNotes{\displaystyle\frac{1}{s^2}}$ &  \hfill $\cos (\omega t )$ \hfill \hfill & $\hideNotes{\displaystyle \frac{s}{s^2 + \omega^2}}$ \\\hline
+ \hfill $t^n $ \hfill \hfill & $\displaystyle\frac{n!}{s^{n + 1}}$ &  \hfill $\sinh (\omega t)$ \hfill \hfill  & $\hideNotes{\displaystyle\frac{\omega}{s^2 - \omega^2}}$ \\\hline
+ \hfill $e^{at}$ \hfill \hfill & $\displaystyle \frac{1}{s - a}$ &  \hfill $\cosh (\omega t)$ \hfill \hfill & $\hideNotes{\displaystyle\frac{s}{s^2 - \omega^2}}$ \\\hline
+\end{tabular}}
+\caption{Laplace Transforms (sample)}
+\end{table}
+
+\newpage
+
+\section{Some Comments on Existence}
+	It is important to check if a function possesses a Laplace transform.
+	
+	\vspace*{16pt}
+	
+	\underline{\textbf{Exponential Order Criterion.}}
+	
+	If $f(t)$ is a function satisfying
+		\begin{align*}
+		|f(t)| \leq M e^{s_0 t} , \, t \geq t_0
+		\end{align*}
+	for some numbers $s_0$, $t_0$, and $M$, then $F(s)$ exists for $s > s_0$.
+	
+	\vspace*{16pt}
+	
+	\underline{Remarks:}
+		\begin{itemize}
+		\item Later on, we will see that the Laplace transform exists for discontinuous functions.
+		\item Even more than that, we will apply the Laplace transform on functions taking $\infty$ as values!
+		\end{itemize}
+		
+	\vspace*{16pt}
+	
+	\begin{example}
+	The function $f(t) = e^{t^2}$ doesn't have a Laplace transform.
+	\end{example}
+	
+	\newpage
+
+\section{Linearity of Laplace Transform}
+
+\begin{example}
+Justify that
+	\begin{align*}
+	L (\sinh (\omega t )) = \frac{\omega}{s^2 - \omega^2} .
+	\end{align*}
+\end{example}
+
+\vfill
+
+\underline{\textbf{Linearity of Laplace transform:}}
+
+If $f$ and $g$ are two functions, and $a$, $b$ are two real numbers, then
+	\begin{align*}
+	L(af(t) + bg(t)) = aL(f(t)) + bL(g(t)) = a F(s) + b G(s) .
+	\end{align*}
+You can apply this repeatedly to more than two functions.
+
+\newpage
+
+\section{First Shift Theorem}
+
+Did you notice that
+	\begin{align*}
+	L (e^{at}) = \frac{1}{s - a} ?
+	\end{align*}
+
+	\begin{itemize}
+	\item This is $L(1)$, but with a shift $s - a$!!! 
+	\item Since $e^{at} = 1 \cdot e^{at}$, we have the following shifting result.
+	\end{itemize}
+	\vspace*{18pt}
+	
+	\underline{\textbf{Shifting Theorem:}}
+	
+	If $f(t)$ is a function with a Laplace transform $F(s)$, then
+		\begin{align*}
+		L(e^{at} f(t)) = F(s - a) .
+		\end{align*}
+		
+	\vspace*{16pt}
+	
+	\begin{example}
+	Find the Laplace transform of
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{(\alph*)}]
+		\item $f(t) = e^{at} \sin (\omega t )$.
+		\item $f(t) = e^{at} \cos (\omega t)$.
+		%\item $f(t) = e^{at} \sinh (\omega t )$.
+		%\item $f(t) = e^{at} \cosh (\omega t )$.
+		\end{enumerate}
+	\end{multicols}
+	\end{example}
+	
+	\newpage
+	
+	\section{Powers and Derivatives}
+	Did you notice that
+		\begin{align*}
+		L (t) = \frac{1}{s^2} = - \frac{d}{ds} \Big( \frac{1}{s} \Big) ?
+		\end{align*}
+	\begin{itemize}
+	\item This is the derivative of $L(1)$, but with a different sign.
+	\item Since $t = 1 \cdot t$, we have the following result.
+	\end{itemize}
+	
+	\vspace*{16pt}
+	
+	\underline{\textbf{Powers Transformed in Derivatives.}}
+	
+	If $f$ has a Laplace transform and $n$ is a positive integer, then
+		\begin{align*}
+		L (t^n f(t)) = (-1)^n F^{(n)} (s) .
+		\end{align*}
+		
+	\vspace*{16pt}
+	
+	\begin{example}
+	Find the Laplace transform of
+		\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{(\alph*)}]
+		\item $f(t) = t \cos (\omega t) $.
+		\item $f(t) = t \sinh (\omega t )$.
+		\item $f(t) = t e^{at}$.
+		\item $f(t) = t \sin (2t ) + t^2 \cos (t) \sin (t)$.
+		\end{enumerate}
+		\end{multicols}
+	\end{example}
+	
+	\newpage
+	
+	Did you notice that
+		\begin{align*}
+		L (\cos (t)) = \frac{s}{s^2 + 1} = \phantom{s L (\sin (t)) - \sin (0) 2222222222222222222222} ?
+		\end{align*}
+		
+	\vspace*{16pt}
+	
+	\underline{\textbf{Derivatives Transformed in Powers:}}
+	
+	If $f, f', \ldots , f^{(n)}$ have a Laplace transform for $n \geq 1$, then
+		\begin{align*}
+		L ( f^{(n)} (t)) = s^n F(s) - s^{n - 1} f(0) - s^{n - 2} f ' (0) - s f^{(n-2)}(0) - f^{(n-1)}(0) .
+		\end{align*}
+	Most relevant formulas:
+		\begin{itemize}
+		\item $n = 1$: $L (f'(t)) = s F(s) - f(0)$.
+		\item $n = 2$: $L (f''(t)) = s^2 F(s) - s f(0) - f'(0)$.
+		\item $n = 3$: $L(f^{(3)} (t)) = s^3 F(s) - s^2 f(0) - s f'(0) - f''(0)$.
+		\end{itemize}
+		
+	\vspace*{16pt}
+	
+	\begin{example}
+	Find the Laplace transform of
+		\begin{enumerate}[label=\textbf{(\alph*)}]
+		\item $f(t) = \cos^2 (t)$.
+		\item $g(t) = \sin^2 (t)$.
+		\end{enumerate}
+	\end{example}
+
+\end{document}

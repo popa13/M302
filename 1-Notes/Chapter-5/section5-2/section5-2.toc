@@ -1,0 +1,6 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{What is a Constant Coefficient Homogeneous ODE?}{2}{section*.1}%
+\contentsline {section}{Distinct Real Roots: $\sqrt {b^2 - 4ac} > 0$}{3}{section*.2}%
+\contentsline {section}{Repeated Roots: $\sqrt {b^2 - 4ac} = 0$}{4}{section*.3}%
+\contentsline {section}{Complex Roots: $\sqrt {b^2 - 4ac} < 0$}{6}{section*.4}%
+\contentsline {subsection}{Complex Numbers}{6}{subsection*.5}%

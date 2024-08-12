@@ -1,0 +1,11 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{When The Force Function Is An Exponential}{2}{section*.1}%
+\contentsline {subsection}{Case I}{2}{subsection*.2}%
+\contentsline {subsection}{Case II}{3}{subsection*.3}%
+\contentsline {subsection}{Case III}{5}{subsection*.4}%
+\contentsline {subsection}{Recap}{7}{subsection*.5}%
+\contentsline {section}{When The Force Function Is Exponential Times Polynomial}{8}{section*.6}%
+\contentsline {subsection}{Case I}{8}{subsection*.7}%
+\contentsline {subsection}{Case II}{10}{subsection*.8}%
+\contentsline {subsection}{Case III}{12}{subsection*.9}%
+\contentsline {subsection}{Recap}{13}{subsection*.10}%

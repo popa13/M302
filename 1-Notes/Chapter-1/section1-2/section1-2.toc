@@ -1,0 +1,5 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{What's a DE?}{2}{section*.1}%
+\contentsline {section}{What Is a Solution to an ODE?}{3}{section*.2}%
+\contentsline {subsection}{Solution and Integral Curves}{4}{subsection*.3}%
+\contentsline {section}{Initial Value Problems}{5}{section*.4}%

@@ -1,0 +1,246 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+	
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 2}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 2.5: Exact Equations}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{Another Way to Present an ODE}
+
+\begin{example}
+Consider $y' = dy/dx$ and use this to rewrite the ODE
+	\begin{align*}
+	y' = \frac{y + xe^{-y/x}}{x}
+	\end{align*}
+in terms of $dx$ and $dy$.
+\end{example}
+
+\vfill
+
+\underline{Convenient form:}
+
+We will now consider an homogeneous first order ODE in the form
+	\begin{align}
+	M(x, y) dx + N (x, y) dy = 0 \label{Eq:ExactForm}
+	\end{align}
+where $M$ and $N$ are two functions of the variables $x$ and $y$.
+
+\underline{Two interpretations:}
+	\begin{itemize}
+	\item the equation \eqref{Eq:ExactForm} can be interpreted as
+		\begin{align}
+		M(x, y) + N(x, y) \frac{dy}{dx} = 0 \label{Eq:Exactdydx}
+		\end{align}
+	where $x$ is the independent variable and $y$ is the dependent variable.
+	\item the equation \eqref{Eq:ExactForm} can be interpreted as
+		\begin{align}
+		M (x, y) \frac{dx}{dy} + N(x, y) = 0 \label{Eq:Exactdxdy}
+		\end{align}
+	where $x$ is the dependent variable and $y$ is the independent variable.
+	\item An implicit equation $F(x, y) = c$ is said to be an \textbf{implicit solution} to \eqref{Eq:ExactForm} if
+		\begin{itemize}
+		\item every function $y = y(x)$ satisfying $F(x, y(x)) = c$ is a solution to \eqref{Eq:Exactdydx}.
+		\item every function $x = x(y)$ satisfying $F(x(y), y) = c$ is a solution to \eqref{Eq:Exactdxdy}
+		\end{itemize}
+	\end{itemize}
+	
+\newpage
+	
+	\section{Exactness Condition}
+	
+	\begin{example}
+	Show that
+		\begin{align*}
+		x^4 y^3 + x^2 y^5 + 2xy = c
+		\end{align*}
+	is an implicit solution of
+		\begin{align*}
+		(4x^3 y^3 + 2xy^5 + 2y) dx + (3x^4y^2 + 5x^2 y^4 + 2x) dy = 0 .
+		\end{align*}
+	\end{example}
+	
+	\vfill
+	
+	\underline{General Fact:}
+	
+	If $F(x, y) = c$ with $F$ having continuous partial derivatives $F_x$ and $F_y$, then
+		\begin{align*}
+		F(x, y) = c
+		\end{align*}
+	is an implicit solution to the differential equation
+		\begin{align*}
+		F_x (x, y) dx + F_y (x, y) dy = 0 .
+		\end{align*}
+		
+	\newpage
+	
+	So, a differential equation is said to be \textbf{exact} on an open rectangle $R$ if there is a function $F = F(x, y)$ such that
+		\begin{align*}
+		F_x (x, y) = M (x, y) \quad \text{ and } \quad F_y = N (x, y) .
+		\end{align*}
+		
+	\underline{Useful fact (the exactness condition):}
+	
+	A differentiel equation is exact if and only if
+		\begin{align*}
+		M_y (x, y) = N_x (x, y) .
+		\end{align*}
+	
+	\vspace*{16pt}
+	
+	\begin{example}
+	Check if the following ODEs are exact or not.
+		\begin{enumerate}
+		\item $3x^2 y dx + 4x^3 dy = 0$.
+		\item $(4x^3 y^3 + 3x^2)dx + (3x^4 y^2 + 6y^2) dy = 0$.
+		\end{enumerate}
+	\end{example}
+	
+	\newpage
+	
+	\section{How to Solve Exact ODEs}
+	
+	\begin{example}
+	Solve
+		\begin{align*}
+		y' = -\frac{4x^3 y^3 + 3x^2}{3x^4 y^2 + 6y^2} .
+		\end{align*}
+	\end{example}
+	
+	\newpage
+	
+	\subsection{Non Rigorous but ``Fast'' Procedure to Solve An Exact ODE}
+	\begin{enumerate}[label=\textbf{[\Roman*]}]
+	\item Check that the equation
+		\begin{align*}
+		M (x, y) dx + N(x, y) dy = 0
+		\end{align*}
+	satisfies the exactness condition.
+	\item Integrate the equation $F_x = M (x, y)$ with respect to $x$ to get
+		\begin{align*}
+		F (x, y) = G(x, y) .
+		\end{align*}
+	\item Integrate the equation $F_y = N(x, y)$ with respect to $y$ to get
+		\begin{align*}
+		F(x, y) = H (x, y) .
+		\end{align*}
+	\item Identity what is in common in the expressions of the functions $G$ and $H$. Call this common part $F_1 (x, y)$.
+	\item Identity what is not in common in the expressions of the functions $G$ and $H$. Gather the uncommon part in a function $F_2 (x, y)$.
+	\item Write $F (x, y) = F_1 (x, y) + F_2 (x, y)$.
+	\end{enumerate}
+	
+\vspace*{16pt}
+	
+\underline{Remarks:}
+	\begin{itemize}
+	\item This shortcut may not work if one of the function $G$ or $H$ has an integral that can't be simplified.
+	\item Sometimes, the rigorous procedure is faster (see next section).
+	\item For the step-by-step rigorous procedure, see Example 2.5.3 (p.75) and p.77 of the textbook.
+	\end{itemize}
+
+\end{document}

@@ -1,0 +1,233 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 5 Solutions \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{5.1}{3}{10}
+	\begin{enumerate}[label=\alph*)]
+	\item We see that $y_1' = e^x$ and $y_1'' = e^x$ and therefore
+		\begin{align*}
+		y_1'' - 2 y' + y = e^x - 2e^x + e^x = 0 .
+		\end{align*}
+	We see also that $y_2' = e^x + xe^x$ and $y_1'' = 2e^x  + xe^x$. Therefore, we have
+		\begin{align*}
+		y'' - 2y' + y = 2e^x + xe^x - 2e^x - 2xe^x + xe^x = 0 .
+		\end{align*}
+	The functions $y_1$ and $y_2$ are solutions to the ODE.
+	\item This is a consequence of the linearity of the ODE. We have $y (x) = c_1 y_1 + c_2 y_2$.
+	\item The general solution is $y(x) = c_1 e^x + c_2 xe^x$. Using the initial conditions, we see that
+		\begin{align*}
+		y(0) = 7 \quad \Ra \quad c_1 = 7 .
+		\end{align*}
+	The derivative is $y' (x) = (c_1 + c_2) e^x + c_2 xe^x$. Using the initial conditions, we see that
+		\begin{align*}
+		y' (0) = 4 \quad \Ra \quad c_1 + c_2 = 4 \quad \Ra \quad c_2 = -3 .
+		\end{align*}
+	The solution to the IVP is therefore
+		\begin{align*}
+		y(x) = 7e^x - 3xe^x .
+		\end{align*}
+	\item In general, if $y(0) = k_0$, then we see that
+		\begin{align*}
+		c_1 = k_0 .
+		\end{align*}
+	Also, if $y'(0) = k_1$, then we see that
+		\begin{align*}
+		c_1 + c_2 = k_1 \quad \Ra \quad c_2 = k_1 - k_0 .
+		\end{align*}
+	Therefore, the solution to the IVP is
+		\begin{align*}
+		y(x) = k_0 e^x + (k_1 - k_0) x e^x .
+		\end{align*}
+	\end{enumerate}	
+	
+	\newpage
+	
+	\exo{5.2}{1}{5}
+	\\
+	The characteristic equation is
+		\begin{align*}
+		\lambda^2 + 5 \lambda - 6 = 0 .
+		\end{align*}
+	The roots are $r_1 = 6$ and $r_2 = -1$. Therefore, the solution is
+		\begin{align*}
+		y(x) = c_1 e^{6x} + c_2 e^{-x} .
+		\end{align*}
+	
+	\newpage
+	
+	\exo{5.2}{3}{5}
+	\\
+	The characteristic equation is
+		\begin{align*}
+		\lambda^2 + 8\lambda + 7 = 0 .
+		\end{align*}
+	The roots are $r_1 = -7$ and $r_2 = -1$. Therefore, the general solution is
+		\begin{align*}
+		y(x) = c_1e^{-7x} + c_2 e^{-x} .
+		\end{align*}
+	
+	\newpage
+	
+	\exo{5.2}{5}{5}
+	\\
+	The characteristic equation is
+		\begin{align*}
+		\lambda^2 + 2 \lambda + 10 = 0 .
+		\end{align*}
+	Using the quadratic formula, the roots are
+		\begin{align*}
+		r_1 = -1 + 2i \quad \text{ and } \quad r_2 = -1 - 2i .
+		\end{align*}
+	Therefore, the general solution is
+		\begin{align*}
+		y (x) = c_1 e^{-x} \cos (2x) + c_2 e^{-x} \sin (2x) .
+		\end{align*}
+	
+	\newpage
+	
+	\exo{5.2}{7}{5}
+	\\		 
+	The characteristic polynomial is
+		\begin{align*}
+		\lambda^2 - 8\lambda + 16 = (\lambda - 4)^2 .
+		\end{align*}
+	Therefore, there is only one root and is $\lambda = 4$. It has multiplicity $2$. The solution is therefore
+		\begin{align*}
+		y(x) = c_1 e^{4x} + c_2 xe^{4x} .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{5.2}{9}{5}
+	\\
+	The characteristic polynomial is
+		\begin{align*}
+		\lambda^2 - 2\lambda + 3 .
+		\end{align*}
+	Using the quadratic formula, we have
+		\begin{align*}
+		r_1 = 1 + i\sqrt{2}  \quad \text{ and } \quad r_2 = 1 - i \sqrt{2} . 
+		\end{align*}
+	Therefore, the solution is
+		\begin{align*}
+		y(x) = c_1 e^x \cos (\sqrt{2} x) + c_2 e^x \sin (\sqrt{2} x) .
+		\end{align*}
+	
+	\newpage
+	
+	\exo{5.2}{11}{5}
+	\\
+	The characteristic polynomial is
+		\begin{align*}
+		4 \lambda^2 + 4 \lambda + 10  .
+		\end{align*}
+	Using the quadratic formula, we get
+		\begin{align*}
+		r_1 = -\frac{1}{2} + i \frac{3}{2} \quad \text{ and } \quad r_2 = -\frac{1}{2} - i \frac{3}{2} .
+		\end{align*}
+	Therefore, the solution is
+		\begin{align*}
+		y (x) = c_1 e^{-x/2} \cos (3x/2) + c_2 e^{-x/2} \sin (3x/2) .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{5.2}{17}{10}
+	\\
+	The characteristic polynomial is
+		\begin{align*}
+		4\lambda^2 - 12 \lambda + 9 .
+		\end{align*}
+	Using the quadratic formula, we find the roots:
+		\begin{align*}
+		r_1 = r_2 = \frac{3}{2} .
+		\end{align*}
+	There is only one root and it's multiplicity is two. Therefore, the general solution is
+		\begin{align*}
+		y(x) = c_1 e^{3x/2} + c_2 x e^{3x/2} .
+		\end{align*}
+		
+	We have that $y' (x) = \frac{3c_1}{2} e^{3x/2} + c_2 e^{3x/2} + \frac{3c_2}{2} x e^{3x/2}$. Therefore, the initial condition becomes concretely
+		\begin{align*}
+		c_1 = y(0) = 3 \quad \text{ and } \quad \frac{3c_1}{2} + c_2 = y'(0) = \frac{5}{2}. 
+		\end{align*}
+	With the value of $c_1$, we find that
+		\begin{align*}
+		c_2 = \frac{5}{2} - \frac{3}{2} = 1 .
+		\end{align*}
+	Therefore the solution to the IVP is
+		\begin{align*}
+		y(x) = 3 e^{3x/2} + x e^{3x/2} .
+		\end{align*}
+	
+	\vfill
+	
+	\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+	
+	
+\end{document}

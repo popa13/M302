@@ -1,0 +1,304 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+\newcommand{\qu}[2]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}}\\}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 10 Solutions \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{7.2}{1}{25}
+	\\
+	We let $y (x) = \sum_{n = 0}^\infty a_n x^n$. We have
+		\begin{align*}
+		y'(x) = \sum_{n = 1}^\infty n a_n x^{n-1} \quad \text{and} \quad y'' (x) = \sum_{n = 2}^\infty n (n - 1) a_n x^{n-2} .
+		\end{align*}
+	Therefore, we can rewrite
+		\begin{align*}
+		(1 + x^2) y'' = \sum_{n= 2}^\infty n (n - 1) a_n x^{n - 2} + x^2 \sum_{n = 2}^\infty n (n - 1) x^{n-2} = \sum_{n = 2}^\infty n (n - 1) a_n x^{n-2} + \sum_{n=2}^\infty n (n - 1) a_n x^n
+		\end{align*}
+	and
+		\begin{align*}
+		6x y' = 6x \sum_{n = 1}^\infty n a_n x^{n-1} = \sum_{n=1}^\infty 6n a_n x^n .
+		\end{align*}
+	The expression of the left-hand side of the ODE is then
+		\begin{align*}
+		\sum_{n = 2}^\infty n (n - 1) a_n x^{n-2} + \sum_{n = 2}^\infty n (n - 1) a_n x^n + \sum_{n = 1}^\infty 6n a_n x^n + \sum_{n = 0}^\infty 6 a_n x^n .
+		\end{align*}
+	Shifting the first summation, we get
+		\begin{align*}
+		\sum_{n = 0}^\infty (n + 2) (n + 1) a_{n + 2} x^{n} + \sum_{n = 2}^\infty n (n - 1) a_n x^n + \sum_{n = 1}^\infty 6n a_n x^n + \sum_{n = 0}^\infty 6 a_n x^n .
+		\end{align*}
+	Combining similar powers together, we obtain
+		\begin{align*}
+		2 a_2 + 6 a_3x + 6a_1x + 6a_0 + 6a_1x + \sum_{n = 2}^\infty \big[ (n + 2) (n + 1) a_{n+2} + ( n (n - 1) + 6n + 6) a_n \big] x^n
+		\end{align*}
+	and therefore
+		\begin{align*}
+		(6a_0 + 2a_2) + (12 a_1 + 6a_3) x + \sum_{n = 2}^\infty \big[ (n + 2) (n + 1) a_{n + 2} + ( n (n - 1) + 6n + 6) a_n \big]  x^n = 0 = \sum_{n = 0}^\infty 0 x^n .
+		\end{align*}
+	Equating each coefficients with the same powers, we obtain
+		\begin{align*}
+		a_2 = -3a_0 , \quad a_3 = -2a_1 \quad \text{ and } \quad a_{n + 2} = - \frac{n^2 + 5n + 6}{n^2 + 3n + 2} a_n
+		\end{align*}
+	We can get a sample of the list of $a_n$ for even indexed coefficients:
+		\begin{itemize}
+		\item $a_0$ arbitrary;
+		\item $a_2 = -3 a_0$;
+		\item $a_4 = - \frac{2^2 + 5 \cdot 2 + 6}{2^2 + 3 \cdot 2 + 2} a_2 = - \frac{20}{12} (-3 a_0) = 5 a_0$;
+		\item $a_6 = - \frac{4^2 + 5 \cdot 4 + 6}{4^2 + 3 \cdot 4 + 2} a_4 = - \frac{42}{30} 5 a_0 = - 7 a_0$;
+		\item $a_8 = - \frac{6^2 + 5 \cdot 6 + 6}{6^2 + 3 \cdot 6 + 2} a_6 = - \frac{72}{56} (-7 a_0) = 9 a_0$.
+		\end{itemize}
+	We see a pattern. The general pattern is $a_{2n} = (-1)^n (2n + 1) a_0$, for $n \geq 1$. We can do the same for the coefficients indexed by odd integers:
+		\begin{itemize}
+		\item $a_1$ arbitrary;
+		\item $a_3 = -2a_1$;
+		\item $a_5 = - \frac{3^2 + 5 \cdot 3 + 6}{3^2 + 3 \cdot 3 + 2} a_3 = - \frac{30}{20} (-2 a_1) = 3 a_1$;
+		\item $a_7 = - \frac{5^2 + 5 \cdot 5 + 6}{5^2 + 3 \times 5 + 2} a_5 = - \frac{56}{42} 3 a_1 = -4 a_1$;
+		\item $a_9 = - \frac{7^2 + 5 \cdot 7 + 6}{7^2 + 3 \cdot 7 + 2} a_7 = - \frac{90}{72} (-4 a_1) = 5 a_1$.
+		\end{itemize}
+	We see a pattern. The general pattern is $a_{2n + 1} = (-1)^n (n + 1) a_1$. Therefore, our final answer is
+		\begin{align*}
+		y(x) &= a_0 + a_1 x + \sum_{n = 1}^\infty (-1)^n (2n + 1) a_0 x^{2n} + \sum_{n = 1}^\infty (-1)^n (n + 1) a_1 x^{2n + 1} \\
+		&= a_0 \sum_{n = 0}^\infty (-1)^n (2n + 1) x^{2n} + a_1 \sum_{n = 0}^\infty (-1)^n (n + 1) x^{2n + 1} .
+		\end{align*}
+		
+	\underline{Remark:} For those interested, we can find an explicit expression of the power series solution. First, notice that integrating term-by-term the first series in front of $a_0$ gives
+		\begin{align*}
+		\int_0^x \sum_{n = 0}^\infty (-1)^n (2n + 1) t^{2n} \, dt = \sum_{n = 0}^\infty (-1)^n (2n + 1) \left. \frac{t^{2n + 1}}{2n + 1} \right|_{t = 0}^{t = x} = \sum_{n = 0}^\infty (-1)^n x^{2n + 1} .
+		\end{align*}
+	Rewrite the last series as followed:
+		\begin{align*}
+		\sum_{n = 0}^\infty (-1)^n x^{2n + 1} = x \sum_{n = 0}^\infty (-x^2)^n
+		\end{align*}
+	and then use the power series of $(1 - x)^{-1}$ with $-x^2$ in place of $x$ to get
+		\begin{align*}
+		x \sum_{n = 0}^\infty (-x^2)^n = \frac{x}{1 + x^2} .
+		\end{align*}
+	This is valid only when $-1 < x < 1$. To obtain the original series, we use the Fundamental Theorem of Calculus and take the derivative of the last expression we obtained:
+		\begin{align*}
+		\sum_{n = 0}^\infty (-1)^n (2n + 1) x^{2n} = \frac{d}{dx} \Big( \frac{x}{1 + x^2} \Big) = \frac{1 - x^2}{(1 + x^2)^2} .
+		\end{align*}
+		
+	For the power series in front of $a_1$, we will manipulate algebraically the expression. A simple algebra trick leads to
+		\begin{align*}
+		\sum_{n = 0}^\infty (-1)^n (n + 1) x^{2n + 1} = \frac{1}{2} \sum_{n =0}^\infty (-1)^n (2n + 2) x^{2n + 1} = \frac{1}{2} \sum_{n = 0}^\infty (-1)^n (2n + 1) x^{2n + 1} + \frac{1}{2} \sum_{n = 0}^\infty (-1)^n x^{2n + 1} .
+		\end{align*}
+	Now, we see that
+		\begin{align*}
+		\sum_{n =0}^\infty (-1)^n (2n + 1) x^{2n + 1} = x \sum_{n = 0}^\infty (2n + 1) x^{2n} = x \Big( \frac{1 - x^2}{(1 + x^2)^2} \Big) = \frac{x - x^3}{(1 + x^2)^2} .
+		\end{align*}
+	We also see, using the power series of $(1 - x)^{-1}$ with $-x^2$ in place of $x$ that
+		\begin{align*}
+		\sum_{n = 0}^\infty (-1)^n x^{2n + 1} = x \sum_{n = 0}^\infty (-x^2)^n = \frac{x}{1 + x^2} .
+		\end{align*}
+	Combining everything together, we get
+		\begin{align*}
+		\sum_{n = 0}^\infty (-1)^n (n + 1) x^{2n + 1} &= \frac{1}{2} \Big( \frac{x - x^3}{(1 + x^2)^2} \Big) + \frac{1}{2} \Big( \frac{x}{1 + x^2} \Big) \\
+		&= \frac{1}{2} \Big( \frac{x - x^3 + x (1 + x^2)}{ (1 + x^2)^2} \Big) \\
+		&= \frac{x}{(1+ x^2)^2} .
+		\end{align*}
+		
+	Finally, we can rewrite the power series solution (valid for $-1 < x < 1$) as
+		\begin{align*}
+		y(x) = a_0 \frac{1 - x^2}{(1 + x^2)^2} + a_1  \frac{x}{(1 + x^2)^2} .
+		\end{align*}
+	You can check that $y_1 (x) := \frac{1 - x^2}{(1 + x^2)^2}$ is a solution to the ODE of the problem and $y_2 (x) := \frac{x}{(1 + x^2)^2}$ is also a solution to the ODE. We see that
+		\begin{align*}
+		\frac{y_1}{y_2} = \frac{1- x^2}{x} = \frac{1}{x} - x
+		\end{align*}
+	which is not constant. Therefore, $\{ y_1 , y_2 \}$ is a fundamental set of solutions for the ODE! Isn't it beautiful ;)
+	
+	\newpage
+	
+	\exo{7.2}{7}{25}
+	\\
+	Write $y(x) = \sum_{n = 0}^\infty a_n x^n$. Using the rules to differentiate power series, we get
+		\begin{align*}
+		y' (x) = \sum_{n = 1}^\infty n a_n x^{n-1} \quad \text{ and } \quad y'' (x) = \sum_{n = 2}^\infty n (n - 1) a_n x^{n - 2} .
+		\end{align*}
+	Therefore, we get
+		\begin{align*}
+		(1 - x^2) y'' (x) = \sum_{n = 2}^\infty n (n - 1) a_n x^{n - 2} - \sum_{n = 2}^\infty n (n - 1) a_n x^n
+		\end{align*}
+	and
+		\begin{align*}
+		5x y' (x) = \sum_{n = 1}^\infty 5n a_n x^n .
+		\end{align*}
+	Putting that into the left-hand side of the ODE, we get
+		\begin{align*}
+		& \sum_{n = 2}^\infty n (n - 1) a_n x^{n - 2} - \sum_{n = 2}^\infty n (n - 1) a_n x^n - \sum_{n = 1}^\infty 5n a_n x^n  - \sum_{n = 0}^\infty 4a_n x^n \\
+		& = \sum_{n = 0}^\infty (n + 2) (n + 1) a_{n + 2} x^n - \sum_{n = 2}^\infty n (n - 1) a_n x^n - \sum_{n = 1}^\infty 5n a_n x^n - \sum_{n = 0}^\infty 4a_n x^n \\
+		& = a_2 + a_3 x - 5a_1 x - 4a_0 - 4a_1 x + \sum_{n = 2}^\infty \Big( (n + 2) (n + 1) a_{n + 2} - \big[ n ( n -1) + 5n + 4 \big] a_n \Big) x^n \\
+		& = (a_2 - 4a_0) + (a_3 - 9 a_1)x + \sum_{n = 2}^\infty \Big( (n + 2) (n + 1) a_{n + 2} - \big[ n ( n -1) + 5n + 4 \big] a_n \Big) x^n .
+		\end{align*}
+	Equating the left-hand side with the right-hand side, we get
+		\begin{align*}
+		a_2 = 4 a_0 , \quad a_3 = 9 a_1 \quad \text{ and } \quad a_{n + 2} = \frac{n^2 + 4n + 4}{(n + 2)(n + 1)} a_{n} .
+		\end{align*}
+	Since $n^2 + 4n + 4 = (n + 2)^2$, we get
+		\begin{align*}
+		a_2 = 4 a_0 , \quad a_3 = 9 a_1 \quad \text{ and } \quad a_{n + 2} = \frac{n + 2}{n + 1} a_{n} .
+		\end{align*}
+	For even integers, we see that
+		\begin{itemize}
+		\item $a_4 = \frac{4}{3} a_2 = \frac{4}{3} 4 a_0 = \frac{4 \cdot 2}{3 \cdot 1} 2 a_0$;
+		\item $a_6 = \frac{6}{5} a_4 = \frac{6 \cdot 4 \cdot 2}{5 \cdot 3 \cdot 1} 2 a_0$;
+		\item $a_8 = \frac{8}{7} a_6 = \frac{8 \cdot 6 \cdot 4 \cdot 2}{7 \cdot 5 \cdot 3 \cdot 1} 2 a_0$;
+		\item In general $a_{2n + 2} = \frac{(2n + 2)!!}{(2n + 1)!!} (2a_0)$ where $k!!$ is the double factorial of an integer $k$ (look it up on Google ;) ).
+		\end{itemize}
+	It is more appropriate to write the general rule as $a_{2n} = \frac{(2n)!!}{(2n - 1)!!} (2a_0)$. For odd indexes, we have
+		\begin{itemize}
+		\item $a_5 = \frac{5}{4} a_3 = \frac{5}{4} 9a_1 = \frac{5 \cdot 3}{4 \cdot 2} (6 a_1)$;
+		\item $a_7 = \frac{7}{6} a_5 = \frac{7 \cdot 5 \cdot 3}{6 \cdot 4 \cdot 2} (6 a_1)$;
+		\item $a_9 = \frac{9}{8} a_7 = \frac{9 \cdot 7 \cdot 5 \cdot 3}{8 \cdot 6 \cdot 4 \cdot 2} (6a_1)$;
+		\item In general $a_{2n + 3} = \frac{(2n + 3)!!}{(2n + 2)!!} (6a_1)$.
+		\end{itemize}
+	It is more appropriate to write the general rule as $a_{2n + 1} = \frac{(2n + 1)!!}{(2n)!!} (6a_1)$.
+	
+	Therefore, the general solution looks like
+		\begin{align*}
+		y(x) &= a_0 + a_1 x + 2 a_0 \sum_{n = 1}^\infty \frac{(2n)!!}{(2n - 1)!!} x^{2n} + 6a_1 \sum_{n = 1}^\infty \frac{(2n + 1)!!}{(2n)!!} x^{2n + 1} \\
+		&= a_0 \Big( 1 + 2 \sum_{n = 1}^\infty \frac{(2n)!!}{(2n-1)!!} x^{2n} \Big) + a_1 \Big( x + 6 \sum_{n = 1}^{\infty} \frac{(2n + 1)!!}{(2n)!!} x^{2n + 1} \Big) .
+		\end{align*}
+	
+	
+	\underline{More details}: We can rewrite the second series as a closed expression. By integrating terms-by-terms, we get
+		\begin{align*}
+		\sum_{n = 1}^\infty \frac{(2n + 1)!!}{(2n)!!} \frac{x^{2n + 2}}{2n + 2} = \sum_{n = 1}^\infty \frac{(2n + 1)!!}{(2n + 2)!!} x^{2n + 2} = \sum_{n = 2}^\infty \frac{(2n - 1)!!}{(2n)!!} x^{2n} .
+		\end{align*}
+	The power series representation of $(1 - x^2)^{-1/2}$ (for $-1 < x < 1$) is
+		\begin{align*}
+		1 + \frac{1}{2}x^2 + \frac{1 \cdot 3}{2 \cdot 4} x^4 + \frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6} x^6 + \cdots = 1 + \frac{1}{2} x^2 + \sum_{n = 2}^\infty \frac{(2n - 1)!!}{(2n)!!} x^{2n}
+		\end{align*}
+	and therefore, we obtain
+		\begin{align*}
+		\sum_{n = 2}^\infty \frac{(2n - 1)!!}{(2n)!!} x^{2n} = (1 - x^2)^{-1/2} - 1 - \frac{1}{2} x^2 .
+		\end{align*}
+	Since we took the integral, undoing this process is differentiation. So, after differentiating, we obtain
+		\begin{align*}
+		\sum_{n = 1}^\infty  \frac{(2n + 1)!!}{(2n)!!} x^{2n + 1} = \frac{2x}{(1 - x^2)^{3/2}} - x .
+		\end{align*}
+	Therefore, setting $y_2 (x) = x + 6 \sum_{n= 1}^\infty \frac{(2n + 1)!!}{(2n)!!} x^{2n + 1}$, we get
+		\begin{align*}
+		y_2(x) = \frac{12x}{(1 - x^2)^{3/2}} - 5x .
+		\end{align*}
+	
+	For the power series in front for $a_0$, we will use another strategy: Variation of parameters. We know one solution of the ODE. So, let 
+		\begin{align*}
+		y(x) = u(x) y_2 (x) .
+		\end{align*}
+	Therefore, we get 
+		\begin{align*}
+		y' (x) = u' (x) y_2 (x) + u(x) y_2'(x) \quad \text{ and } \quad y'' (x) = u'' (x) y_2 + 2 u'(x) y_2 (x) + u(x) y_2''(x) .
+		\end{align*}
+	Replacing in the ODE, we see that
+		\begin{align*}
+		(1 - x^2) (u'' y_2 + 2 u'y_2+ u y_2'') - 5x (u'y_2 + u y_2') - 4 uy_2
+		\end{align*}
+	which can be simplified to
+		\begin{align*}
+		(1 - x^2) (u'' y_2 + 2u' y_2) - 5x u' y_2 + u \Big( (1 - x^2) y_2'' - 5x y_2' - 4y_2) \Big) .
+		\end{align*}
+	Because $y_2$ is a solution, the last expression can be simplified to
+		\begin{align*}
+		(1 - x^2) u'' y_2+ ((1 - x^2) 2y_2 - 5x y_2) u' .
+		\end{align*}
+	Letting $z = u'$, then the ODE becomes
+		\begin{align*}
+		(1 - x^2) y_2 z' + ( (1 - x^2) 2y_2 - 5x y_2) z = 0
+		\end{align*}
+	and solving for $z$, we obtain
+		\begin{align*}
+		\frac{z'}{z} = -\frac{ (1 - x^2) 2y_2 - 5x y_2}{(1 - x^2)y_2} = - \frac{2 (1 - x^2) - 5x}{1 - x^2} = -2 + \frac{5x}{1 - x^2} .
+		\end{align*}
+	We can then integrate to get
+		\begin{align*}
+		\ln |z| = -2x + \int \frac{5x}{1 - x^2} \, dx = -2x - \frac{5}{2} \ln |1 - x^2| + k_1 .
+		\end{align*}
+	Taking the exponential and changing the name of the constant, we get
+		\begin{align*}
+		z = c_1 \frac{e^{-2x}}{(1 - x^2)^{5/2}} .
+		\end{align*}
+	Since $z = u'$, we get
+		\begin{align*}
+		u (x) = c_1 \int \frac{e^{-2x}}{(1 - x^2)^{5/2}} \, dx + c_2 .
+		\end{align*}
+	Therefore, we obtain the general solution as
+		\begin{align*}
+		y(x) &= \Big( c_1 \int \frac{e^{-2x}}{(1 - x^2)^{5/2}} \, dx + c_2 \Big) y_2 (x) \\
+		&= c_1 y_2 (x) \int \frac{e^{-2x}}{(1 - x^2)^{5/2}} \, dx + c_2 y_2 (x) .
+		\end{align*}
+	From these last calculations, we can conclude that
+		\begin{align*}
+		1 + 2 \sum_{n = 1}^\infty \frac{(2n)!!}{(2n - 1)!!} x^{2n} = \Big( \frac{12x}{(1 - x^2)^{3/2}} - 5x \Big) \int \frac{e^{2x}}{(1 - x^2)^{5/2}} \, dx .
+		\end{align*}
+	Isn't beautiful? ;)
+	
+	\vfill
+	
+	\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+	
+	
+\end{document}

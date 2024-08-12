@@ -1,0 +1,10 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{What Is A LFODE?}{2}{section*.1}%
+\contentsline {subsection}{More Terminology}{2}{subsection*.2}%
+\contentsline {section}{General Solution to a LFODE}{3}{section*.3}%
+\contentsline {subsection}{General Solution}{3}{subsection*.4}%
+\contentsline {section}{Homogeneous LFODE}{4}{section*.5}%
+\contentsline {section}{Nonhomogeneous LFODE}{8}{section*.6}%
+\contentsline {subsection}{Summary of The Method}{9}{subsection*.7}%
+\contentsline {subsection}{General Theorem}{11}{subsection*.8}%
+\contentsline {subsection}{Existence Theorem}{11}{subsection*.9}%

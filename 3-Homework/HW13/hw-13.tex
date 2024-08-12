@@ -1,0 +1,307 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+\usepackage{bigints}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+\newcommand{\qu}[4]{\noindent\textcolor{#4}{\fbox{\textbf{Section {#1} | Problem {#2}}} \hrulefill{{\fbox{\textbf{{#3} Points}}}}\\}}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 13 Problems \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+		
+	\qu{8.2}{A}{20}{black}
+	\\
+	Solve the following IVP using the Laplace transform:
+		\begin{align*}
+		2y'' - 3y' - 2y = 4e^t , \quad y(0) = 1, \, y' (0) = -2 .
+		\end{align*}
+		
+	%\textcolor{blue}{\hrulefill}
+	
+	\spc
+	
+	\qu{8.3}{B}{10}{black}
+	\\
+	Express the given function $f$ in terms of the unit step functions. 
+	\begin{enumerate}[label=\arabic*)]
+	\item $\displaystyle f(t) = \left\{ \begin{matrix}
+	t & \text{, } 0 \leq t < 1 \\
+	1 & \text{, } t \geq 1 .
+	\end{matrix} \right.$
+	\item $\displaystyle f(t) = \left\{ \begin{matrix}
+	t^2 & \text{, } 0 \leq t < 1 \\
+	\sin (t) & \text{, } t \geq 1 .
+	\end{matrix} \right.$
+	\end{enumerate}
+	
+	\spc
+	
+	\qu{8.3}{C}{10}{black}
+	\\
+	Find the Laplace tranform of the given function.
+	\begin{enumerate}[label=\arabic*)]
+	\item $\displaystyle f(t) = \left\{ \begin{matrix}
+	te^t & \text{, } 0 \leq t < 1 \\
+	e^t & \text{, } t \geq 1 .
+	\end{matrix} \right.$
+	\item $\displaystyle f(t) = \left\{ \begin{matrix}
+	3 & \text{, } 0 \leq t < 2 \\
+	3t + 2 & \text{, } 2 \leq t < 4 \\
+	4t & \text{, } t \geq 4 .
+	\end{matrix} \right.$
+	\end{enumerate}
+	
+	\spc
+	
+	\qu{8.3}{D}{10}{black}
+	\\
+	Find the inverse Laplace transform of the given function.
+	\begin{enumerate}[label=\arabic*)]
+	\item $\displaystyle H(s) = \frac{e^{-s}}{s^3} + \frac{e^{-2s}}{s^2}$.
+	\item $\displaystyle H(s) = \frac{5}{s} - \frac{1}{s^2} + e^{-3s} \big( \frac{6}{s} + \frac{7}{s^2} \big) + \frac{3e^{-6s}}{s^3}$.
+	\end{enumerate}
+		
+	\textcolor{black}{\hrulefill}
+	
+	\hfill \textcolor{black}{\textsc{Total (Points): 50.}}
+	
+	
+\begin{comment}
+	\newpage
+	
+	\begin{center}
+	\large
+	\textcolor{red}{\underline{\textbf{Complete Solutions}}}
+	\end{center}
+	
+	%\noindent\textcolor{red}{\hrulefill}
+	
+	\spc
+	
+	\qu{8.2}{A}{20}{red}
+	\\
+	Apply the Laplace transform to the ODE to get
+		\begin{align*}
+		2 (s^2 Y - s y(0) - y'(0)) - 3 (s Y - y(0)) - 2Y = \frac{4}{s - 1}.
+		\end{align*}
+	Using the initial condition and collecting the terms, we obtain
+		\begin{align*}
+		(2s^2 - 3s - 2) Y = \frac{4}{s - 1} + 2s - 7
+		\end{align*}
+	Since $2s^2 - 3s - 2 = (2s + 1) (s - 2)$, we obtain
+		\begin{align*}
+		Y(s) = \frac{4}{(2s + 1)( s- 2)(s - 1)} + \frac{2s - 7}{(2s + 1)(s - 2)} .
+		\end{align*}
+	We can rewrite each term in the RHS using the partial fraction decomposition:
+		\begin{align*}
+		\frac{4}{(2s + 1)( s- 2)(s - 1)} = -\frac{4/3}{s-1} + \frac{16/15}{2s + 1} + \frac{4/5}{s - 2}
+		\end{align*}
+	and
+		\begin{align*}
+		\frac{2s - 7}{(2s + 1)(s - 2)} = \frac{16/5}{2s + 1} - \frac{3/5}{s - 2} .
+		\end{align*}
+	Therefore, the expression of $Y(s)$ becomes
+		\begin{align*}
+		Y (s) = -\frac{4/3}{s-1} + \frac{64/15}{2s + 1} + \frac{1/5}{s - 2} = -\frac{4/3}{s-1} + \frac{32/15}{s + 1/2} + \frac{1/5}{s - 2} .
+		\end{align*}
+	Taking the inverse Laplace transform, we obtain
+		\begin{align*}
+		y(t) = -\frac{4}{3} e^t + \frac{32}{15} e^{-t/2} + \frac{1}{5} e^{2t} .
+		\end{align*}
+		
+	\newpage
+	
+	\qu{8.3}{B}{10}{red}
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+	\item To deal with the first part, we use the function $t u(t)$. To deal the second part, we use $u (t - 1) - tu(t - 1)$. The expression $t u(t-1)$ is present because we want to cancel out the first $tu(t)$. Therefore, the expression of the function is
+		\begin{align*}
+		f(t) = t u(t) + u(t-1) - t u(t-1) = t (u(t) - u(t-1)) + u(t - 1) .
+		\end{align*}	
+	\item To deal with the first part, we use the function $t^2 u(t)$. To deal with the second part, we use $u(t- 1) \sin (t)$ and to cancel out the term $t^2 u(t)$, we substract $t^2 u(t - 1)$. Therefore, the expression of the function is
+		\begin{align*}
+		f(t) = t^2 u(t) + \sin (t) u (t - 1) - t^2 u (t - 1) = t^2 (u(t) - u(t-1)) + \sin (t) u (t - 1) .
+		\end{align*}
+	\end{enumerate}
+	
+	\newpage
+	
+	\qu{8.3}{C}{10}{red}
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+	\item We rewrite the function with the unit step function:
+		\begin{align*}
+		f(t) = te^t u(t) + e^t u(t-1) - te^t u(t - 1) .
+		\end{align*}
+	We will use the first formula:
+		\begin{align*}
+		L (u(t - a) f(t)) = e^{-sa} L (f(t + a)) .
+		\end{align*}
+	We first have that
+		\begin{align*}
+		L (u(t) te^t) = e^{-s (0)} L ((t + 0) e^{t + 0}) = L (te^t) = \frac{1}{(s - 1)^2} .
+		\end{align*}
+	Secondly, we have
+		\begin{align*}
+		L (e^t u(t - 1)) = e^{-s} L (e^{t + 1}) .
+		\end{align*}
+	But $e^{t + 1} = e e^t$ and therefore
+		\begin{align*}
+		L (e^t u(t - 1)) = e^{1 - s} L (e^t) = \frac{e^{1 - s}}{s - 1} .
+		\end{align*}
+	Thirdly, we have
+		\begin{align*}
+		L (t e^t u (t - 1)) = e^{-s} L ((t + 1) e^{t + 1}) .
+		\end{align*}
+	But $(t +1)e^{t + 1} = e (te^t + e^t)$ and therefore
+		\begin{align*}
+		L (t e^t u (t - 1)) =  e^{1 - s} \big( L (te^t) + L (e^t) \big) = \frac{e^{1 - s}}{(s - 1)^2} + \frac{e^{1 - s}}{s - 1} .
+		\end{align*}
+	
+	Combining everything, we obtain
+		\begin{align*}
+		L (f(t)) &= \frac{1}{(s - 1)^2} + \frac{e^{1 - s}}{s - 1} - \frac{e^{1 -s}}{(s - 1)^2} - \frac{e^{1 - s}}{s - 1} \\
+		&= \frac{1}{(s - 1)^2} - \frac{e^{1 - s}}{(s - 1)^2} .
+		\end{align*}
+	\item The function can be rewritten as followed:
+		\begin{align*}
+		f(t) &= 3 u (t) + (3t + 2) u(t - 2) -3 u (t - 2) + 4t u(t - 4) - (3t + 2) u(t - 4)\\
+		&= 3u(t) + (3t - 1) u (t - 2) + (t - 2) u (t - 4) .
+		\end{align*}
+		We will use the second formula:
+		\begin{align*}
+		L (u(t - a) f(t- a)) = e^{-sa} F(s) .
+		\end{align*}
+		To apply this formula, we rewrite the function $f(t)$ in the following way:
+		\begin{align*}
+		f(t) &= 3u (t) + (3t - 6 + 5) u (t - 2) + (t - 4 + 2) u (t - 4) \\
+		&= 3u (t) + 3 (t - 2)u(t-2) + 5 u (t -2) + (t - 4) u (t - 4) + 2 u (t - 4) .
+		\end{align*}
+	Therefore, we have
+		\begin{align*}
+		L (f (t)) &= 3L (u(t)) + 3 L ((t - 2) u(t - 2)) + 5 L (u(t-2)) + L ((t - 4) u(t - 4)) + 2 L (u (t - 4)) \\
+		&= \frac{3}{s} + 3 e^{-2s} L (t) + \frac{5e^{-2s}}{s} + e^{-4s} L(t) + \frac{2e^{-4s}}{s}  \\
+		&= \frac{3}{s} + \frac{3e^{-2s}}{s^2} + \frac{5e^{-2s}}{s} + \frac{e^{-4s}}{s^2} + \frac{2e^{-4s}}{s} .
+		\end{align*}
+	
+	\end{enumerate}
+	
+	\newpage
+	
+	\qu{8.3}{D}{10}{red}
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+	\item From the formula
+		\begin{align*}
+		L (u(t - a)f(t-a)) = e^{-sa} F(s), 
+		\end{align*}
+	we extract the following information from the first term:
+		\begin{align*}
+		F(s) = \frac{1}{s^3} \quad \text{ and } \quad a = 1
+		\end{align*}
+	and therefore
+		\begin{align*}
+		L^{-1} \big( \frac{e^{-s}}{s^3} \big) &= u (t - 1) \big( \frac{1}{2} (t - 1)^2 \big)  \\
+		&= \frac{1}{2} (t - 1)^2 u (t - 1) .
+		\end{align*}
+	From the same formula, we extract the following information from the second term:
+		\begin{align*}
+		F(s) = \frac{1}{s^2} \quad \text{ and } \quad a = 2
+		\end{align*}
+	and therefore
+		\begin{align*}
+		L^{-1} \big( \frac{e^{-2s}}{s^2} \big) = u (t - 2) (t - 2) .
+		\end{align*}
+	Therefore, the final answer is
+		\begin{align*}
+		L^{-1} (H(s)) = \frac{1}{2} (t - 1)^2 u (t - 1) + (t - 2) u (t - 2) .
+		\end{align*}
+	\item We have
+		\begin{align*}
+		L^{-1} \big( \frac{5}{s} \big) = 5 \quad \text{ and } \quad L^{-1} \big( \frac{1}{s^2} \big) = t .
+		\end{align*}
+	Using the formula
+		\begin{align*}
+		L (u (t - a) f(t - a)) = e^{-sa} F(s) ,
+		\end{align*}
+	we see that
+		\begin{align*}
+		L^{-1} \big( \frac{e^{-3s}}{s} \big) = u (t - 3)\text{, } \quad L^{-1} \big( \frac{e^{-3s}}{s^2} \big) = (t - 3) u (t - 3)
+		\end{align*}
+	and
+		\begin{align*}
+		L^{-1} \big( \frac{e^{-6s}}{s^3} \big) = \frac{1}{2} (t - 6)^2 u (t - 6) .
+		\end{align*}
+	
+	The final answer is then
+		\begin{align*}
+		L^{-1} (H(s)) &= 5 L^{-1} \big( \frac{1}{s} \big) - L^{-1} \big( \frac{1}{s^2} \big) + 6L^{-1} \big( \frac{e^{-3s}}{s} \big) + 7 L^{-1} \big( \frac{e^{-3s}}{s^2} \big) + 3 L^{-1} \big( \frac{e^{-6x}}{s^3} \big) \\
+		&= 5 - t + 6 u (t - 3) + 6 u (t - 3) + 7 (t - 3) u (t - 3) + \frac{3}{2} (t - 6)^2 u ( t- 6) . 
+		\end{align*}
+	\end{enumerate}
+	
+
+
+	\vfill
+	
+	\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+\end{comment}
+	
+\end{document}

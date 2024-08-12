@@ -1,0 +1,310 @@
+\documentclass[addpoints, 12pt]{exam}%, answers]
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+\usepackage{arydshln}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{enumitem}
+
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{pifont}
+
+% MATH commands
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bD}{\mathbb{D}}
+
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fM}{\mathfrak{M}}
+
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\renewcommand{\Re}{\mathrm{Re}\,}
+\renewcommand{\Im}{\mathrm{Im}\,}
+\newcommand{\Arg}{\mathrm{Arg}\,}
+\newcommand{\Arctan}{\mathrm{Arctan}\,}
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\Log}{\mathrm{Log}\,}
+\newcommand{\cis}{\mathrm{cis}\,}
+
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\Sp}{\mathrm{span}\,}
+\newcommand{\Inv}{\mathrm{Inv}\,}
+\newcommand\smallO{
+  \mathchoice
+    {{\scriptstyle\mathcal{O}}}% \displaystyle
+    {{\scriptstyle\mathcal{O}}}% \textstyle
+    {{\scriptscriptstyle\mathcal{O}}}% \scriptstyle
+    {\scalebox{.7}{$\scriptscriptstyle\mathcal{O}$}}%\scriptscriptstyle
+  }
+\newcommand{\HOL}{\mathrm{Hol}}
+\newcommand{\cl}{\mathrm{clos}}
+\newcommand{\ve}{\varepsilon}
+
+\DeclareMathOperator{\dom}{dom}
+
+%%%%%% Définitions Theorems and al.
+%\declaretheoremstyle[preheadhook = {\vskip0.2cm}, mdframed = {linewidth = 2pt, backgroundcolor = yellow}]{myThmstyle}
+%\declaretheoremstyle[preheadhook = {\vskip0.2cm}, postfoothook = {\vskip0.2cm}, mdframed = {linewidth = 1.5pt, backgroundcolor=green}]{myDefstyle}
+%\declaretheoremstyle[bodyfont = \normalfont , spaceabove = 0.1cm , spacebelow = 0.25cm, qed = $\blacktriangle$]{myRemstyle}
+
+%\declaretheorem[ style = myThmstyle, name=Th\'eor\`eme]{theorem}
+%\declaretheorem[style =myThmstyle, name=Proposition]{proposition}
+%\declaretheorem[style = myThmstyle, name = Corollaire]{corollary}
+%\declaretheorem[style = myThmstyle, name = Lemme]{lemma}
+%\declaretheorem[style = myThmstyle, name = Conjecture]{conjecture}
+
+%\declaretheorem[style = myDefstyle, name = D\'efinition]{definition}
+
+%\declaretheorem[style = myRemstyle, name = Remarque]{remark}
+%\declaretheorem[style = myRemstyle, name = Remarques]{remarks}
+
+\newtheorem{theorem}{Théorème}
+\newtheorem{corollary}{Corollaire}
+\newtheorem{lemma}{Lemme}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}{Définition}[section]
+\newtheorem{example}{Exemple}[section]
+\newtheorem{remark}{\textcolor{red}{Remarque}}[section]
+\newtheorem{exer}{\textbf{Exercice}}[section]
+
+
+\tikzstyle{myboxT} = [draw=black, fill=black!0,line width = 1pt,
+    rectangle, rounded corners = 0pt, inner sep=8pt, inner ysep=8pt]
+
+\begin{document}
+	\noindent \hrulefill \\
+	\noindent MATH-302 \hfill Created by Pierre-O. Paris{\'e}\\
+	Midterm 02\hfill 2022/11/01, Fall 2022\\\vspace*{-0.7cm}
+
+\noindent\hrulefill
+	
+\vspace*{1cm}
+
+\noindent\makebox[\textwidth]{\textbf{Last name:}\enspace \hrulefill}
+\makebox[\textwidth]{\textbf{First name:}\enspace\hrulefill}
+
+\vspace*{1cm}
+
+\vspace*{1cm}
+
+\noindent\textbf{Instructions:} 
+
+\begin{itemize}
+\item Make sure to write your complete name on your copy. 
+\item You must answer all the questions below and write your answers directly on the questionnaire.
+\item You have 75 minutes to complete the exam.
+\item When you are done (or at the end of the 75min period), return your copy. 
+\item No devices such as a smart phone, cell phone, laptop, or tablet can be used during the exam. 
+\item \textbf{Turn your cellphone off during the exam}.
+\item You may use a digital calculator (no graphical calculators or symbolic calculators will be allowed).
+\item You are not allowed to use the lecture notes or the textbook.
+\item You may bring one 2-sided cheat sheet of handwriting notes. 
+\item You must show ALL your work to have full credit. An answer without justification is worth no point.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Your Signature:} \hrulefill
+
+\vspace*{2cm}
+\noindent May the Force be with you! \hfill Pierre-Olivier Parisé
+
+\vspace*{1cm}
+
+\begin{center}
+\begin{minipage}{0.29\textwidth}
+\begin{Huge}
+\textsc{University of Hawai'i}
+\end{Huge}
+\end{minipage}
+\begin{minipage}{0.12\textwidth}
+\includegraphics[scale=0.05]{../../../../manoaseal_transparent.png}
+\end{minipage}
+\end{center}
+
+\qformat{\rule{0.3\textwidth}{.4pt} \begin{large}{\textsc{Question}} \thequestion \end{large} \hspace*{0.2cm} \hrulefill \hspace*{0.1cm} \textbf{(\totalpoints\hspace*{0.1cm} pts)}}
+
+\vspace*{0.5cm}
+
+\newpage
+
+\begin{questions}
+
+\question
+For the given ODE, find the general solution.
+	\begin{parts}
+	\part[10]
+	$y'' + 2y' + y = 0$.
+	\vfill
+	\part[10]
+	$y'' + 6y' + 10y= 0$.
+	\vfill
+	\end{parts}
+	
+\newpage
+	
+\question
+For the following ODEs, give the form of the particular solution. \textbf{Don't solve for the constants}.
+	\begin{parts}
+	\part[10]
+	$y'' + 5y' - 6y = 22 + 18x - 18x^2$.
+	
+	\vfill
+	
+	\part[10]
+	$y'' - 2y' + 5y = e^x \big( (6 + 8x ) \cos (2x) + (6 - 8x) \sin (2x) \big)$.
+	\vfill
+	\end{parts}
+	
+\newpage
+
+\question[20]
+Find the general solution to the following ODE:
+	\begin{align*}
+	y'' - 4y' - 5y = -6e^{-x} .
+	\end{align*}
+	
+\newpage
+
+\question[20]
+Find the general solution to the following ODE:
+	\begin{align*}
+	x^2 y'' + xy' - 4y = -6x - 4
+	\end{align*}
+knowing that $y_1 (x) = x^2$ is a solution to the complementary equation.
+
+\newpage
+
+\question
+
+	\begin{parts}
+	\part[5]
+	If $y_1$ and $y_2$ are two differentiable functions not identically zero, the Wronkians $W$ of $\{ y_1 , y_2 \}$ is
+		\begin{align*}
+		W = y_1 y_2' - y_1' y_2 .
+		\end{align*}
+	Show that if $\{ y_1 , y_2 \}$ is \textbf{not} a set of fundamental solutions for a second order differential equation, then $W = 0$. 
+	
+	\vfill
+	
+	\part[5]
+	Solve the following IVP:
+		\begin{align*}
+		y'' + y = 0 , \quad y(0)= 0, y' (0) = 1 .
+		\end{align*}
+	\vfill
+	\end{parts}
+	
+\newpage
+
+\question
+Answer the following statements with \textbf{True} or \textbf{False}. Write your answer on the horizontal line at the end of each statement. Justify your answer in the white space underneath each statement.
+
+	\begin{parts}
+	\pointformat{(\hspace*{0.5cm}/ \thepoints)}
+	\pointname{}
+	%\pointsinrightmargin
+	
+	\part[2]
+	$\{ x, 1 \}$ is a fundamental of solutions to $y'' = 0$.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[True]
+	
+	\part[2]
+	If $y_1(x) = \cos (2x) + \sin (2x)$ and $y_2 (x) = 2 \cos (2x) + 2 \sin (2x)$ are solutions to $y'' + 4y = 0$, then $y(x) = 3 \cos (2x) + 3 \sin (2x)$ is a solution to $y'' + 4y = 0$.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[True]
+	
+	\part[2]
+	In the Spring-mass system model $y'' + (k/m) y = \frac{F_0}{m} \cos (\omega t )$, a resonance occurs when $\sqrt{k/m} = \omega$.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[True]
+	
+	\part[2]
+	If $y_1 = x$ and $y_2 = e^x$ are solutions to the complementary equation $(x - 1)y'' - xy' + y = (x - 1)^2$, then the solution should have the form $y (x) = x u_1 (x) + e^x u_2 (x)$.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[True]
+	
+	\part[2]
+	The function $y(x) = \sin (x) + \cos (x)$ is a solution to the following IVP: $y'' + y = 0$, $y(0) = 1$, $y' (0) = 1$.
+	\begin{solution}[\stretch{1}]
+	
+	\end{solution}
+	\answerline[True]
+	
+	\end{parts}
+	
+	\newpage
+	
+	\begin{Large}
+	\textsc{Do not write on this page.}
+	\end{Large}
+	
+	\vfill
+	
+	\textit{For officials use only:}
+	\begin{center}
+	\gradetable[h][questions]
+	\end{center}
+	
+
+\end{questions}
+
+
+\end{document}

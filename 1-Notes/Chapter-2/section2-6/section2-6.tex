@@ -1,0 +1,186 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+	
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 2}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 2.6: Integrating Factors}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{What's An Integrating Factor}
+
+\begin{example}
+Verify if 
+	\begin{align*}
+	(3x + 2y^3) dx + 2xy dy = 0
+	\end{align*}
+is exact.
+\end{example}
+
+\vfill
+
+A function $\mu = \mu (x ,y)$ is an \textbf{integrating factor} for
+	\begin{align*}
+	M (x, y) dx + N (x, y) dy = 0
+	\end{align*}
+if the equation
+	\begin{align*}
+	\mu (x, y) M (x, y) dx + \mu (x, y) N (x ,y) dy = 0 
+	\end{align*}
+is exact.
+
+\newpage
+
+\section{Finding Integrating Factors}
+
+Let's start with the equation
+	\begin{align}
+	\mu (x, y) M (x, y) dx + \mu (x, y) N (x, y) dy = 0 . \label{Eq:ExactForm}
+	\end{align}
+	
+\underline{Trick:}
+
+\vfill
+
+\underline{General Facts:}
+Let $M$, $N$, $M_y$, $N_x$ be continuous on an open rectangle $R$.
+	\begin{itemize}
+	\item if $(M_y - N_x)/N$ is independent of $y$, then
+		\begin{align*}
+		\mu (x, y) = \pm e^{\int p (x) \, dx}
+		\end{align*}
+	is an integrating factor for \eqref{Eq:ExactForm} where $p(x) = (M_y - N_x)/N$.
+	\item if $(N_x - M_y)/M$ is independent of $x$, then
+		\begin{align*}
+		\mu (x, y) = \pm e^{\int q (y) \, dy}
+		\end{align*}
+	is an integrating factor for \eqref{Eq:ExactForm} where $q(y) = (N_x - M_y)/M$.
+	\end{itemize}
+	
+\newpage
+
+\begin{example}
+Find an integrating factor for the equation
+	\begin{align*}
+	(2xy^3 - 2x^3 y^3 - 4xy^2 + 2x) dx + (3x^2y^2 + 4y) dy = 0 .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\begin{example}
+Find an integrating factor for the equation
+	\begin{align*}
+	2xy^3 dx + (3x^2y^2 + x^2 y^3 + 1) dy = 0 
+	\end{align*}
+and solve the equation.
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+\end{document}

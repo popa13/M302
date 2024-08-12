@@ -1,0 +1,439 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+\newcommand{\qu}[2]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}}\\}
+\newcommand{\prob}[2]{\noindent\textcolor{#2}{\fbox{\textbf{Problem {#1}}}}}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Problems set, Section 8.2 \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\prob{A}{blue}
+	
+	Find the inverse Laplace transform of the following transforms.
+	\begin{multicols}{3}
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $\displaystyle\frac{3}{s^2 + 4}$.
+	\item $\displaystyle\frac{4}{(s - 1)^3}$.
+	\item $\displaystyle\frac{2}{s^2 + 3s + 5}$.
+	\item $\displaystyle\frac{3s}{s^2 - s - 6}$.
+	\item $\displaystyle\frac{2s + 2}{s^2 + 2s + 5}$.
+	\item $\displaystyle\frac{2s - 3}{s^2 - 4}$.
+	\item $\displaystyle\frac{2s + 1}{s^2 - 2s + 2}$.
+	\item $\displaystyle\frac{8s^2 - 4s + 12}{s (s^2 + 4)}$.
+	\item $\displaystyle\frac{2s^2 + 4s + 6}{(s + 1)^2 (s - 1)}$.
+	\item $\displaystyle\frac{s + 1}{s (s - 1)^2}$.
+	\end{enumerate}
+	\end{multicols}
+	
+	\spc
+	
+	\prob{B}{blue}
+	
+	Find the solutions to the following initial value problems.
+	\begin{multicols}{2}
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $y'' - y' - 6y = 0$, with $y(0) = 1$, $y' (0) = -1$.
+	\item $y'' + 3y' + 2y = 0$, with $y(0) = 1$, $y'(0) = 0$.
+	\item $y'' + 2y' + 5y = 0$, with $y(0) = 2$, $y' (0) = 1$.
+	\item $y'' + \omega^2 y = \cos 2t$, with $\omega^2 \neq 4$, $y(0) = 1$, $y' (0) = 0$.
+	\item $y'' + 2y' + y = 4 e^{-t}$, with $y(0) = 2$, $y' (0) = -1$.
+	\end{enumerate}
+	\end{multicols}
+	
+
+\begin{comment}
+	
+	\newpage
+	
+	\begin{center}
+	\large
+	\textcolor{red}{\textbf{Complete Solutions}}
+	\end{center}
+	
+	\noindent\textcolor{red}{\hrulefill}
+	
+	\prob{A}{red}
+	
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+\item We can rewrite the expression of the function as followed:
+	\begin{align*}
+	\frac{3}{s^2 + 4} = \frac{3}{2} \op \frac{2}{s^2+ 4} \fp \text{.}
+	\end{align*}
+	Now, we notice that $L (\sin (2t)) = \frac{2}{s^2 + 4}$. Therefore, the inverse transform is
+		\begin{align*}
+		f(t) = L^{-1} \op \frac{3}{2} \op \frac{2}{s^2 + 4} \fp \fp = \frac{3}{2} L^{-1} \op \frac{2}{s^2 + 4} \fp = \frac{3}{2} \sin (2t ) \text{.}
+		\end{align*}
+	\item We have to notice that there is a division by a power of $s - 1$ in the denominator. We also notice there is a translation of $1$ in the expression $s - 1$.
+	
+	Therefore, looking into the table, we see that
+		\begin{align*}
+		L^{-1} \op \frac{2}{s^3} \fp = t^2
+		\end{align*}
+	and since there is a translation, from a result in the lecture notes, we must have that
+		\begin{align*}
+		L^{-1} \op \frac{2}{(s - 1)^3} \fp = e^{t} t^2 \text{.}
+		\end{align*}
+	Therefore, we obtain
+		\begin{align*}
+		f(t) = L^{-1} \op 2 \frac{2}{(s - 1)^3} \fp = 2 L^{-1} \op \frac{2}{(s-1)^3} \fp = 2t^2 e^{t} \text{.}
+		\end{align*}
+	\item We rewrite the expression as
+		\begin{align*}
+		\frac{2}{s^2 + 3s + 5} = \frac{2}{s^2 + 3s + \frac{9}{4} + \frac{11}{4}} = \frac{2}{(s + \frac{3}{2})^2 + \frac{11}{4}} = \frac{4}{\sqrt{11}} \op \frac{\frac{\sqrt{11}}{2}}{(s + \frac{3}{2})^2 + \frac{11}{4}}\fp \text{.}
+		\end{align*}
+	Knowing that $L (\sin (at)) = \frac{a}{s^2 + a^2}$  and that $L (e^{at} f(t)) = F(s - a)$, we infer that
+		\begin{align*}
+		f(t) = L^{-1} \op \frac{2}{s^2 + 3s + 5} \fp = \frac{4}{\sqrt{11}} L^{-1} \op \frac{\frac{\sqrt{11}}{2}}{(s + \frac{3}{2})^2 + \frac{11}{4}} \fp = \frac{4}{\sqrt{11}} e^{-\frac{3t}{2}} \sin \op \frac{\sqrt{11}}{2} t \fp \text{.}
+		\end{align*}
+	\item We rewrite the expression as followed:
+		\begin{align*}
+		\frac{3s}{s^2 - s - 6} = \frac{3s}{(s - \frac{1}{2})^2 - \frac{25}{4}}
+		\end{align*}
+	Now, the numerator can be changed to :
+		\begin{align*}
+		3s = 3\op s - \frac{1}{2} + \frac{1}{2}\fp = 3 \op s - \frac{1}{2} \fp + \frac{3}{2} \text{.}
+		\end{align*}
+	Therefore, using the linearity of the inverse Laplace transform, we have
+		\begin{align*}
+		f(t) = L^{-1} \op \frac{3s}{s^2 - s - 6} \fp &= L^{-1} \oc 3 \op \frac{s - \frac{1}{2}}{(s - \frac{1}{2})^2 - \frac{25}{4}}\fp + \frac{3}{2}  \op \frac{1}{(s -\frac{1}{2})^2 - \frac{25}{4}} \fp \fc\\
+		&= 3L^{-1} \op \frac{s - \frac{1}{2}}{(s - \frac{1}{2})^2 - \frac{25}{4}} \fp + \frac{3}{2} L^{-1} \op \frac{1}{(s -\frac{1}{2})^2 - \frac{25}{4}} \fp \text{.} 
+		\end{align*}
+	We know, however, that $L (e^{at} f(t)) = F(s - a)$ where $F = L (f)$ and also that
+		\begin{align*}
+		L (\cosh (at )) = \frac{s}{s^2 - a^2} \quad \text{ et } \quad L (\sinh (at)) = \frac{a}{s^2 - a^2} \text{.}
+		\end{align*}
+	Therefore, we can conclude that
+		\begin{align*}
+		f(t) = 3 e^{\frac{t}{2}} \cosh (\tfrac{5}{2} t ) + \tfrac{3}{5} e^{\frac{t}{2}} \sinh (\tfrac{5}{2} t) \text{.}
+		\end{align*}
+	
+	Another approach is to notice that 
+		\begin{align*}
+		\frac{s}{s^2 - s - 6} = \frac{s}{(s - 2)(s+3)} = \frac{2}{5(s+2)} + \frac{3}{5(s- 3)} \text{.}
+		\end{align*}
+	Therefore, we obtain
+		\begin{align*}
+		f(t) = \frac{6}{5} e^{-2t} + \frac{9}{5} e^{3t} \text{.}
+		\end{align*}
+	
+	We can check that the two solutions are equivalent:
+		\begin{align*}
+		3e^{t/2} \cosh (5t/2) + \tfrac{3}{5} e^{t/2} \sinh (5t/2) &= \tfrac{3}{2} (e^{3t} + e^{-2t}) + \frac{3}{10} (e^{3t} - e^{-2t})\\
+		& = \frac{15 + 3}{10}e^{3t} + \frac{15-3}{10}e^{-2t} \\
+		& = \frac{9}{5} e^{3t} + \frac{6}{5} e^{-2t} \text{.}
+		\end{align*}
+	\item We can rewrite the expression in the following way:
+		\begin{align*}
+		\frac{2s + 2}{s^2 + 2s + 5} = 2 \frac{s + 1}{(s+1)^2 + 4} \text{.}
+		\end{align*}
+	Therefore, we see that
+		\begin{align*}
+		f(t) = L^{-1} \op \frac{2s + 2}{s^2 + 2s + 5} \fp = 2 L^{-1} \op \frac{s + 1}{(s+ 1)^2 + 4} \fp \text{.}
+		\end{align*}
+	We have $L^{-1} (e^{at} f(t)) = F(s - a)$ where $F = L (f)$ and $L (\cos (at)) = \frac{s}{s^2 + a^2}$. We can then see that
+		\begin{align*}
+		f(t) = 2 e^{-t} \cos (2t) \text{.}
+		\end{align*}
+	\item We rewrite the expression as
+		\begin{align*}
+		\frac{2s - 3}{s^2 - 4} = 2 \op \frac{s}{s^2 - 4} \fp - \frac{3}{2} \op \frac{2}{s^2 - 4} \fp \text{.}
+		\end{align*}
+	Therefore, fro the linearity of the inverse Laplace transform, we obtain 
+		\begin{align*}
+		f(t) = L^{-1} \op \frac{2s - 3}{s^2 - 4} \fp &= 2 L^{-1} \op \frac{s}{s^2 - 4} \fp - \frac{3}{2} L^{-1} \op \frac{2}{s^2 - 4} \fp \\
+		&= 2 \cosh (2t) - \tfrac{3}{2} \sinh (2t ) \text{.}
+		\end{align*}
+	
+	Another way to do the same problem is to find the partial fractions decomposition of the expression:
+		\begin{align*}
+		\frac{2s - 3}{(s^2 - 4)} = \frac{7}{4(s + 2)} + \frac{1}{4(s - 2)} \text{.}
+		\end{align*}
+	Therefore, we find that
+		\begin{align*}
+		f (t) = \tfrac{7}{4} e^{-2t} + \tfrac{1}{4} e^{2t} \text{.}
+		\end{align*}
+		
+	We can check that the two solutions are equivalent:
+		\begin{align*}
+		2 \cosh (2t) - \tfrac{3}{2} \sinh (2t) = e^{2t} + e^{-2t} - \tfrac{3}{4} (e^{2t} - e^{-2t} ) = \tfrac{1}{4} e^{2t} + \tfrac{7}{4} e^{-2t} \text{.}
+		\end{align*}
+	\item We rewrite the expression as
+		\begin{align*}
+		\frac{2s + 1}{s^2 - 2s + 2} = 2 \op \frac{s - 1}{(s - 1)^2 + 1}\fp + 3 \op\frac{1}{(s - 1)^2 + 1}\fp
+		\end{align*}
+	Therefore, using the linearity of the inverse Laplace transform, we find that 
+		\begin{align*}
+		f(t) = L^{-1} \op \frac{2s + 1}{s^2 - 2s + 1} \fp &= 2 L^{-1} \op \frac{s - 1}{(s-1)^2 + 1}\fp + 3 L^{-1} \op \frac{1}{(s-1)^2 + 1} \fp \\
+		&= 2 e^{t} \cos t + 3 e^t\sin t \text{.}
+		\end{align*}
+	\item First of all, we have
+		\begin{align*}
+		\frac{8s^2 - 4s + 12}{s(s^2 + 4)} = \frac{8s}{s^2 + 4} - \frac{4}{s^2 + 4} + \frac{12}{s(s^2 + 4)} = 8 \frac{s}{s^2 + 4} - 2 \frac{2}{s^2 + 4} + 6\op \frac{1}{s} \fp \op \frac{2}{s^2 + 4} \fp \text{.}
+		\end{align*}
+	Therefore, after applying the inverse Laplace transform and using the linearity, we obtain
+		\begin{align*}
+		f(t) = 8 L^{-1} \op \frac{s}{s^2 + 4} \fp - 2 L^{-1} \op \frac{2}{s^2 + 4} \fp + 6L^{-1} \oc \op \frac{1}{s} \fp \op \frac{2}{s^2 + 4} \fp \fc \text{.}
+		\end{align*}
+	We know that $L^{-1} \op \frac{s}{s^2 + 4} \fp = \cos (2t )$ and $L^{-1} \op \frac{2}{s^2 + 4} \fp = \sin (2t )$. From a result in the lecture notes (in section 8.4), when a Laplace transform is divided by $s$, the original function comes from an integral: 
+		\begin{align*}
+		L^{-1} \op \frac{F}{s} \fp = \int_0^{t} f(\tau ) \, d\tau ,
+		\end{align*}
+	where $F = L (f)$. In our case, this gives us
+		\begin{align*}
+		L^{-1} \op \frac{\frac{2}{s^2 + 4}}{s} \fp = \int_0^t \sin 2\tau \, d\tau = \left. \frac{-\cos (2\tau )}{2} \right|_{0}^t = \frac{1 - \cos (2t)}{2} \text{.}
+		\end{align*}
+	Therefore, we obtain
+		\begin{align*}
+		f(t) = 8 \cos (2t) - 2 \sin (2t) + 3 - 3 \cos (2t) = 5 \cos (2t) - 2 \sin (2t) + 3 \text{.}
+		\end{align*}
+	
+	This last calculations using the integral is in fact a shortcut from section 8.4. Therefore, I give you another approach using only the notions from sections 8.1 and 8.2. We had
+		\begin{align*}
+		\frac{8s^2 - 4s + 12}{s(s^2 + 4)} = \frac{8s}{s^2 + 4} - \frac{4}{s^2 + 4} + \frac{12}{s(s^2 + 4)} .
+		\end{align*}
+	We rewrite the last term using partial fractions:
+		\begin{align*}
+		\frac{12}{s (s^2 + 4)} = \frac{3}{s} - \frac{3s}{s^2 + 4} .
+		\end{align*}
+	Since $L (1) = \frac{1}{s}$ and $L \op \cos (2t) \fp = \frac{s}{s^2 + 4}$, we get, by the linearity of the Laplace transform: 
+		\begin{align*}
+		L^{-1} \op \frac{12}{s (s^2 + 4)} \fp = 3L^{-1} \op \frac{1}{s} \fp - 3 L \op \frac{s}{s^2 + 4} \fp = 3 - 3 \cos (2t) .
+		\end{align*}
+	Collecting all the previous results for the other expressions of the function, we get
+		\begin{align*}
+		f(t) = L^{-1} \op \frac{8s^2 - 4s + 12}{s(s^2 + 4)} \fp &= 8 L^{-1} \op \frac{s}{s^2 + 4} \fp - 2 L^{-1} \op \frac{2}{s^2 + 4} \fp + L^{-1} \op \frac{12}{s(s^2 + 4)} \fp \\
+		&= 8 \cos (2t) - 2 \sin (2t) + 3 - 3 \cos (2t) \\
+		&= 5 \cos (2t) - 2 \sin (2t) + 3 .
+		\end{align*}
+	\item The numerator of the fraction is written as:
+		\begin{align*}
+		2s^2 + 4s + 6 = 2 (s^2 + 2s + 3) = 2 ((s+1)^2 + 2) = 2(s+1)^2 + 4 \text{.}
+		\end{align*}
+	This implies that we can rewrite the expression as followed: 
+		\begin{align*}
+		\frac{2s^2 + 4s + 6}{(s+ 1)^2 (s-1)} = \frac{2}{s - 1} + \frac{4}{(s+ 1)^2 (s-1)}\text{.}
+		\end{align*}
+	Applying the inverse Laplace transform, we find that
+		\begin{align*}
+		f(t) = 2 L^{-1}\op \frac{1}{s-1} \fp + 4 L^{-1}\op \frac{1}{(s + 1)^2 (s-1)} \fp \text{.}
+		\end{align*}
+	Now, we write $\frac{1}{(s+1)^2 (s-1)}$ using partial fractions. The decomposition in partial fractions should be
+		\begin{align*}
+		\frac{1}{(s+1)^2 (s -1)} = \op -\frac{1}{4} \fp \op \frac{1}{s + 1} \fp - \frac{1}{2} \op \frac{1}{(s + 1)^2} \fp+ \frac{1}{4} \op \frac{1}{s-1} \fp \text{.}
+		\end{align*}
+	Therefore, we find, after applying the inverse Laplace transform, that
+		\begin{align*}
+		L^{-1} \op \frac{1}{(s + 1)^2 (s-1)} \fp& = -\frac{1}{4} L^{-1} \op \frac{1}{s+1} \fp - \frac{1}{2} L^{-1} \op \frac{1}{(s + 1)^2} \fp + \frac{1}{4} L^{-1} \op \frac{1}{s - 1} \fp  \text{.}
+		\end{align*}
+	We then get
+		\begin{align*}
+		f(t) &= 2 L^{-1} \op \frac{1}{s - 1} \fp - L^{-1} \op \frac{1}{s+1} \fp - 2 L^{-1} \op \frac{1}{(s+1)^2} \fp + L^{-1} \op \frac{1}{s - 1} \fp \\
+		&= 3 L^{-1} \op \frac{1}{s-1}\fp - L^{-1} \op \frac{1}{s+1} \fp - 2 L^{-1} \op \frac{1}{(s+1)^2} \fp \\
+		&= 3 e^{t} - e^{-t} - 2 t e^{-t} \text{.}
+		\end{align*}
+	\item We write the fraction $\frac{s+1}{s (s-1)^2}$ in its partial fraction decomposition. We have
+		\begin{align*}
+		\frac{s+1}{s (s-1)^2} = \frac{1}{s} - \frac{1}{s-1} + \frac{2}{(s-1)^2} \text{.}
+		\end{align*}
+	Therefore, after applying the inverse Laplace transform, we obtain 
+		\begin{align*}
+		f(t) &= L^{-1} \op \frac{1}{s} \fp - L^{-1} \op \frac{1}{s-1} \fp + 2 L^{-1} \op \frac{1}{(s-1)^2} \fp\\
+		&= 1 - e^{t} + 2 t e^{t} \text{.}
+		\end{align*}
+\end{enumerate}
+	
+	\prob{B}{red}
+	
+	In the solutions below, the capital letters refer to the Laplace transform of a given function (always denoted by lower-case letters). I encourage you to verify your solutions using the technics from Chapter 5 (using the characteristic polynomial).
+	
+\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+\item First of all, we apply the Laplace transform to the ODE:
+	\begin{align*}
+	s^2 Y - s y(0) - y'(0) - sY + y(0) - 6Y = 0 \text{.}
+	\end{align*}
+Using the initial conditions, we find out that
+	\begin{align*}
+	(s^2 - s - 6)Y - s + 1 + 1 = 0 \text{.}
+	\end{align*}
+	Therefore, the last expression can be rewritten as
+		\begin{align*}
+		(s - 3) (s + 2) Y = s - 2
+		\end{align*}
+	and, after isolating $Y$, we find out that
+		\begin{align*}
+		Y = \frac{s - 2}{(s - 3)(s + 2)} \text{.}
+		\end{align*}
+	Expanding the last expression in partial fractions, we obtain:
+		\begin{align*}
+		Y = \frac{4}{5(s+2)} + \frac{1}{5(s - 3)} \text{.}
+		\end{align*}
+	Taking the inverse transform, we therefore get
+		\begin{align*}
+		y (t) = \tfrac{4}{5} e^{-2t} + \tfrac{1}{5} e^{3t} \text{.}
+		\end{align*}
+	\item We first apply the Laplace transform to the ODE to obtain
+		\begin{align*}
+		s^2Y - s y(0) - y'(0) + 3sY - 3 y(0) + 2Y = 0 .
+		\end{align*}
+	Using the initial condition, the last expression becomes 
+		\begin{align*}
+		(s^2 + 3s + 2) Y - s - 3 = 0 \text{.}
+		\end{align*}
+	After isolating $Y$, we find out that
+		\begin{align*}
+		Y = \frac{s+3}{s^2 + 3s + 2} \text{.}
+		\end{align*}
+	We have that $s^2 + 3s + 2 = (s + 2) (s + 1)$. Therefore, the partial fraction expansion of the last expression is:
+		\begin{align*}
+		Y = \frac{2}{s + 1} - \frac{1}{s + 2} \text{.}
+		\end{align*}
+	Taking the inverse transforms and using the table, we obtain
+		\begin{align*}
+		y(t) = 2 e^{-t} - e^{-2t} \text{.}
+		\end{align*}
+	\item Apply the Laplace transform to get
+		\begin{align*}
+		s^2 Y - s y(0) - y'(0) + 2sY - 2y(0) + 5Y = 0
+		\end{align*}
+	and after substituting the initial conditions, we get
+		\begin{align*}
+		(s^2 + 2s + 5)Y - 2s- 1 - 4 = 0 \text{.}
+		\end{align*}
+	After isolating $Y$, we obtain
+		\begin{align*}
+		Y = \frac{2s + 5}{s^2 + 2s + 5} \text{.}
+		\end{align*}
+	We can rewrite the denominator in the last expression as $s^2 + 2s + 5 = (s + 1)^2 + 4$. Therefore, the last expression takes the following form:
+		\begin{align*}
+		Y = \frac{2(s + 1)}{(s+ 1)^2 + 4} + \frac{3}{(s+ 1)^2 + 4} = \frac{2(s + 1)}{(s + 1)^2 + 4} + \frac{3}{2} \op \frac{2}{(s + 1)^2 + 4} \fp \text{.}
+		\end{align*}
+	Taking the inverse transform, we get
+		\begin{align*}
+		y(t) = 2e^{-t} \cos (2t) + \tfrac{3}{2} e^{-t} \sin (2t) \text{.}
+		\end{align*}
+	\item Apply the Laplace transform to the ODE to get
+		\begin{align*}
+		s^2 Y - sy(0) - y'(0) + \omega^2 Y = \frac{s}{s^2 + 4} 
+		\end{align*}
+	and using the initial conditions, we get
+		\begin{align*}
+		s^2Y - s + \omega^2 Y = \frac{s}{s^2 + 4} \text{.}
+		\end{align*}
+	Isolating $Y$, we obtain
+		\begin{align*}
+		Y = \frac{s}{s^2 + \omega^2} + \frac{s}{(s^2 + 4)(s^2 + \omega^2)} \text{.}
+		\end{align*}
+	We now want to rewrite the last expression in its partial fraction decomposition. We let
+		\begin{align*}
+		\frac{s}{(s^2 + 4)(s^2 + \omega^2)} = \frac{As + B}{s^2 + 4} + \frac{Cs + D}{s^2 + \omega^2}
+		\end{align*}
+	and we have to find the values of the constants  $A$, $B$, $C$ and $D$ such that
+		\begin{align*}
+		\frac{s}{(s^2 + 4)(s^2 + \omega^2)} = \frac{(A + C)s^3 + (B + D)s^2 + (A\omega^2 + 4C)s + B\omega^2 + 4D}{(s^2 + 4)(s^2 + \omega^2)}
+		\end{align*}
+	Therefore, we must have that $A + C = 0$, $B + D = 0$, $A\omega^2 + 4C = 1$ and $B\omega^2 + 4D = 0$. Knowing that $\omega^2 - 4 \neq 0$, we find that $D = -B$ et then
+		\begin{align*}
+		(\omega^2 - 4) B = 0 \Ra B = 0 \text{.}
+		\end{align*}
+	Furthermore, since $A + C = 0$ and $A \omega^2 + 4C = 1$, we find that	
+		\begin{align*}
+		(\omega^2 - 4) A = 1 \Ra A = \frac{1}{\omega^2 - 4} \text{.}
+		\end{align*}
+	Therefore, we have $B = D = 0$ and $A = \frac{1}{\omega^2 - 4}$ and also that $C = -\frac{1}{\omega^2 - 4}$. This gives the following partial fraction decomposition:
+		\begin{align*}
+		\frac{s}{(s^2 + 4)(s^2 + \omega )} = \frac{\op \frac{1}{\omega^2 - 4}\fp s}{s^2 + 4} - \frac{\op \frac{1}{\omega^2 - 4}\fp s}{s^2+ \omega^2} \text{.}
+		\end{align*}
+	By what we just found, we can rewrite $Y$ as followed:
+		\begin{align*}
+		Y = \frac{s}{s^2 + \omega^2} + \frac{\op \frac{1}{\omega^2 - 4}\fp s}{s^2 + 4} - \frac{\op \frac{1}{\omega^2 - 4}\fp s}{s^2+ \omega^2} = \frac{\op \frac{\omega^2 - 5}{\omega^2 - 4}\fp s}{s^2 + \omega^2} + \frac{\op \frac{1}{\omega^2 - 4} \fp s}{s^2 + 4} \text{.}
+		\end{align*}
+	Taking the inverse trnasform, we find that
+		\begin{align*}
+		y(t) = \op \frac{\omega^2 - 5}{\omega^2 - 4}\fp \cos (\omega t ) + \op \frac{1}{\omega^2 - 4} \fp \cos (2t ) \text{.}
+		\end{align*}
+	\item Taking the Laplace transform of the EDO, we find that 
+		\begin{align*}
+		s^2 Y - s y(0) - y'(0) + 2s Y - 2y(0) + Y = \frac{4}{s + 1}
+		\end{align*}
+	and using the initial conditions, we obtain
+		\begin{align*}
+		s^2 Y - 2s + 1 + 2sY - 4 + Y = \frac{4}{s + 1} \text{.}
+		\end{align*}
+	Collecting the terms with a $Y$ in them, we obtain the following expression:
+		\begin{align*}
+		(s^2 + 2s + 1)Y = 2s + 3 + \frac{4}{s + 1} \text{.}
+		\end{align*}
+	Now, isolating $Y$ and taking into account that $s^2 + 2s + 1 = (s+ 1)^2$, we see that
+		\begin{align*}
+		Y = \frac{2s + 3}{(s + 1)^2} + \frac{4}{(s + 1)^3} = \frac{2}{s + 1} + \frac{1}{(s + 1)^2} + \frac{4}{(s + 1)^3} \text{.}
+		\end{align*}
+	Taking the inverse transform, we see that
+		\begin{align*}
+		y(t) = 2e^{-t} + te^{-t} + 2t^2 e^{-t} = (2 + t + 2t^2) e^{-t} \text{.}
+		\end{align*}
+\end{enumerate}
+	
+\end{comment}
+	
+\end{document}

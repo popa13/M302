@@ -1,0 +1,6 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Setup}{2}{section*.1}%
+\contentsline {section}{Ordinary and Singular Points}{7}{section*.2}%
+\contentsline {section}{Translating to Success!}{11}{section*.3}%
+\contentsline {section}{Radius of Convergence}{13}{section*.4}%
+\contentsline {section}{Taylor Polynomial}{15}{section*.5}%

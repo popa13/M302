@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{From ODE to Algebra}{2}{section*.1}%
+\contentsline {section}{Inverse Laplace Transform}{4}{section*.2}%
+\contentsline {subsection}{Linearity of Inverse Transform}{5}{subsection*.3}%
+\contentsline {subsection}{Inverse Laplace Transform of Rational Functions}{7}{subsection*.4}%
+\contentsline {subsection}{Rational Functions with Powers in the Denominator}{11}{subsection*.5}%
+\contentsline {section}{The ODE Problem}{12}{section*.6}%

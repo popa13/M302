@@ -1,0 +1,327 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 7 Solutions \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{5.4}{5}{10}
+	\\
+	\underline{\textbf{Find the general solutions to the complementary equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' + 4y = 0 .
+		\end{align*}
+	The characteristic equation associated to the complementary equation is $r^2 + 4 = 0$. Therefore, the roots are $r_1 = 2i$ and $r_2 = -2i$. The general solution is
+		\begin{align*}
+		y_h (x) = c_1 \cos (2x) + c_2 \sin (2x) .
+		\end{align*}
+	
+	\underline{\textbf{Find a particular solution.}}\\
+	We have an exponential times a polynomial of degree two. Also, the number $\alpha = -1$ is not a root of the characteristic polynomial. Therefore, we suggest
+		\begin{align*}
+		y_p (x) = e^{-x} (Ax^2 + Bx + C) .
+		\end{align*}
+	The respective derivatives are
+		\begin{align*}
+		y' (x) &= -e^{-x} (Ax^2 + Bx + C) + e^{-x} (2Ax + B) \\
+		y''(x) &= e^{-x} (Ax^2 + Bx + C) - 2e^{-x} (2Ax + B) + e^{-x} (2A).
+		\end{align*}
+	Pluging in the original ODE, we get
+		\begin{align*}
+		e^{-x} (Ax^2 + Bx + C) - 2e^{-x} (2Ax + B) + 2Ae^{-x} + 4e^{-x} (Ax^2 + Bx + C) = e^{-x} (5x^2 - 4x + 7) .
+		\end{align*}
+	Dividing by $e^{-x}$ and collecting similar terms, we get
+		\begin{align*}
+		(5A)x^2 + (5B-4A)x + (5C - 2B + 2A) = 5x^2 - 4x + 7 .
+		\end{align*}
+	We see from this equation that $A = 1$. Then, we must have $5B - 4 = -4$ which implies that $B = 0$. Finally, we must also have $5C + 2 = 7$ which implies that $C = 1$. Therefore, we obtain
+		\begin{align*}
+		y_p (x) = e^{-x} \op x^2 + 1 \fp .
+		\end{align*}
+		
+	\underline{\textbf{General solution.}}\\
+	Combining $y_h$ and $y_{par}$, we get
+		\begin{align*}
+		y (x) = y_h (x) + y_{par} (x) = c_1 \cos (2x) + c_2 \sin (2x) + e^{-x} \op x^2 + 1 \fp .
+		\end{align*}
+		
+	\newpage
+		
+	\exo{5.4}{11}{10}
+	\\
+	\underline{\textbf{Find the general solution to the complementary equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' + 2y' + y = 0 .
+		\end{align*}
+	The characteristic equation associated to the complementary equation is $r^2 + 2r + 1 = 0$. There is only one root: $r_1 = -1$. The solution to the complementary equation is therefore
+		\begin{align*}
+		y_h (x) = c_1 e^{-x} + c_2 xe^{-x} .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	We have an exponential multiplying a polynomial of degree $1$. However, the number $\alpha = -1$ is a root of the characteristic polynomial. Moreover, we have $e^{-x}$ and $xe^{-x}$ are solutions to the complementary equation. Therefore, we suggest
+		\begin{align*}
+		y_{par} (x) = x^2 e^{-x} (Ax + B) = e^{-x} (Ax^3 + Bx^2).
+		\end{align*}
+	The respective derivatives are
+		\begin{align*}
+		y' (x) &= -e^{-x} (Ax^3 + Bx^2) + e^{-x} (3Ax^2 + 2Bx) \\
+		y''(x) &= e^{-x} (Ax^3 + Bx^2) - 2 e^{-x} (3Ax^2 + 2Bx) + e^{-x} (6Ax + 2B) .
+		\end{align*}
+	Plugging in the initial ODE, we obtain
+		\begin{align*}
+		e^{-x} (Ax^3 + Bx^2) - 2 e^{-x} (3Ax^2 + 2Bx) + e^{-x} (6Ax + 2B)  + 2e^{-x} (3Ax^2 + 2Bx - Ax^3 - Bx^2)\\
+		 + e^{-x} (Ax^3 + Bx^2) = e^{-x} (3x + 2) .
+		\end{align*}
+	Dividing by $e^{-x}$ and collecting similar terms, we obtain
+		\begin{align*}
+		%Ax^3 + Bx^2 - 6Ax^2 - 4Bx + 6Ax + 2B + 6Ax^2 + 4Bx - 2Ax^3 - 2Bx^2 + Ax^3 + Bx^2 
+		6Ax + 2B = 3x + 2
+		\end{align*}
+	We therefore obtain $A = 1/2$ and $B = 1$. So, the particular solution is
+		\begin{align*}
+		y_{par} (x) = e^{-x} (0.5x^3 + x^2) .
+		\end{align*}
+		
+	\underline{\textbf{General solution.}}\\
+	The general solution is therefore
+		\begin{align*}
+		y(x)= y_h (x) + y_{par} (x) = c_1 e^{-x} + c_2 xe^{-x} + e^{-x} ((1/2)x^3 + x^2) .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{5.4}{21}{15}
+	\\
+	
+	\underline{\textbf{Complementary Equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' + 3y' - 4y = 0 .
+		\end{align*}
+	The characteristic polynomial associated to the complementary equation is $r^2 + 3r - 4 = 0$. The roots are $r = 1$ and $r = -4$. Therefore, the solution is
+		\begin{align*}
+		y_h (x) = c_1 e^{x} + c_2 e^{-4x} .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	We have an exponential times a polynomial of degree two. Also, the number $\alpha = 2$ is a not a root of the characteristic polynomial. We therefore suggest
+		\begin{align*}
+		y_{par} (x) = e^{2x} (Ax + B ) .
+		\end{align*}
+	The respective derivatives are
+		\begin{align*}
+		y'(x) &= 2e^{2x} (Ax + B) + Ae^{2x} \\
+		y''(x) &= 4e^{2x} (Ax + B) + 4Ae^{2x} + 2Ae^{2x} .
+		\end{align*}
+	Plugging in the original ODE, we obtain
+		\begin{align*}
+		4e^{2x} (Ax + B) + 4Ae^{2x} + 2Ae^{2x} + 6e^{2x} (Ax + B) + 3 A e^{2x} - 4e^{2x} (Ax + B) = e^{2x} (6x + 7) .
+		\end{align*}
+	Dividing by $e^{2x}$ and collecting similar terms, we obtain
+		\begin{align*}
+		6Ax + (7A + 6B) = 6x + 7
+		\end{align*}
+	and therefore $A = 1$ and $B = 0$. The particular solution is therefore
+		\begin{align*}
+		y_{par} (x) = xe^{2x} .
+		\end{align*}
+	
+	\underline{\textbf{General solution.}}\\
+	Combining $y_h$ and $y_{par}$, we obtain
+		\begin{align*}
+		y(x) = y_h (x) + y_{par} (x) = c_1 e^{x} + c_2e^{-4x} + xe^{2x} .
+		\end{align*}
+		
+	\underline{\textbf{Initial Value Problem.}}\\
+	We have $y(0) = 2$, so
+		\begin{align*}
+		c_1 + c_2 = 2 .
+		\end{align*}
+	We have $y' (x) = c_1 e^{x} - 4c_2 e^{-4x} + e^{2x} + 2xe^{2x}$ and with $y' (0) = 8$, we obtain
+		\begin{align*}
+		c_1 - 4c_2 = 7 .
+		\end{align*}
+	Subtracting the first equation to the second equation, we obtain
+		\begin{align*}
+		-5c_2 = 5 \quad \Ra \quad c_2 = -1 .
+		\end{align*}
+	Replacing $c_2$ in the first equation by $-1$, we obtain
+		\begin{align*}
+		c_1 = 2 + 1 = 3 .
+		\end{align*}
+	Therefore, the solution to the IVP is
+		\begin{align*}
+		y(x) = 3e^{x} -  e^{-4x} + xe^{2x} .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{5.4}{30(a)}{5}
+	\\
+	Suppose that $y$ is a solution to the constant coefficient equation
+		\begin{align*}
+		ay'' + by' + cy = e^{\alpha x} G(x) .
+		\end{align*}
+	Dividing by $e^{\alpha x}$, we obtain
+		\begin{align*}
+		e^{-\alpha x} (ay'' + by' + cy) = G(x) .
+		\end{align*}
+	Define $u = e^{-\alpha x} y (x)$, so that $y(x) = ue^{\alpha x}$. The first and second derivatives of $y$ are therefore
+		\begin{align*}
+		y' &= \alpha e^{\alpha x} u + e^{\alpha x} u' \\
+		y'' &= \alpha^2 e^{\alpha x} u + 2\alpha e^{\alpha x} u' + e^{\alpha x} u'' .
+		\end{align*}
+	Replacing those derivatives in the ODE, we have
+		\begin{align*}
+		e^{-\alpha x} (ay'' + by' + c ) &= e^{-\alpha x} \op a \alpha^2 e^{\alpha x} u + 2 a \alpha e^{\alpha x} u' + ae^{\alpha x} u'' + b \alpha e^{\alpha x} u + be^{\alpha x} u' + ce^{\alpha x} u \fp \\
+		&= a \alpha^2 u + 2a \alpha u' + a u'' + b\alpha u + bu' + cu) \\
+		&= a u'' + (2a\alpha + b)u' + (a \alpha^2 + b \alpha + c ) u .
+		\end{align*}
+	Since the left-hand side is equal to $G(x)$, we conclude that $u$ is a solution to the following ODE:
+		\begin{align*}
+		a u'' + (2a\alpha + b)u' + (a \alpha^2 + b \alpha + c ) u = G(x) .
+		\end{align*}
+	Denote by $p(r) = ar^2 + br + c$ the characteristic polynomial. Then we can see that
+		\begin{align*}
+		2a \alpha + b = p'(\alpha )
+		\end{align*}
+	and
+		\begin{align*}
+		a\alpha^2 + b\alpha + c = p(\alpha ) .
+		\end{align*}
+	Therefore, the function $u$ is a solution to
+		\begin{align*}
+		au'' + p'(\alpha ) u' + p(\alpha ) u = G(x) .
+		\end{align*}
+		
+	Now suppose that $y (x) = e^{\alpha x} u$ where $u$ is a solution to 
+		\begin{align*}
+		a u'' + p'(\alpha ) u' + p (\alpha ) u = G(x) .
+		\end{align*}
+	From the calculation above, we see that
+		\begin{align*}
+		a u'' + p'(\alpha ) u' + p (\alpha ) u = e^{-\alpha x} (a y'' + by' + c) .
+		\end{align*}
+	Therefore, we get
+		\begin{align*}
+		e^{-\alpha x} (ay'' + by' + cy) = G(x)
+		\end{align*}
+	and so $y$ is a solution to the ODE
+		\begin{align*}
+		ay'' + by' + cy = e^{\alpha x} G(x) .
+		\end{align*}
+	\newpage
+	
+	\exo{5.5}{7}{10}
+	\\
+	
+	\underline{\textbf{Complementary Equation.}}\\
+	The complementary equation is
+		\begin{align*}
+		y'' + 4y = 0 .
+		\end{align*}
+	The characteristic polynomial associated to the complementary equation is $r^2 + 4$. The roots of this polynomial are $r_1 = 2i$ and $r_2 = -2i$. Therefore, the solution is
+		\begin{align*}
+		y_h (x) = c_1 \cos (2x) + c_2 \sin (2x) .
+		\end{align*}
+		
+	\underline{\textbf{Find a particular solution.}}\\
+	We have a linear combination of $\cos(2x)$ and $\sin (2x)$. However, $\cos (2x)$ and $\sin (2x)$ are in the solutions to the complementary equation. Therefore, we suggest
+		\begin{align*}
+		y_{par} (x) = x (A\cos (2x) + B \sin (2x)) .
+		\end{align*}
+	The respective derivatives are
+		\begin{align*}
+		y' (x) &= A\cos (2x) + B\sin (2x) + x (2B \cos (2x) - 2A \sin (2x)) \\
+		y'' (x) &= 4B \cos (2x) - 4A \sin (2x) - x (4A \cos (2x) + 4B \sin (2x)) .
+		\end{align*}
+	Plugging in the original ODE, we get
+		\begin{align*}
+		4B \cos (2x) - 4A \sin (2x) - 4A x \cos (2x) - 4B x \sin (2x) + 4Ax \cos (2x) + 4Bx \sin (2x) = -12 \cos x - 4\sin x
+		\end{align*}
+	which simplifies to
+		\begin{align*}
+		4B \cos (2x) - 4A \sin (2x) = -12 \cos (2x) - 4\sin (2x) .
+		\end{align*}
+	Therefore, we obtain $B = -3$ and $A = 1$. The particular expression is
+		\begin{align*}
+		y_{par} (x) = x \cos (2x) - 3 x \sin (2x) .
+		\end{align*}
+		
+	\underline{\textbf{General solution.}}\\
+	The general solution is
+		\begin{align*}
+		y (x) = y_h (x) + y_{par} (x) = c_1 \cos (2x) + c_2 \sin (2x) + x \cos (2x) - 3x \sin (2x) .
+		\end{align*}
+	
+	\vfill
+	
+	\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+	
+	
+\end{document}

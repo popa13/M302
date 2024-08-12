@@ -1,0 +1,346 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage[capitalise]{cleveref}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{notes}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 7}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 7.1: Review of Power Series}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{Why Power Series?}
+
+Most of the differential equation of order $2$ we have encountered are constant coefficients ODE. In most real-life application, the coefficients will be \textbf{variable coefficients} such as
+	\begin{itemize}
+	\item \textbf{Bessel's equation} of order $n$:
+		\begin{align*}
+		x^2 y'' + xy' + (x^2 - n^2) y = 0 .
+		\end{align*}
+	\item \textbf{Legendre's equation} of order $n$:
+		\begin{align*}
+		(1 - x^2 ) y'' - 2x y' + n (n + 1) y = 0 .
+		\end{align*}
+	\end{itemize}
+	
+The methods we used in chapter 5%\footnote{These lecture notes are now based, most of it, on the book \textit{Differential Equations and Boundary Value Problems: Computing and Modeling.}} 
+won't be of use in those situations. This is why we need power series and the \textbf{power series method}.
+
+%\begin{example}
+%Find a general solution to $y' + y = 0$.
+%\end{example}
+
+\vspace*{2cm}
+
+\section{Basic Definitions}
+
+\begin{itemize}
+\item A \textbf{Power series} centered at a number $a$ is an expression involving an infinite sum of powers of $(x - a)$:
+	\begin{align*}
+	\sum_{n = 0}^\infty a_n (x - a)^n .
+	\end{align*}
+\item If $a =0$, we simply write
+	\begin{align*}
+	\sum_{n = 0}^\infty a_n x^n .
+	\end{align*}
+\end{itemize}
+
+We will confine ourselves to power series centered at $a = 0$.
+
+\newpage
+
+\begin{itemize}
+\item A power series \textbf{converges} on an interval $I$ provided that for any $x$ in this interval $I$, the following limit exists
+	\begin{align*}
+	\lim_{N \ra \infty} \sum_{n = 0}^N a_n x^n .
+	\end{align*}
+\item If a function $f$ is expressed as a power series on $I$, we then write
+	\begin{align*}
+	f(x) = \sum_{n= 0}^\infty a_n x^n
+	\end{align*}
+and called this a \textbf{power series representation} of $f$.
+\end{itemize}
+
+\vspace*{20pt}
+
+Some examples of power series representations of some famous\footnote{They made the coverpage of New York Times magazine several times for their influence on the world.} function
+	\begin{itemize}
+	\item $e^x = $
+	\vspace*{16pt}
+	\item $\cos x = $
+	\vspace*{16pt}	
+	\item $\sin x = $
+	\vspace*{16pt}	
+	\item $\cosh x = $
+	\vspace*{16pt}
+	\item $\sinh x = $
+	\vspace*{16pt}
+	\item $\ln (1 + x) = $
+	\vspace*{16pt}
+	\item $\displaystyle\frac{1}{1 - x} = $
+	\vspace*{16pt}
+	\item $(1 + x)^\alpha = $
+	\end{itemize}
+	
+\vspace*{20pt}
+	
+\underline{Remark:} 
+\begin{itemize}
+\item The \textbf{Taylor series} of $f$ is
+	\begin{align*}
+	f(a) + f'(a) (x - a) + \frac{f''(a)}{2!} (x - a)^2 + \cdots = \sum_{n = 0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n .
+	\end{align*}
+\item The \textbf{Maclaurin series} of $f$ is
+	\begin{align*}
+	f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \cdots = \sum_{n = 0}^\infty \frac{f^{(n)} (0)}{n!} x^n .
+	\end{align*}
+\end{itemize}
+	
+\newpage
+	
+\section{Calculus Operations with Power Series}
+
+\subsection{Differentiation}
+If $f(x) = \sum_{n = 0}^\infty a_n x^n$, then
+	\begin{align*}
+	f'(x) &= \sum_{n = 1}^\infty n a_n x^{n-1} \\
+	f''(x) &= \sum_{n = 2}^\infty n (n - 1) a_n x^{n-2} 
+	\end{align*}
+and in general
+	\begin{align*}
+	f^{(k)} (x) &= \sum_{n = k}^\infty n (n - 1) \cdots (n - k + 1) a_n x^{n- k} .
+	\end{align*}
+	
+\begin{example}
+Differentiate the power series representation of $\sin x$.
+\end{example}
+
+
+\newpage
+	
+\subsection{Identity Principle or Uniqueness of Power series}
+If $f(x) = \sum_{n = 0}^\infty a_n x^n$ and $g(x) = \sum_{n = 0}^\infty b_n x^n$, then
+	\begin{align*}
+	f(x) = g(x) \quad \iff \quad a_n = b_n , \text{ for all } n \geq 0 .
+	\end{align*}
+
+\vspace*{16pt}
+	
+\underline{Consequence:}
+	We have
+		\begin{align*}
+		\sum_{n = 0} a_n x^n = 0
+		\end{align*}
+	if, and only if, $a_n = 0$ for all $n \geq 0$.
+	
+\vspace*{16pt}
+
+\begin{example}
+Find $y(x)$ if
+	\begin{align*}
+	y' = \sum_{n = 1}^\infty x^n \quad \text{ and } \quad y(0) = 0 .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\section{Algebraic Operations with Power Series}
+
+\subsection{Sum, Difference and Multiplication by A Constant}
+If $f(x) = \sum_{n = 0}^\infty a_n x^n$ and $g(x) = \sum_{n = 0}^\infty b_n x^n$ are two power series, then
+	\begin{itemize}
+	\item $ \displaystyle f(x) + g(x) = \sum_{n = 0}^\infty (a_n + b_n) x^n$.
+	\item $\displaystyle f(x) - g(x) = \sum_{n =0}^\infty (a_n - b_n) x^n$.
+	\item $\displaystyle c f(x) = \sum_{n = 0}^\infty (ca_n) x^n$.
+	\end{itemize}
+	
+\vspace*{16pt}
+	
+\begin{example}
+Use the definition of $\cosh (x)$ and $\sinh (x)$ to find its power series representation.
+\end{example}
+
+\newpage
+
+\subsection{Product with Polynomials}
+Let $f(x) = \sum_{n = 0}^\infty a_n x^n$. 
+	\begin{itemize}
+	\item $g(x) = cx$, then
+		\begin{align*}
+		f(x) g(x) &= \Big( \sum_{n = 0}^\infty a_n x^n \Big) cx \\
+		&= 
+		\end{align*}
+	\item $g(x) = cx^2$, then
+		\begin{align*}
+		f(x) g(x) &= \Big( \sum_{n = 0}^\infty a_n x^n \Big) c x^2 \\
+		& = 
+		\end{align*}
+	\item $g(x) = cx^3$, then
+		\begin{align*}
+		f(x) g(x) &= \Big( \sum_{n = 0}^\infty a_n x^n \Big) cx^3 \\
+		&= 
+		\end{align*}
+	\end{itemize}
+
+\begin{example}\label{Ex:PowersTimeSeries}
+If $f(x) = \sum_{n = 0}^\infty a_n x^n$, find the expression of
+	\begin{enumerate}[label=(\alph*)]
+	\item $x f'$.
+	\item $(2 - x) f''$.
+	\end{enumerate}
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+\newpage
+
+\subsection{Shifting}
+
+For any integer $k$, if
+	\begin{align*}
+	y(x) = \sum_{n = n_0}^\infty a_n x^{n-k}
+	\end{align*}
+then
+	\begin{align*}
+	y(x) = \sum_{n = n_0 - k}^\infty a_{n + k} x^{n}
+	\end{align*}
+	
+\vspace*{16pt}
+
+\begin{example}
+Complete \cref{Ex:PowersTimeSeries}.
+\end{example}
+
+\newpage
+
+\begin{example}
+Express $2 y - xy''$ as a power series $\sum_{n =0}^\infty c_n x^n$.
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+
+\end{document}

@@ -1,0 +1,273 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+\newcommand{\qu}[2]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}}\\}
+\newcommand{\prob}[2]{\noindent\textcolor{#2}{\fbox{\textbf{Problem {#1}}}}}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Problems set, Section 8.1 \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	For each function, find its Laplace transform.
+	
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $f(t) = \sin (at + b)$, where $a$ and $b$ are constant.
+	\item $f(t) = \sin t \cos^2 (2t)$.
+	\item $f(t) = (at + b)^2$, where $a$ and $b$ are constants.
+	\item $f(t) = \cos (a t + b )$, where $a$ and $b$ are constants.
+	\item $f(t) = \sinh (at )$, where $a$ is a constant.
+	\item $f(t) = \cosh (at )$, where $a$ est une constante.
+	\item $f(t) = te^{at}$ , where $a$ is a constant.
+	\item $f(t) = t^n e^{at}$, where $n$ is an integer and $a$ is a constant.
+	\item $f(t) = t \sin at$ , where $a$ is a constant.
+	\item $f(t) = t \cosh (at )$ , where $a$ is a constant.
+	\item $f(t) = t^2 \sinh (at)$ , where $a$ is a constant.
+	\item $f(t) = \sin 3t + \cos 3t$.
+	\item $f(t) = e^{3t} \cosh (4t ) + 20t $.
+	\item $f(t) = \cos t \sin t$.
+	\item $f(t) = te^{-t} \sin (2t )$.
+	\item $f(t) = t^3 \cos t \sin t$.
+	\end{enumerate}
+	
+
+
+\newpage
+
+\begin{comment}
+
+	\begin{center}
+	\large
+	\textcolor{red}{\textbf{Complete Solutions}}
+	\end{center}
+	
+	\noindent\textcolor{red}{\hrulefill}
+	
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+\item By a trigonometric identity, we have that
+	\begin{align*}
+	\sin (at + b) = \sin (at) \cos (b) + \cos (at) \sin (b) \text{.}
+	\end{align*}
+Therefore from the linearity of the Laplace transform, we obtain
+	\begin{align*}
+	L (\sin (at + b)) = \cos (b) L (\sin (at)) + \sin (b) L (\cos (at)) = \frac{a \cos (b)}{s^2 + a^2} + \frac{s \sin (b)}{s^2 + a^2}
+	\end{align*}
+and the final answer is:
+	\begin{align*}
+	L (\sin (at + b)) = \frac{a \cos b + s \sin b}{s^2 + a^2} \text{.}
+	\end{align*}
+\item By a trigonometric identity, we have that
+	\begin{align*}
+	\cos^2 (2t ) = \frac{1 + \cos 4t}{2} \text{.}
+	\end{align*}
+Therefore, we get
+	\begin{align*}
+	\sin t \cos^2 (2t) = \frac{\sin t}{2} + \frac{\sin t \cos 4t}{2} \text{.}
+	\end{align*}
+Using another trigonometric identity, we obtain
+	\begin{align*}
+	\sin t \cos^2 (2t ) = \frac{\sin t}{2} + \frac{\sin (5t) - \sin (3t)}{4} \text{.}
+	\end{align*}
+Now, after using the linearity of the Laplace transform and the table of Laplace transforms, we find that
+	\begin{align*}
+	L (\sin t \cos^2 (2t)) &= \frac{1}{2} L (\sin t) + \frac{1}{4} L (\sin (5t)) - \frac{1}{4} L (\sin (3t))\\
+	& = \frac{1}{2(s^2 + 1)} + \frac{5}{4(s^2+ 25)} - \frac{3}{4(s^2 + 9)} \text{.}
+	\end{align*}
+	\item We expand the polynomial:
+		\begin{align*}
+		(at + b)^2 = a^2 t^2 + 2ab t + b^2 \text{.}
+		\end{align*}
+	Now, we use the linearity of the Laplace transform and the tables:
+		\begin{align*}
+		L ((at + b)^2) = a^2 L (t^2) + 2ab L (t) + b^2 L (1) &= \frac{2a^2}{s^3} + \frac{2ab}{s^2} + \frac{b^2}{s}\\
+		&= \frac{2a^2 + 2abs + b^2 s^2}{s^3} \text{.}
+		\end{align*}
+	\item From a trigonometric identity, we have that
+		\begin{align*}
+		\cos (at + b) = \cos (at) \cos (b) - \sin (at ) \sin (b) \text{.}
+		\end{align*}
+	After applying the linearity of the Laplace transform, we end up with 
+		\begin{align*}
+		L (\cos (at + b)) = \cos (b) L (\cos (at)) - \sin (b) L (\sin (at)) &= \frac{s\cos (b)}{s^2 + a^2} - \frac{a\sin (b)}{s^2 + a^2} \\
+		&= \frac{s\cos (b) - a \sin (b)}{s^2 + a^2} \text{.}
+		\end{align*}
+	\item From the definition of the function $\sinh$, we have	
+		\begin{align*}
+		L (\sinh (at)) = \frac{1}{2} L (e^{at}) - \frac{1}{2} L (e^{-at}) = \frac{1}{2(s - a)} - \frac{1}{2 (s + a)} \text{.}
+		\end{align*}
+	Therefore, the final answer is
+		\begin{align*}
+		L (\sinh (at)) = \frac{a}{s^2- a^2} \text{.}
+		\end{align*}
+	\item By following the same line of reasoning as in the previous question, we obtain
+		\begin{align*}
+		L (\cosh (at)) = \frac{s}{s^2 - a^2} \text{.}
+		\end{align*}
+	\item Using the fact that multiplication by a power of $t$ translates to differentiation of the Laplace transform, we have
+		\begin{align*}
+		L (t e^{at}) = -\frac{d}{ds} L (e^{at}) \text{.}
+		\end{align*}
+	We know that
+		\begin{align*}
+		L (e^{at}) = \frac{1}{s - a} \text{.}
+		\end{align*}
+	Therefore we obtain
+		\begin{align*}
+		L (te^{ at}) = -\frac{d}{ds} \op \frac{1}{s - a} \fp = \frac{1}{(s- a)^2} \text{.}
+		\end{align*}
+	\item Using the same property as in the previous question, we have
+		\begin{align*}
+		L (t^n e^{at}) = (-1)^n \frac{d^n}{ds^n} L (e^{at}) \text{.}
+		\end{align*}
+	We know that $L (e^{at})= \frac{1}{s - a}$. Therefore, we get
+		\begin{align*}
+		L (t^n e^{at}) = (-1)^n \frac{d^n}{ds^n} \op \frac{1}{s - a} \fp \text{.}
+		\end{align*}
+	When $n = 1$, we have $L (t e^{at}) = (-1)^{1 + 1} \op \frac{1}{(s - a)^2} \fp$. When $n = 2$, we have
+		\begin{align*}
+		L (t^2 e^{at}) = (-1)^{2 + 2} \op \frac{2}{(s - a)^3} \fp \text{.}
+		\end{align*}
+	When $n = 3$, we have
+		\begin{align*}
+		L (t^3 e^{at}) = (-1)^3 \frac{d^3}{ds^3} \op \frac{1}{s - a} \fp = (-1)^{3 + 3} \op \frac{2. 3}{(s - a)^4} \fp\text{.}
+		\end{align*}
+		\begin{align*}
+		L (t^n e^{at}) = (-1)^{2n} \op \frac{n!}{(s - a)^{n + 1}} \fp = \frac{n!}{(s - a)^{n + 1}},
+		\end{align*}
+	where $n! = n.(n-1).(n-2)\cdots 2.1$.
+	\item We use one of the result from the lecture notes. When $n = 1$, we have that
+		\begin{align*}
+		L (t \sin at ) = -\frac{d}{ds} L (\sin (at)) \text{.}
+		\end{align*}
+	We know that $L (\sin (at))$ is equal to $\frac{a}{s^2 + a^2}$. Therefore, we conclude that
+		\begin{align*}
+		L (t \sin (at) ) = -\frac{d}{ds} \op \frac{a}{s^2 + a^2} \fp = \frac{2as}{(s^2 + a^2)^2} \text{.}
+		\end{align*}
+	\item Using the same result used in the previous question, we have
+		\begin{align*}
+		L (t \cosh (at)) = -\frac{d}{ds} L (\cosh (at)) \text{.}
+		\end{align*}
+	We computed in one of the previous problems that $L (\cosh (at)) = \frac{s}{s^2 - a^2}$. Therefore, we get
+		\begin{align*}
+		L (t \cosh (at)) = -\frac{s^2 - a^2 - s (2s)}{(s^2 - a^2)^2} = \frac{s^2 + a^2}{(s^2 - a^2)^2}\text{.}
+		\end{align*}
+	\item Again, we have
+		\begin{align*}
+		L (t^2 \sinh (at)) = (-1)^2 \frac{d^2}{ds^2} L (\sinh (at)) = \frac{d^2}{ds^2} \op \frac{a}{s^2 - a^2} \fp = \frac{2a (a^2 + 3s^2)}{(s^2 + a^2)^3}
+		\end{align*}
+	where we used the fact that $L (\sinh (at)) = \frac{a}{s^2 - a^2}$.
+	\item From the linearity of the Laplace transform, we have
+		\begin{align*}
+		L (\sin 3t + \cos 3t) = L (\sin 3t ) + L (\cos 3t ) = \frac{3}{s^2 + 9} + \frac{s}{s^2 + 9} = \frac{s+ 3}{s^2 + 9} \text{.}
+		\end{align*}
+	\item From the linearity of the Laplace transform, we have
+		\begin{align*}
+		L (e^{3t} \cosh (4t) + 20t) = L (e^{3t} \cosh (4t)) + 20 L (t) \text{.}
+		\end{align*}
+	Since multiplication by an exponential translates the Laplace transform, we have that
+		\begin{align*}
+		L (e^{3t} \cosh (4t)) = \frac{s - 3}{(s- 3)^2 - 16} \text{.}
+		\end{align*}
+	Also, we have
+		\begin{align*}
+		L (t) = \frac{1}{s^2} \text{.}
+		\end{align*}
+	Therefore, the final answer is:
+		\begin{align*}
+		L (e^{3t} \cosh (4t)) = \frac{s - 3}{(s- 3)^2 - 16} + \frac{20}{s^2} \text{.}
+		\end{align*}
+	\item From a trigonometric identity, we have
+		\begin{align*}
+		\cos t \sin t = \frac{\sin (2t)}{2} \text{.}
+		\end{align*}
+	Therefore, from the linearity of the Laplace transform, we get
+		\begin{align*}
+		L (\cos t \sin t ) = \frac{1}{2} L (\sin (2t)) = \frac{2}{2 (s^2 + 4)} = \frac{1}{s^2 + 4} \text{.}
+		\end{align*}
+	\item First of all, multiplication by $t$ translates to differenting the Laplace transform. Therefore, we obtain
+		\begin{align*}
+		L (t e^{-t} \sin (2t) ) = - \frac{d}{ds} L (e^{-t} \sin (2t)) = -\frac{d}{ds} \op \frac{2}{(s+1)^2 + 4} \fp =  \frac{4(s+1)}{((s+1)^2 + 4)^2} \text{.}
+		\end{align*}
+	
+	Another way to approach the problem is to first deal with the transform of $t\sin (2t)$. From a result stated in the lecture notes, we have
+		\begin{align*}
+		L \op t \sin (2t) \fp = -\frac{d}{ds} L (\sin (2t)) = -\frac{d}{ds} \op \frac{2}{s^2 + 4} \fp = \frac{4s}{(s^2 + 4)^2} .
+		\end{align*}
+	Now, multiplication by $e^{-t}$ translates the Laplace transform by $-1$: 
+		\begin{align*}
+		L \op e^{-t} t \sin (2t) \fp = \frac{4 (s + 1)}{((s+1)^2 + 4)^2} .
+		\end{align*}
+	\item Since there is a multiplication by $t^3$, we must take the derivative three times of the Laplace transform of $\cos t \sin t$. From the previous problem, we have
+		\begin{align*}
+		L (\cos t \sin t) = \frac{1}{s^2 + 4} \text{.}
+		\end{align*}
+	Differentiate three times, we end up with the following final answer:
+		\begin{align*}
+		L (t^3 \cos t \sin t ) = -\frac{24s(s^2 - 4)}{(s^2 + 4)^4} \text{.}
+		\end{align*}
+	\end{enumerate}	
+	
+\end{comment}
+
+	
+	
+\end{document}/

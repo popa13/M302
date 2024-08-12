@@ -1,0 +1,301 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+\newcommand{\qu}[2]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}}\\}
+\newcommand{\prob}[2]{\noindent\textcolor{#2}{\fbox{\textbf{Problem {#1}}}}}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Problems set, Section 8.3 \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\prob{A}{blue}
+	
+	Find an expression of the following functions involving only unit step functions.
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $f(t) = \oa \begin{matrix}
+	0 & t < 2 \\
+	(t - 2)^2 & t > 2 \text{.}
+	\end{matrix}\right.$
+	\item $f(t) = \oa \begin{matrix}
+	0 & t < \pi \\
+	t - \pi & t \in [\pi , 2\pi ] \\
+	0 & t > 2\pi \text{.}
+	\end{matrix} \right.$
+	\end{enumerate}
+	
+	\spc
+	
+	\prob{B}{blue}
+	
+	Find the Laplace transform of the following functions.
+	\begin{multicols}{2}
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $f(t) := t u (t - 1)$.
+	\item $f(t) := te^{2t} u (t - 1)$.
+	\item $f(t) := (t^2 - 1) u(t - 1)$.
+	\item $f(t) := t \sin t u (t - 2\pi )$. 
+	\item $f(t) := \cos t u (t - a )$.
+	\end{enumerate}
+	\end{multicols}
+	
+	\spc
+	
+	\prob{C}{blue}
+	
+	Find the inverse Laplace transform of the following functions.
+	\begin{multicols}{2}
+	\begin{enumerate}[label=\textcolor{blue}{\arabic*)}]
+	\item $F(s) = \frac{3!}{(s - 2)^4}$.
+	\item $F(s) = \frac{2 (s - 1)e^{-2s}}{s^2 - 2s + 2}$.
+	\item $F(s) = \frac{(s - 2)e^{-s}}{s^2 - 4s + 3}$.
+	\item $F(s) = \frac{e^{-2s}}{s^2 + s - 2}$.
+	\item $F(s) = \frac{2e^{-2s}}{s^2 - 4}$.
+	\item $F(s) = \frac{e^{-s} + e^{-2s} - e^{-3s} - e^{-4s}}{s}$.
+	\end{enumerate}
+	\end{multicols}
+	
+
+\begin{comment}
+
+	\newpage
+	
+	\begin{center}
+	\large
+	\textcolor{red}{\textbf{Complete Solutions}}
+	\end{center}
+	
+	\noindent\textcolor{red}{\hrulefill}
+	
+	\prob{A}{red}
+	
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+\item The expression of $f$ in terms of unit step functions is
+	\begin{align*}
+	(t - 2)^2 u_2 (t) \text{.}
+	\end{align*}
+\item First of all, the expression of the function is $t - \pi$, when $t \geq \pi$. Therefore, the function should take the following form: 
+	\begin{align*}
+	(t - \pi ) u_{\pi} (t) \text{.}
+	\end{align*}
+Second of all, the expression $t - \pi$ vanish when $t > 2\pi$. Therefore, the function should also have the following part
+	\begin{align*}
+	- (t - \pi ) u_{2\pi} (t) \text{.}
+	\end{align*}	
+Therefore, we obtain
+	\begin{align*}
+	f(t) = (t - \pi ) \op u_{\pi} (t) - u_{2\pi} (t) \fp \text{.}
+\end{align*}	 
+\end{enumerate}
+	
+	\prob{B}{red}
+	
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+\item We rewrite the expression of the function as
+	\begin{align*}
+	tu(t - 1) = (t - 1) u(t - 1) + u (t - 1) .
+	\end{align*}
+In this form, we can apply the Laplace transform directly. We find that
+	\begin{align*}
+	F (s) = e^{-s} L (t) + e^{-s} L (1) = \frac{e^{-s}}{s^2} + \frac{e^{-s}}{s} \text{.}
+	\end{align*}
+\item First of all, we have
+	\begin{align*}
+	te^{2t} = (t - 1)e^{2t} + e^{2t} = e^{2} (t - 1)e^{2(t - 1)} + e^{2} e^{2(t -1)} \text{.}
+	\end{align*}
+Therefore, the expression of the function becomes
+	\begin{align*}
+	f(t) = e^2 (t - 1)e^{2(t - 1)} u(t-1) + e^2 e^{2(t - 1)} u(t - 1) \text{.}
+	\end{align*}
+Also, since $L (te^{2t}) = \frac{1}{(s - 2)^2}$ and $L (e^{2t}) = \frac{1}{s - 2}$, applying the Laplace transform implies that
+	\begin{align*}
+	F(s) = \frac{e^2 e^{-s}}{(s - 2)^2} + \frac{e^2 e^{-s}}{s - 2} = \frac{e^{-(s - 2)}}{(s - 2)^2} + \frac{e^{-(s - 2)}}{s - 2} \text{.}
+	\end{align*}
+Finally, after simplifying the answer, we get
+	\begin{align*}
+	F(s) = e^{-(s - 2)} \op \frac{1}{(s - 2)^2} + \frac{1}{s - 2} \fp \text{.}
+	\end{align*}
+\item The expression of the function is not in the form to apply the Laplace transform correctly. We therefore rewrite the expression in the following way: 
+	\begin{align*}
+	f(t) = (t^2 + 2t - 2t + 1 - 1 - 1 ) u(t - 1) &= (t^2 - 2t + 1) u(t - 1) + (2t - 2) u(t - 1) \\
+	&= (t - 1)^2 u(t - 1) + 2 (t - 1) u(t - 1) \text{.}
+	\end{align*}
+We can now apply the Laplace transform and then obtain
+	\begin{align*}
+	F(s) = \frac{2 e^{-s}}{s^3} + \frac{2e^{-s}}{s^2} \text{.}
+	\end{align*}
+The simplified answer is
+	\begin{align*}
+	F(s) = 2e^{-s} \op \frac{1}{s^3} + \frac{1}{s^2} \fp \text{.}
+	\end{align*}
+\item We have to put the expression of the function in an appropriate form to apply the Laplace transform. The expression can be rewritten as followed:
+	\begin{align*}
+	f(t) = (t - 2\pi ) \sin t u(t - 2\pi ) + 2\pi \sin t u(t - 2\pi ) \text{.}
+	\end{align*}
+From a trigonometry identity (or the periodicity of the $\sin$ function), we find that
+	\begin{align*}
+	\sin t = \sin (t - 2\pi )
+	\end{align*}
+and then we see that
+	\begin{align*}
+	f(t) = (t - 2\pi ) \sin (t - 2\pi ) u(t - 2\pi ) + 2\pi \sin (t - 2\pi ) u(t - 2\pi ) \text{.}
+	\end{align*}
+We can now apply the Laplace transform to the last expression. Starting with the fact that $L (t g ) = -G'$, we get $L (t \sin t ) = \frac{2s}{(s^2 + 1)^2}$ et therefore
+	\begin{align*}
+	F (s) = \frac{2se^{-2\pi s}}{(s^2 + 1)^2} + \frac{2\pi e^{-2\pi s}}{s^2 + 1} \text{.}
+	\end{align*}
+The simplified answer is
+	\begin{align*}
+	F(s) = 2e^{-2\pi s} \op \frac{s}{(s^2 + 1)^2} + \frac{\pi}{s^2 + 1}\fp \text{.}
+	\end{align*}
+\item From a trigonometry identity, we have
+	\begin{align*}
+	\cos (t) = \cos (t - a + a) = \cos (t - a) \cos (a) - \sin (t - a) \sin (a) \text{.}
+	\end{align*}
+	Therefore, the expression of the function can be rewritten as
+		\begin{align*}
+		f(t) = \cos (a) \cos (t - a) u(t - a) - \sin (a) \sin (t - a) u(t - a) \text{.}
+		\end{align*}
+	We can now apply the Laplace transform and get
+		\begin{align*}
+		F(s) = \cos (a) \frac{se^{-sa}}{s^2 + 1} - \sin (a) \frac{e^{-sa}}{s^2 + 1} \text{.}
+		\end{align*}
+	Therefore, we get
+		\begin{align*}
+		F(s) = \frac{e^{-sa}}{s^2 + 1} \op s \cos a - \sin a \fp \text{.}
+		\end{align*}
+\end{enumerate}
+	
+	\prob{C}{red}
+	
+	In this problem, to simplify the notation, we use the following shortcuts:
+		\begin{align*}
+		f_a (t) = f(t - a) \quad \text{ and} \quad u_a (t) = u (t - a) .
+		\end{align*}
+	Therefore, when you see $f_a$ and/or $u_a$ in the text, these refer to the above.
+	
+	\begin{enumerate}[label=\textcolor{red}{\arabic*)}]
+\item From the table, we immediately have
+	\begin{align*}
+	f(t) = t^3 e^{2t} \text{.}
+	\end{align*}
+\item The denominator can be rewritten as $(s - 1)^2 + 1$. Then, from the table, we get
+	\begin{align*}
+	L^{-1} \op \frac{s - 1}{(s - 1)^2 + 1} \fp = e^t \cos t \text{.}
+	\end{align*}
+Since the expression of $F$ contained an $e^{-2s}$, we find that
+	\begin{align*}
+	f(t) = 2e^{t - 2} \cos (t - 2) u (t - 2)
+	\end{align*}
+because $L^{-1} (F e^{-as}) = f_a u_a$.
+\item The denominator can be factored:
+	\begin{align*}
+	s^2 - 4s + 3 = (s - 2)^2 - 1 \text{.}
+	\end{align*}
+	Then from the table, we get
+		\begin{align*}
+		L^{-1} \op \frac{s - 2}{(s - 2)^2 - 1} \fp = e^{2t} \cosh (t) \text{.}
+		\end{align*}
+	Finaly, since the expression of $F$ contained an $e^{-s}$, we find that
+		\begin{align*}
+		f(t) = e^{2(t - 1)} \cosh (t - 1) u (t - 1)
+		\end{align*}
+	because $L^{-1} (F e^{-as}) = f_a u_a$.
+\item The denominator can be rewritten as
+	\begin{align*}
+	s^2 + s - 2 = (s + 2) (s - 1)
+	\end{align*}
+and then the expression of $F$ becomes
+	\begin{align*}
+	F(s) = \frac{e^{-2s}}{3(s - 1)} - \frac{e^{-2s}}{3(s +2)}
+	\end{align*}
+after using a partial fractions decomposition. Therefore, applying the inverse Laplace transform and keeping in mind that $L^{-1} (F e^{-as}) = f_a u_a$, we find that
+	\begin{align*}
+	f(t) = \tfrac{1}{3} e^{t - 2} u(t - 2) - \tfrac{1}{3} e^{-2(t - 2)} u (t - 2) \text{.}
+	\end{align*}
+\item Using a partial fractions decomposition, we can rewrite $F$ as followed:
+	\begin{align*}
+	F(s) = \op \tfrac{1}{4(s - 2)} - \tfrac{1}{4(s + 2)} \fp 2e^{-2s} \text{.}
+	\end{align*}
+Applying the inverse Laplace transform and keeping in mind that $L^{-1} (F e^{-as}) = f_a u_a$, we find that
+	\begin{align*}
+	f(t) = \op \tfrac{1}{2} e^{2(t - 2)} - \tfrac{1}{2} e^{-2 (t - 2)} \fp u (t - 2) \text{.}
+	\end{align*}
+	This solution is also equivalent to:
+		\begin{align*}
+		f(t) = \sinh (2(t - 2)) u(t - 2)
+		\end{align*}
+	because  $\sinh (x) = \frac{e^x - e^{-x}}{2}$.
+	
+	Notice that we could use the table directly. Indeed, we know that $L (\sinh (2t)) = \frac{2}{s^2 - 4}$. Therefore, since $L (g(t-a)u(t - a)) = e^{-as} G(s)$, we find that
+		\begin{align*}
+		f(t) = \sinh (2(t - 2)) u(t - 2) \text{.}
+		\end{align*}
+\item Applying directly the fact that $L^{-1} \op \frac{e^{-as}}{s} \fp = U_a$, we find that
+	\begin{align*}
+	f(t) = u(t - 1) + u(t - 2) - u(t- 3) - u (t - 4) \text{.}
+	\end{align*}
+	\end{enumerate}
+	
+\end{comment}
+	
+\end{document}

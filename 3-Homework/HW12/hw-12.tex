@@ -1,0 +1,189 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+\usepackage{bigints}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+\newcommand{\qu}[4]{\noindent\textcolor{#4}{\fbox{\textbf{Section {#1} | Problem {#2}}} \hrulefill{{\fbox{\textbf{{#3} Points}}}}\\}}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 12 Problems \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+		
+	\qu{8.2}{A}{25}{black}
+	\\
+	Solve the following IVP using the Laplace transform:
+		\begin{align*}
+		y'' + 3y' + 2y = 2e^t , \quad y(0) = 0, \, y'(0) = -1 .
+		\end{align*}
+		
+	%\textcolor{blue}{\hrulefill}
+	
+	\spc
+	
+	\qu{8.2}{B}{25}{black}
+	\\
+	Solve the following IVP using the Laplace transform:
+		\begin{align*}
+		y'' - 2y' + y =  t^2 e^t, \quad y(0) = 1, \, y'(0) = 2 .
+		\end{align*}
+		
+	\textcolor{black}{\hrulefill}
+	
+	\hfill \textcolor{black}{\textsc{Total (Points): 50.}}
+	
+	
+\begin{comment}
+	\newpage
+	
+	\begin{center}
+	\large
+	\textcolor{red}{\underline{\textbf{Complete Solutions}}}
+	\end{center}
+	
+	%\noindent\textcolor{red}{\hrulefill}
+	
+	\spc
+	
+	\qu{8.2}{A}{25}{red}
+	\\
+	Apply the Laplace transform to the ODE to get
+		\begin{align*}
+		s^2 Y - sy(0) - y'(0) + 3 (sY - f(0)) + 2Y = \frac{2}{s - 1} .
+		\end{align*}
+	Using the initial condition and collecting the terms, we obtain
+		\begin{align*}
+		(s^2 + 3s + 2) Y = \frac{2}{s - 1} - 1
+		\end{align*}
+	Using the fact that $s^2 + 3s + 2 = (s + 1)(s + 2)$, we obtain
+		\begin{align*}
+		Y(s) = \frac{2}{(s - 1) (s + 1) (s + 2)} - \frac{1}{(s + 1)(s + 2)}
+		\end{align*}
+	We can rewrite each term in the RHS using the partial fraction decomposition:
+		\begin{align*}
+		\frac{2}{(s - 1) (s + 1) (s + 2)} = \frac{1/3}{s - 1} + \frac{-1}{s + 1} + \frac{2/3}{s + 2}
+		\end{align*}
+	and
+		\begin{align*}
+		\frac{1}{(s + 1)(s + 2)} = \frac{1}{s + 1} + \frac{-1}{s + 2} .
+		\end{align*}
+	Therefore, the expression of $Y(s)$ becomes
+		\begin{align*}
+		Y (s) = \frac{1/3}{s - 1} - \frac{1/3}{s + 2} .
+		\end{align*}
+	Taking the inverse Laplace transform, we obtain
+		\begin{align*}
+		y(t) = \frac{1}{3} e^{t} - \frac{1}{3} e^{-2t} .
+		\end{align*}
+		
+	\newpage
+	
+	\qu{8.2}{B}{25}{red}
+	\\
+	After applying the Laplace transform, we get
+		\begin{align*}
+		s^2Y - sy(0) - y'(0) - 2sY + 2y(0) + Y = \frac{2}{(s - 1)^3}
+		\end{align*}
+	Using the initial condition, we then get
+		\begin{align*}
+		(s^2 - 2s + 1)Y -s  = \frac{2}{(s - 1)^3}.		
+		\end{align*}
+	Therefore, we obtain
+		\begin{align*}
+		(s^2 - 2s + 1)Y = s + \frac{2}{(s - 1)^3} .
+		\end{align*}
+	Using the fact that $s^2 - 2s + 1 = (s - 1)^2$, we get
+		\begin{align*}
+		Y = \frac{s}{(s - 1)^2} + \frac{2}{(s - 1)^5}.
+		\end{align*}
+	We notice that
+		\begin{align*}
+		\frac{s}{(s - 1)^2} = s F(s) .
+		\end{align*}
+	The inverse of $F(s)$ is $te^t$ and recall that
+		\begin{align*}
+		L (f'(t)) = sF - f(0) .
+		\end{align*}
+	Since at $t = 0$, the function $te^t$ is $0$, we get
+		\begin{align*}
+		\frac{s}{(s-1)^2} \longrightarrow (te^t)' = e^t + te^t .
+		\end{align*}
+	Also, since
+		\begin{align*}
+		L (t^4e^t) = \frac{4!}{(s - 1)^5},
+		\end{align*}
+	we have
+		\begin{align*}
+		\frac{1}{(s - 1)^5} \longrightarrow \frac{1}{4!} t^4 e^t .
+		\end{align*}
+	Taking the inverse Laplace transform, we obtain
+		\begin{align*}
+		y(t) =  e^t + te^t + \frac{1}{12} t^4 e^t .
+		\end{align*}
+
+
+	\vfill
+	
+	\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+\end{comment}
+	
+\end{document}

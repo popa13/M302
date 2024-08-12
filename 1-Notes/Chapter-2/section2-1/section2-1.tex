@@ -1,0 +1,310 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumerate}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+	
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 2}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 2.1: Linear First Order Differential Equation}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{What Is A LFODE?}
+
+A first order ODE is said to be \textbf{linear} (abbreviated LFODE) if it can be written as
+	\begin{align}
+	y' + p(x) y = f(x) . \label{Eq:LFODE}
+	\end{align}
+	\begin{itemize}
+	\item Example: $y' + 3y/x^2 = 1$.
+	\item Example: $xy' - 8x^2 y = \sin x$.
+	\end{itemize}
+\vspace*{10pt}
+
+\subsection{More Terminology}
+\begin{itemize}
+\item A first order ODE that is not of the form \eqref{Eq:LFODE}, then the ODE is said to be \textbf{nonlinear}.
+	\begin{itemize}
+	\item Example: $xy' + 3y^2 = 2x$.
+	\item Example: $yy' + e^y = \tan (xy)$.
+	\end{itemize}
+\item When $f (x) = 0$ for any $x$, then $y' + p(x) y = 0$ is said to be \textbf{homogeneous}.
+	\begin{itemize}
+	\item Example: $y' + 3y/x^2 = 0$.
+	\item Example: $xy' - 8x^2 y = 0$.
+	\end{itemize}
+\item When $f(x)$ is not zero, then the LODE is said to be \textbf{nonhomogeneous}.
+\end{itemize}
+
+\newpage
+
+\section{General Solution to a LFODE}
+
+\begin{example}
+Find all the solutions to
+	\begin{align*}
+	y' = \frac{1}{x^2}
+	\end{align*}
+\end{example}
+
+\vfill
+
+\subsection{General Solution}
+
+We say that a function $y = y(x, c)$ is a \textbf{general solution} to \eqref{Eq:LFODE} if
+	\begin{itemize}
+	\item For each fixed parameter $c$, the resulting function $y = y(x, c)$ is a solution to \eqref{Eq:LFODE} on an an open interval $(a, b)$.
+	\item If $y_1 = y_1 (x)$ is a solution to \eqref{Eq:LFODE} on $(a, b)$, then $y_1$ can be obtained from the formula $y = y (x, c)$ by choosing $c$ appropriately.
+	\end{itemize}
+	
+\vfill
+
+\newpage
+
+\section{Homogeneous LFODE}
+
+We now find the general solution to
+	\begin{align}
+	y' + p(x) y = 0 \label{Eq:HLFODE}
+	\end{align}
+where $p$ is continuous on an interval $(a, b)$.
+
+\vspace*{16pt}
+
+\begin{example}
+Let $a$ be a constant (fixed).
+	\begin{enumerate}
+	\item Find the general solution of $y'- a y = 0$.
+	\item Solve the initial value problem
+		\begin{align*}
+		y' - ay = 0 , \quad y(x_0) = y_0 .
+		\end{align*}
+	\end{enumerate}
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+\newpage
+
+\begin{example}
+	\begin{enumerate}
+	\item Find the general solution of $xy' + y = 0$.
+	\item Solve the initial value problem
+		\begin{align*}
+		xy' + y = 0, \quad y (1) = 3 .
+		\end{align*}
+	\end{enumerate}
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+\vfill
+
+\underline{General facts:} 
+
+	\begin{itemize}
+	\item The general solution to \eqref{Eq:HLFODE} is given by
+	\begin{align*}
+	y = c e^{-P(x)}
+	\end{align*}
+where $P(x) = \displaystyle\int p(x) \, dx$ is any antiderivative of $p(x)$.
+	\item The solution to the IVP
+		\begin{align*}
+		y' + p(x) y = 0 , \quad y(x_0) = y_0
+		\end{align*}
+	is given by
+		\begin{align*}
+		y(x) = y_0 e^{-\int_{x_0}^x p(x) \, dx} .
+		\end{align*}
+	\end{itemize}
+	
+\newpage
+
+\section{Nonhomogeneous LFODE}
+We now want to find the general solution to
+	\begin{align*}
+	y' + p(x) y = f(x)
+	\end{align*}
+where the functions $p(x)$ and $f(x)$ are continuous on an open interval $(a, b)$.
+
+\underline{Remark:}
+	\begin{itemize}
+	\item The homogeneous part $y' + p(x) y = 0$ is called the \textbf{complementary equation}.
+	\end{itemize}
+	
+	\vspace*{16pt}
+	
+	\begin{example}
+	Find the general solution of
+		\begin{align*}
+		y' + 2y = x^3 e^{-2x} .
+		\end{align*}
+	\end{example}
+	
+\newpage
+
+\subsection{Summary of The Method}
+
+	\begin{itemize}
+	\item Find a function $y_1$ such that $y_1' + p(x) y_1' = 0$
+	\item Write $y = u y_1$ where $u$ is an unknown function.
+	\item Solve $u' y_1 = f(x)$.
+	\item Substitute $u$ in $y$.
+	\end{itemize}
+	
+\vspace*{16pt}
+
+\begin{example}
+\begin{enumerate}
+\item Find the general solution
+	\begin{align*}
+	y' + (\cot x) y = x \csc x .
+	\end{align*}
+\item Solve the initial value problem
+	\begin{align*}
+	y' + (\cot x) y = x \csc x , \quad y(\pi/2 ) = 1 .
+	\end{align*}
+\end{enumerate}
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+\newpage
+
+\subsection{General Theorem}
+Suppose
+	\begin{itemize}
+	\item $p(x)$ and $f(x)$ are continuous on an interval $(a, b)$ 	\item $y_1$ is a solution to the complementary equation.
+	\end{itemize}
+Then the general solution to $y' + p(x) y = f(x)$ is
+	\begin{align*}
+	y (x) = y_1 (x) \left( c + \int \frac{f(x)}{y_1 (x)} \, dx \right) 
+	\end{align*}
+for each $x$ in $(a, b)$.
+	
+	\vspace*{16pt}
+	
+\subsection{Existence Theorem}
+Suppose
+	\begin{itemize}
+	\item $p(x)$ and $f(x)$ are continuous on an interval $(a, b)$.
+	\item $y_1$ is a solution to the complementary equation.
+	\item $x_0$ is an arbitrary number in $(a, b)$ and $y_0$ is an arbitrary number.
+	\end{itemize}
+Then the boundary value problem
+	\begin{align*}
+	y' + p(x) y + f(x) , \quad y(x_0) = y_0
+	\end{align*}
+has a unique solution which is of the form
+	\begin{align*}
+	y (x) = y_1 (x) \left( \frac{y_0}{y_1 (x_0)} + \int_{x_0}^x \frac{f(t)}{y_1 (t)} \, dt \right)
+	\end{align*}
+for each $x$ in $(a, b)$.
+\end{document}

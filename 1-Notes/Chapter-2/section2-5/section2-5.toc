@@ -1,0 +1,5 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Another Way to Present an ODE}{2}{section*.1}%
+\contentsline {section}{Exactness Condition}{3}{section*.2}%
+\contentsline {section}{How to Solve Exact ODEs}{5}{section*.3}%
+\contentsline {subsection}{Non Rigorous but ``Fast'' Procedure to Solve An Exact ODE}{6}{subsection*.4}%

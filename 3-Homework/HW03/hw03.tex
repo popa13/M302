@@ -1,0 +1,430 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 3 Solutions \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{2.4}{3}{5}
+	\\
+	This is a Bernoulli equation with $r = 1/2$.
+	
+	First step is to find a solution to the complementary equation. We have
+		\begin{align*}
+		x^2 y' + 2y = 0 .
+		\end{align*}
+	This is a separable equation and the solution is
+		\begin{align*}
+		y(x) = ce^{\frac{2}{x}} .
+		\end{align*}
+		
+	Second step is to use the variation of parameter. Let $y(x) = u(x) e^{\frac{2}{x}}$. Then we obtain
+		\begin{align*}
+		y' = u' e^{\frac{2}{x}} - 2u\frac{e^{\frac{2}{x}}}{x^2} .
+		\end{align*}
+	We replace $y$ and $y'$ in the differential equation to get
+		\begin{align*}
+		x^2 \op u' e^{\frac{2}{x}} - 2u\frac{e^{\frac{2}{x}}}{x^2} \fp + 2 u e^{\frac{2}{x}} = 2 e^{1/x} u^{1/2} e^{1/x} .
+		\end{align*}
+	After simplifying the left-hand side and the right-hand side, we obtain
+		\begin{align*}
+		x^2 u' = 2 u^{1/2}
+		\end{align*}
+	and this is a separable equation. Rewrite the last equation as
+		\begin{align*}
+		\frac{du}{u^{1/2}} = \frac{dx}{x^2}
+		\end{align*}
+	and integrate to obtain
+		\begin{align*}
+		2 u^{1/2} = -1/x + k .
+		\end{align*}
+	Divide by $2$ and then square both sides to obtain
+		\begin{align*}
+		u (x) = \op c - \frac{1}{2x} \fp^2
+		\end{align*}
+	with $c = k/2$. Therefore the solution is
+		\begin{align*}
+		y (x) = u(x) e^{-2/x} = \op c - \frac{1}{2x} \fp^2 e^{2/x} .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{2.4}{9}{5}
+	\\
+	This is again a Bernouilli equation with $r = 4$. 
+	
+	We first find a solution to the complementary equation. We have
+		\begin{align*}
+		xy' + y = 0
+		\end{align*}
+	which is separable and we find
+		\begin{align*}
+		y (x) = \frac{c}{x} .
+		\end{align*}
+	
+	We now use the variation of parameter. We take $y (x) = u (x) / x$ for some function $u$. The derivative of $y$ is
+		\begin{align*}
+		y' (x) = \frac{u'}{x} - \frac{u}{x^2} .
+		\end{align*}
+	We then replace $y$ and $y'$ into the DE:
+		\begin{align*}
+		x \op \frac{u'}{x} - \frac{u}{x^2} \fp + \frac{u}{x} = x^3 u .
+		\end{align*}
+	After simplifying the left-hand side, we get
+		\begin{align*}
+		u' = x^3 u
+		\end{align*}
+	which is separable. We separate the variable and integrate to get
+		\begin{align*}
+		\ln |u| = \frac{x^4}{4} + k .
+		\end{align*}
+	Setting $c = \pm e^k$, we obtain
+		\begin{align*}
+		u (x) = c e^{x^4/4} .
+		\end{align*}
+	Therefore, the general solution is
+		\begin{align*}
+		y (x) = \frac{u(x)}{x} = \frac{c e^{x^4/4}}{x} .
+		\end{align*}
+		
+	We have to find $c$ such that $y (1) = 1/2$. We replace this condition in our function and we get
+		\begin{align*}
+		\frac{1}{2} = c e^{1/4} \quad \Ra \quad c = 0.5e^{-1/4} .
+		\end{align*}
+	The solution to the IVP is then
+		\begin{align*}
+		y(x) = 0.5 \frac{e^{(x^4 - 1)/4}}{x} .
+		\end{align*}
+	
+	\newpage
+	
+	\exo{2.4}{17}{10}
+	\\
+	The ODE can be rewritten as
+		\begin{align*}
+		y' = \frac{y^4 + x^4}{xy^3} = \frac{y}{x} + \op \frac{x}{y} \fp^3 .
+		\end{align*}
+	Let $u = y/x$ so that $y = xu$. Taking the derivative with respect to $x$, we find that
+		\begin{align*}
+		y' = u + xu' .
+		\end{align*}	
+	Replace $y$ by $xu$ and $y'$ by the last expression in the ODE to get
+		\begin{align*}
+		u + xu' = u + \frac{1}{u^3} .
+		\end{align*}	
+	After substracting by $u$ on each side, we then obtain the following ODE in $u$:
+		\begin{align*}
+		xu' = \frac{1}{u^3}
+		\end{align*}
+	which is a separable equation. The solution is
+		\begin{align*}
+		\frac{u^4}{4} = \ln |x| + c .
+		\end{align*}
+	Since $u = y/x$, we have $y^4/ x^4 = u^4 $. Replacing $u^4$ by $4\ln |x| + 4c$, we obtain
+		\begin{align*}
+		\frac{y^4}{4 x^4} = \ln |x| + c .
+		\end{align*}		 
+	We can leave our answer in an implicit form.
+	
+	Or you can find explicitly the solution for $y$ by taking the $4$-th root. We first multiply by $x^4$:
+		\begin{align*}
+		y^4 = 4x^4 \ln |x| + 4c x^4
+		\end{align*}
+	and then take the $4$-th root to obtain
+		\begin{align*}
+		y (x) = \pm \sqrt[4]{4x^4 \ln |x| + 4c x^4} .
+		\end{align*}
+	
+	\underline{Remarks:}
+		\begin{itemize}
+		\item We can't remove the absolute value in $\ln |x|$. If we want to do so, we then have to consider wheither $x > 0$ or $x < 0$. Therefore, the implicit solution then takes the following form
+			\begin{align*}
+			\left\{ \begin{matrix}
+			\frac{y^4}{4 x^4} = \ln x + c & \text{, if } x > 0 \text{;} \\
+			\frac{y^4}{4 x^4} = \ln (-x) + c & \text{, if } x < 0 \text{.}
+			\end{matrix} \right.
+			\end{align*}
+		\item We can decide between the two forms of the implicit solution if we have an initial condition $y(x_0) = y_0$. When $x_0 > 0$, the interval of validity is $(0, \infty )$ and the implicit solution will be
+			\begin{align*}
+			\frac{y^4}{4 x^4} = \ln x + c .
+			\end{align*}
+		When $x_0 < 0$, the interval of validity is $(-\infty , 0 )$ and the implicit solution will be
+			\begin{align*}
+			\frac{y^4}{4 x^4} = \ln (-x) + c .
+			\end{align*}
+		\item On the next page, you can see a direction field together with some implicit solutions.
+		\end{itemize}
+		
+	\begin{figure}
+	\centering
+	\includegraphics[scale=1]{figure_1.png}
+	\caption{Direction field of $xy^3 y' = y^4 + x^4$ and some implicit solutions}
+	\end{figure}
+	
+	\newpage
+	
+	\exo{2.4}{23}{5}
+	\\
+	We first find the general solution. We rewrite the ODE as
+		\begin{align*}
+		y' = \frac{x^3 + y^3}{xy^2} = \op \frac{x}{y} \fp^2 + \frac{y}{x} .
+		\end{align*}
+	Let $u = y/x$ and so $y = xu$. Therefore, $y' = u + xu'$. Replacing this in the ODE, we get
+		\begin{align*}
+		u + xu' = \frac{1}{u^2} + u .
+		\end{align*}
+	After substracting by $u$ both sides, we obtain the following separable equation:	
+		\begin{align*}
+		xu' = \frac{1}{u^2} .
+		\end{align*}
+	The solution is
+		\begin{align*}
+		\frac{u^3}{3} = \ln |x| + c .
+		\end{align*}
+	Since $u = y/x$, we then get
+		\begin{align*}
+		\frac{y^3}{3x^3} = \ln |x| + c
+		\end{align*}
+	and therefore
+		\begin{align*}
+		y^3 = 3x^3 \ln |x| + 3c x^3 .
+		\end{align*}
+	Taking the cube root, we obtain
+		\begin{align*}
+		y (x) = \sqrt[3]{3x^3 \ln |x| + 3c x^3} .
+		\end{align*}
+	
+	We have $y (1) = 3$. We then get
+		\begin{align*}
+		3 = \sqrt[3]{3 \ln (1) + 3c} \quad \Ra \quad 3 = \sqrt[3]{3c} \quad \Ra \quad 9 = c .
+		\end{align*}	
+	Since $x_0 = 1 > 0$, we can write our solution to the IVP as
+		\begin{align*}
+		y(x) = \sqrt[3]{3x^3 \ln x + 27 x^3} \quad \text{( } x > 0 \text{ )} .
+		\end{align*}			
+		
+	On the next page, you will see a plot of the direction field and the solution curve to the IVP.
+	
+	\begin{figure}
+	\centering
+	\includegraphics[scale=1]{figure_2.png}
+	\caption{Direction field of $y' = \frac{x^3 + y^3}{xy^2}$ and the solution curve to the IVP}	
+	\end{figure}
+	
+	\newpage
+	
+	\exo{2.5}{1}{5}
+	\\
+	We have $M (x, y) = 6x^2 y^2$ and $N(x, y) = 4x^3 y$. We have
+		\begin{align*}
+		M_y = 12 xy \quad \text{ and } \quad N_x = 12 x^2 y .
+		\end{align*}
+	We see that $M_y = N_x$ and therefore the ODE is exact.
+	
+	To solve is, we have to find a function $F (x, y)$ such that 			\begin{align*}
+		F_x = M = 6x^2 y^2 \quad \text{ and } \quad F_y = N = 4x^3 y .
+		\end{align*}	
+	Integrating with respect to $x$ the equation $F_x = 6x^2 y^2$ yields
+		\begin{align*}
+		G(x, y) = 2x^3 y^2 .
+		\end{align*}
+	Integrating with respect to $y$ the equation $F_y = 4x^3 y$ yields
+		\begin{align*}
+		H (x, y) = 2x^3 y^2 .
+		\end{align*}
+	Therefore, we get
+		\begin{align*}
+		F(x, y) = 2x^3 y^2
+		\end{align*}
+	and the implicit solutions are
+		\begin{align*}
+		2x^3 y^2 = c .
+		\end{align*}
+		
+	\newpage
+	
+	\exo{2.5}{5}{5}
+	\\
+	We have $M = (x + y)^2$ and $N = (x + y)^2$. We see that $M_y = x + y$ and $N_x = x + y$. Therefore, the equation is exact.
+	
+	We have to find a function $F$ such that $F_x = (x + y)^2$ and $F_y = (x +y)^2$. Integrating these equations with respect to $x$ and $y$ respectively, we obtain
+		\begin{align*}
+		G(x, y) = \frac{(x + y)^3}{3} \quad \text{ and } \quad H (x, y) = \frac{(x + y)^3}{3} .
+		\end{align*}
+	Therefore, $F(x, y) = (x + y)^3/3$ and the implicit solutions are
+		\begin{align*}
+		\frac{(x + y)^3}{3} = c .
+		\end{align*}
+	We can find explicitly $y$ in this case. Multiply by $3$, take the cube root and substract by $x$ to obtain
+		\begin{align*}
+		y (x) = \sqrt[3]{3c} - x = C - x
+		\end{align*}
+	where $C = \sqrt[3]{3c}$. Therefore, the solutions are simply lines!
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.9]{figure_3.png}
+	\caption{Direction field of $(x + y)^2 dx + (x + y)^2 dy = 0$ and some solution curves}
+	\end{figure}
+	
+	\newpage
+	
+	\exo{2.6}{3}{5}
+	\\
+	We see here that the equation is not exact because $M_y = 1$ and $N_x = -1$. We therefore have to find an integrating factor.
+		\begin{itemize}
+		\item $(M_y - N_x)/N = (1 + 1)/(-x) = -2/x$ which is independent of $y$. Therefore, we have
+			\begin{align*}
+			e^{\int -2/x \, dx} = e^{-2 \ln |x|} = -\frac{2}{|x|^2} = -\frac{2}{x^2} .
+			\end{align*}
+		We then chose
+			\begin{align*}
+			\mu (x) = - e^{\int p(x) \, dx} = \frac{2}{x^2} .
+			\end{align*}
+		\item We could also use the other equation because it's gonna be independent of $x$. 
+		\end{itemize}
+		
+	We multiply the ODE by $\mu (x)$ and obtain
+		\begin{align*}
+		\frac{2y}{x^2} \, dx - \frac{2}{x} \, dy = 0 .
+		\end{align*}
+	We know that this should be exact. So we are searching for $F$ such that $F_x = 2y/x^2$ and $F_y = -2/x$. We integrate with respect to $x$ the first equation to get
+		\begin{align*}
+		G(x, y) = -\frac{2y}{x} .
+		\end{align*}
+	We integrate with respect to $y$ the second equation to get
+		\begin{align*}
+		H (x, y) = \frac{-2y}{x} .
+		\end{align*}
+	Therefore, we get
+		\begin{align*}
+		F(x ,y) = -\frac{y}{x} 
+		\end{align*}
+	and the implicit solutions are given by
+		\begin{align*}
+		-\frac{y}{x} = c .
+		\end{align*}
+	Rearraging this last equation, we get
+		\begin{align*}
+		y = -c x
+		\end{align*}
+	which are lines! It's possible to replace $-c$ by the more simpler constant $C$ where $C = -c$.
+	
+	\newpage
+	
+	\exo{2.6}{11}{10}
+	\\
+	This ODE is not exact because
+		\begin{align*}
+		M_y = 12x^3 + 48x^2 y \neq 36 x^3 + 96x^2 y = N_x .
+		\end{align*}
+	We therefore have to find an integrating factor.
+		\begin{itemize}
+		\item The quotient $(M_y - N_x)/N$ is
+			\begin{align*}
+			\frac{M_y - N_x}{N} = \frac{12x^3 + 48x^2 y - 36 x^3 - 96 x^2 y}{9x^4 + 32x^3 y + 4y} = \frac{-24 x^3 - 48 x^2 y}{9x^4 + 32x^3 y + 4y} .
+			\end{align*}
+		There is no way to simplify this function into an expression independent of $y$...
+		\item The quotient $(N_x - M_y)/M$ is
+			\begin{align*}
+			\frac{N_x - M_y}{M} = \frac{36x^3 + 96x^2 y - 12 x^3 - 48 x^2 y}{12 x^3 y + 24 x^2 y^2} = \frac{24x^3 + 48 x^2 y}{(12 x^3 + 24 x^2 y) y} = \frac{2}{y} .
+			\end{align*}
+		This expression is independent of $x$! Therefore we have
+			\begin{align*}
+			e^{\int 2/y \, dy} = e^{2 \ln |y|} = y^2 .
+			\end{align*}
+		We then choose $\mu (y) = y^2$.
+		\end{itemize}
+		
+	We multiply the ODE by $y^2$. We obtain
+		\begin{align*}
+		(12 x^3 y^3 + 24 x^2 y^2) dx + (9x^4 y^2 + 32 x^3 y^3 + 4y^3 ) dy = 0 .
+		\end{align*}
+	This ODE should now be exact. We therefore want to find a function $F$ such that
+		\begin{align*}
+		F_x = 12 x^3 y^3 + 24 x^2 y^2 \quad \text{ and } \quad F_y = 9x^4 y^2 + 32 x^3 y^3 + 4y^3 .
+		\end{align*}
+	Integrating the first equation with respect to $x$ yields
+		\begin{align*}
+		G(x, y) = 3 x^4 y^3 + 8 x^3 y^2 .
+		\end{align*}
+	Integrating the second equation with respect to $y$ yields
+		\begin{align*}
+		H (x ,y) = 3 x^4 y^3 + 9 x^3 y^4 + y^4 .
+		\end{align*}
+	Therefore, we obtain
+		\begin{align*}
+		F(x, y) = 3x^4 y^3 + 8x^3 y^2 + 9 x^3 y^4 + y^4 .
+		\end{align*}
+	The implicit solutions are then
+		\begin{align*}
+		3x^4 y^3 + 8x^3 y^2 + 9 x^3 y^4 + y^4 = c .
+		\end{align*}
+		
+		
+	\vfill
+	
+	\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+\end{document}

@@ -1,0 +1,249 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+	
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 5}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 5.4: The Method of Undetermined Coefficient I}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{When The Force Function Is An Exponential}
+
+We consider the following basic case:
+	\begin{align*}
+	a y'' + by' + cy = k e^{\alpha x}
+	\end{align*}
+where $a$, $b$, $c$, $\alpha$, and $k$ are fixed real numbers.
+
+\subsection{Case I}
+
+When $e^{\alpha x}$ is not a solution to the complementary equation $ay'' + by' + cy = 0$.
+
+\begin{example}
+Find the general solution of
+	\begin{align*}
+	y'' - 7y' + 12 y = 4e^{2x} .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\subsection{Case II}
+
+When $e^{\alpha x}$ is a solution to the complementary equation.
+
+\begin{example}
+Find the general solution of
+	\begin{align*}
+	y'' - 7y' + 12 y = 5 e^{4x} .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+\newpage
+
+\subsection{Case III}
+When $e^{\alpha x}$, and $xe^{\alpha x}$ are solutions to the complementary equation.
+
+\begin{example}
+Find the general solution of
+	\begin{align*}
+	y'' - 8 y' + 16y = 2e^{4x} .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+\newpage
+
+\subsection{Recap}
+To find a particular solution to
+	\begin{align*}
+	ay'' + by' + cy = k e^{\alpha x}
+	\end{align*}
+where $k$ is a fixed real number, we follow the following tips:
+	\begin{itemize}
+	\item If $e^{\alpha x}$ is not a solution of the complementary equation, then we take $y_{par} (x) = Ae^{\alpha x}$, where $A$ is a constant.
+	\item If $e^{\alpha x}$ is a solution of the complementary equation, then we take $y_{par} (x) = xAe^{\alpha x}$, where $A$ is a constant.
+	\item If both $e^{\alpha x}$ and $x e^{\alpha x}$ are solutions of the complementary equation, then we take $y_{par} (x) = Ax^2 e^{\alpha x}$, where $A$ is a constant.
+	\end{itemize}
+
+\newpage
+
+\section{When The Force Function Is Exponential Times Polynomial}
+
+We now consider a more general case:
+	\begin{align*}
+	ay'' + by' + cy = e^{\alpha x} G(x)
+	\end{align*}
+where $a$, $b$, $c$, $\alpha$ are fixed real numbers and $G(x)$ is a polynomial.
+
+\subsection{Case I}
+
+When $e^{\alpha x}$ is not a solution to the complementary equation $ay'' + by' + cy = 0$.
+
+\begin{example}
+Find the general solution to
+	\begin{align*}
+	y'' - 3y' + 2y = e^{3x} (x^2 + 2x - 1) .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\phantom{2}
+
+\newpage
+
+\subsection{Case II}
+
+When $e^{\alpha x}$ is a solution to the complementary equation.
+
+\begin{example}
+Find the general solution to
+	\begin{align*}
+	y'' - 4y' + 3y = e^{3x} (12x^2 + 8x + 6) .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\phantom{1}
+
+\newpage
+
+\subsection{Case III}
+
+When $e^{\alpha x}$ and $xe^{\alpha x}$ are solutions to the complementary equation.
+
+\begin{example}
+Find the general solution to
+	\begin{align*}
+	4y'' + 4y' + y = e^{-x/2} (144x^2 + 48 x - 8) .
+	\end{align*}
+\end{example}
+
+\newpage
+
+\subsection{Recap}
+To find a particular solution to
+	\begin{align*}
+	ay'' + by' + cy = k e^{\alpha x} G(x)
+	\end{align*}
+where $k$ is a fixed real number and $G(x)$ is a polynomial, we follow the following tips:
+	\begin{itemize}
+	\item If $e^{\alpha x}$ is not a solution of the complementary equation, then we take $y_{par} (x) = A e^{\alpha x} Q(x)$, where $A$ is a constant and $Q(x)$ is a polynomial of the same degree as $G(x)$.
+	\item If $e^{\alpha x}$ is a solution of the complementary equation, then we take $y_{par} (x) = Axe^{\alpha x} Q(x)$, where $A$ is a constant and $Q(x)$ is a polynomial of the same degree as $G(x)$.
+	\item If $e^{\alpha x}$ and $xe^{\alpha x}$ are solutions to the complementary equation, then we take $y_{par} (x) = Ax^2 e^{\alpha x} Q(x)$, where $A$ is a constant and $Q(x)$ is a polynomial of the same degree as $G(x)$.
+	\end{itemize}
+
+\end{document}

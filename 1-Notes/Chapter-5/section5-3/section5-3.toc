@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Particular Solutions}{2}{section*.1}%
+\contentsline {section}{The Principle of Superposition}{5}{section*.2}%

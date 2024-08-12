@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+%\usetheme{CambridgeUS}%CambridgeUS
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\frenchbsetup{StandardLists=true}
+
+\usepackage{enumitem}
+\usepackage[margin=1.5cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{subfigure}
+\usepackage{arydshln}
+
+\usepackage{comment}
+\usepackage[nottoc]{tocbibind}
+%\usepackage{array}      % Pour les tables
+\usepackage{caption} 
+\usepackage{setspace}
+\usepackage{marvosym}
+\usepackage[framemethod=tikz]{mdframed}
+\usetikzlibrary{arrows, shapes.geometric, decorations.markings, decorations.shapes, decorations.pathreplacing,decorations.text, shadows, matrix, decorations.pathmorphing, patterns, shadings, backgrounds}
+
+\usepackage[thmmarks]{ntheorem}
+
+\newif\ifhNotes 
+
+\hNotesfalse
+
+\ifhNotes
+	\newcommand{\hideNotes}[1]{%
+	\phantom{#1}
+	}
+	\newcommand{\hideNotesU}[1]{%
+	\underline{\hspace{1mm}\phantom{#1}\hspace{1mm}}
+	}
+\else
+	\newcommand{\hideNotes}[1]{#1}
+	\newcommand{\hideNotesU}[1]{\textcolor{blue}{#1}}
+\fi
+
+% MATH commands
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bD}{\mathbb{D}}
+
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cC}{\mathcal{C}}
+
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fM}{\mathfrak{M}}
+
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\renewcommand{\Re}{\mathrm{Re}\,}
+\renewcommand{\Im}{\mathrm{Im}\,}
+\newcommand{\Arg}{\mathrm{Arg}\,}
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\Log}{\mathrm{Log}\,}
+\newcommand{\cis}{\mathrm{cis}\,}
+
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\Sp}{\mathrm{span}\,}
+\newcommand{\Inv}{\mathrm{Inv}\,}
+\newcommand\smallO{
+  \mathchoice
+    {{\scriptstyle\mathcal{O}}}% \displaystyle
+    {{\scriptstyle\mathcal{O}}}% \textstyle
+    {{\scriptscriptstyle\mathcal{O}}}% \scriptstyle
+    {\scalebox{.7}{$\scriptscriptstyle\mathcal{O}$}}%\scriptscriptstyle
+  }
+\newcommand{\HOL}{\mathrm{Hol}}
+\newcommand{\cl}{\mathrm{clos}}
+\newcommand{\ve}{\varepsilon}
+
+\newcommand{\Arccos}{\mathrm{Arc}\,\mathrm{cos}\,}
+\newcommand{\Arcsin}{\mathrm{Arc}\,\mathrm{sin}\,}
+\newcommand{\Arctan}{\mathrm{Arc}\,\mathrm{tan}\,}
+\newcommand{\Arccsc}{\mathrm{Arc}\,\mathrm{csc}\,}
+\newcommand{\Arcsec}{\mathrm{Arc}\,\mathrm{sec}\,}
+\newcommand{\Arccot}{\mathrm{Arc}\,\mathrm{cot}\,}
+\newcommand{\dst}{\displaystyle}
+
+
+\tikzstyle{myboxT} = [draw=black, fill=black!0,line width = 1pt,
+    rectangle, rounded corners = 0pt, inner sep=8pt, inner ysep=8pt]
+    
+\newcommand{\MyC}[1]{\begin{tikzpicture}
+\node (boxIntro) at (0,0) {};
+\node [myboxT](Intro) at (boxIntro){%
+	\begin{minipage}{0.9\textwidth}
+	#1
+	\end{minipage}};
+\end{tikzpicture}}
+
+%%%%  Environnement exer et solutionnaire
+{\theorembodyfont{}
+\theoremstyle{plain}
+\theoremseparator{\textbf{.}}
+\theoremsymbol{}
+\newtheorem{exer}{\textbf{Exercice}}}
+
+{\theorembodyfont{\color{blue}}
+\theoremstyle{plain}
+\theoremseparator{\textbf{:}}
+\theoremsymbol{$\square$}
+\newtheorem*{sol}{\textbf{Solution}}}
+
+\renewcommand*{\theexer}{\arabic{exer}}
+\renewcommand*{\thesol}{\arabic{sol}}
+
+\tikzstyle{myboxT} = [draw=black, fill=black!0,line width = 1pt,
+    rectangle, rounded corners = 0pt, inner sep=8pt, inner ysep=8pt]
+
+\author{Pierre-Olivier Parisé \\ Mathématiques de l'ingénieur III (MAT-2900)}
+\title{Table de transformées de Laplace}
+\date{Université Laval \\ Québec, Canada\\
+Automne 2020}
+
+\pagestyle{empty}
+
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\begin{document}
+\noindent \hrulefill \\
+	MATH-241 \hfill Pierre-Olivier Paris{\'e}\\
+	Table Laplace Transforms \hfill Fall 2022\\\vspace*{-0.75cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+\newcounter{colonneUne}
+\newcounter{colonneDeux}
+\setcounter{colonneDeux}{15}
+\newcommand{\noFormule}{%
+	\stepcounter{colonneUne}\arabic{colonneUne}.}
+\newcommand{\noFormuleDeux}{%
+	\stepcounter{colonneDeux}\arabic{colonneDeux}.}
+\begin{table}[ht!]
+\centering
+{\renewcommand{\arraystretch}{2.49}
+	\setlength{\tabcolsep}{2pt}
+\begin{tabular}{|c|c||c|c|}
+\hline
+\hspace{0.75cm} \textbf{Function} \hspace{0.75cm} & \hspace{0.75cm} \textbf{Transform} \hspace{0.75cm} & \hspace{0.75cm} \textbf{Function} \hspace{0.75cm}  & \hspace{0.75cm} \textbf{Transform} \hspace{0.75cm} \\\hline
+\noFormule \hfill $1$ \hfill\hfill & $\hideNotes{\displaystyle\frac{1}{s}}$ & \noFormuleDeux \hfill $f'(t)$ \hfill\hfill & $\hideNotes{sF(s) - f(0)}$ \\\hline
+\noFormule \hfill $t$ \hfill\hfill & $\hideNotes{\displaystyle\frac{1}{s^2}}$ & \noFormuleDeux \hfill $f''(t)$ \hfill\hfill & $\hideNotes{s^2F(s) - f(0)s - f'(0)}$ \\\hline
+\noFormule \hfill $t^n$ ($n\geq 0$ entier) & $\hideNotes{\displaystyle\frac{n!}{s^{n+1}}}$ & \noFormuleDeux \hfill $f^{(3)}(t)$ \hfill\hfill & $\hideNotes{s^3 F(s) - s^2f(0) - sf'(0) - f''(0)}$ \\\hline
+\noFormule \hfill $e^{at}$ \hfill \hfill & $\hideNotes{\displaystyle\frac{1}{s-a}}$ & \noFormuleDeux \hfill $f^{(n)}(t)$ \hfill\hfill & $\hideNotes{s^n F(s) - s^{n-1} f(0) - \cdots - f^{(n-1)}(0)}$ \\\hline
+\noFormule \hfill $te^{at}$ \hfill \hfill & $\hideNotes{\displaystyle\frac{1}{(s-a)^2}}$ & \noFormuleDeux \hfill $t^n f(t)$ \hfill\hfill & $\hideNotes{(-1)^n \displaystyle \frac{d^n}{ds^n} F(s)}$ \\\hline
+\noFormule \hfill $\sin (\omega t )$ \hfill \hfill & $\hideNotes{\displaystyle\frac{\omega}{s^2 + \omega^2}}$ & \noFormuleDeux \hfill $e^{at} f(t)$ \hfill\hfill & $\hideNotes{F(s - a)}$ \\\hline
+\noFormule \hfill $\cos (\omega t )$ \hfill \hfill & $\hideNotes{\displaystyle \frac{s}{s^2 + \omega^2}}$ & \noFormuleDeux \hfill $\displaystyle \int_0^{t} f(\tau ) \, d\tau$ \hfill\hfill & $\hideNotes{\displaystyle \frac{F(s)}{s}}$ \\\hline
+\noFormule \hfill $e^{at} \sin (\omega t )$ \hfill \hfill & $\hideNotes{\displaystyle \frac{\omega}{(s-a)^2 + \omega^2}}$ & \noFormuleDeux \hfill $\displaystyle \int_0^{t} \int_0^{\tau} f(\tilde{\tau}) \, d\tilde{\tau} \, d\tau$ \hfill\hfill & $\hideNotes{\displaystyle \frac{F(s)}{s^2}}$ \\\hline 
+\noFormule \hfill $e^{at} \cos (\omega t )$ \hfill \hfill & $\hideNotes{\displaystyle \frac{(s - a)}{(s - a)^2 + \omega^2}}$ & \noFormuleDeux \hfill $u(t-a)f(t-a)$ \hfill\hfill & $\hideNotes{e^{-as} F(s)}$ \\\hline
+\noFormule \hfill $t \sin (\omega t )$ \hfill \hfill & $\hideNotes{\displaystyle\frac{2\omega s}{(s^2 + \omega^2)^2}}$ & \noFormuleDeux \hfill $f(t) \delta (t-a)$ \hfill\hfill & $\hideNotes{f(a) e^{-as}}$ \\\hline
+\noFormule \hfill $t \cos (\omega t )$ \hfill \hfill & $\hideNotes{\displaystyle\frac{s^2 - \omega^2}{(s^2 + \omega^2)^2}}$ & \noFormuleDeux \hfill $f(t) \ast g(t)$ \hfill\hfill & $\hideNotes{F(s)G(s)}$ \\\hline
+\noFormule \hfill $\cosh (\omega t)$ \hfill \hfill & $\hideNotes{\displaystyle\frac{s}{s^2 - \omega^2}}$ & \noFormuleDeux \hfill $u(t)$ \hfill\hfill & $\hideNotes{\displaystyle\frac{1}{s}}$\\\hline
+\noFormule \hfill $\sinh (\omega t)$ \hfill \hfill  & $\hideNotes{\displaystyle\frac{\omega}{s^2 - \omega^2}}$ & \noFormuleDeux \hfill $u(t-a)$ \hfill\hfill & $\hideNotes{\displaystyle\frac{e^{-as}}{s}}$\\\hline
+\noFormule \hfill \hfill & & \noFormuleDeux \hfill $\delta (t)$ \hfill\hfill & \hideNotes{1} \\\hline
+\noFormule \hfill \hfill & & \noFormuleDeux \hfill $\delta (t-a)$ \hfill\hfill & $\hideNotes{e^{-as}}$ \\\hline
+\end{tabular}}
+\caption{Table of Laplace Transforms}
+\end{table}
+
+\end{document}

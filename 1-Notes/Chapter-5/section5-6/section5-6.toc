@@ -1,0 +1,2 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{What Is Reduction Of Order}{2}{section*.1}%

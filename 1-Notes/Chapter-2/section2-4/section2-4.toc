@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{A Specific Case}{2}{section*.1}%
+\contentsline {subsection}{Bernoulli Equation}{2}{subsection*.2}%
+\contentsline {section}{Homogeneous Nonlinear Equation}{4}{section*.3}%

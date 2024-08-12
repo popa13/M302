@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+%\usepackage{subcaption}
+\usepackage[indent=0pt]{parskip}
+
+\usepackage{array}
+\usepackage{blkarray,booktabs, bigstrut}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\mR}{\mathbb{R}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2} | {#3} points}}}\\}
+\newcommand{\qu}[2]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}}\\}
+
+\begin{document}
+	\noindent \hrulefill \\
+	MATH-302 \hfill Pierre-Olivier Paris{\'e}\\
+	Homework 9 Problems \hfill Fall 2022\\\vspace*{-1cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\qu{7.1}{A}
+	\\
+	Differentiate the power series representation of
+		\begin{align*}
+		f(x) = \frac{1}{1 - x} .
+		\end{align*}
+	\textcolor{red}{\hrulefill}
+		
+	\vspace*{12pt}
+		
+	\qu{7.1}{B}
+	\\
+	By using a power series representation, find $y$ satisfying
+		\begin{align*}
+		y' + x = \sum_{n = 1}^\infty n x^n \quad \text{ and } \quad y(0) = 0 .
+		\end{align*}
+		
+	\textcolor{red}{\hrulefill}
+	
+	\vspace*{12pt}
+		
+	\qu{7.1}{C}
+	\\
+	Using a software (Matlab, Python, for example), plot the Taylor polynomials $T_4$, $T_{10}$ and $T_{20}$ of the power series representation of $f(x) = \frac{1}{1 - x}$.
+		
+	\textcolor{red}{\hrulefill}
+	
+	\vspace*{12pt}
+		
+	\qu{7.1}{D}
+	\\
+	Express $x^2 y'' + 2x y' - 3xy$ as a power series $\sum_{n = 0}^\infty c_n x^n$.
+	
+	\textcolor{red}{\hrulefill}
+	
+	\vspace*{12pt}
+	
+	\qu{7.1}{E}
+	\\
+	Express $x y'' + (4 + 2x) y' + (2 + x) y$ as a a power series $\sum_{n = 0}^\infty c_n x^n$.
+	
+	\vspace*{12pt}
+	
+	%\vfill
+	
+	%\hfill \textcolor{red}{\textsc{Total (Points): 50.}}
+	
+	
+	
+\end{document}

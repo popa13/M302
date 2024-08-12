@@ -1,0 +1,307 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 302}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Theorem~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{notes}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 302}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 5}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 5.7: Variation Of Parameters}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2022}
+\end{center}
+
+\newpage
+
+\section{What Is The Method Of Variation Of Parameters}
+
+Our goal in this section is to find the solutions to 
+	\begin{align*}
+	P_0(x) y'' + P_1 (x) y' + P_2 (x) y = F(x)
+	\end{align*}
+using the method \textbf{variation of parameters}. Our assumption is
+	\begin{itemize}
+	\item We know at least two solutions to the complementary equation $P_0 (x) y'' + P_1 (x) y' + P_2 (x) y = 0$.
+	\end{itemize}
+
+\begin{example}
+Find the general solution to
+	\begin{align*}
+	x^2 y'' - 2x y' + 2y = x^{9/2}
+	\end{align*}
+given that $y_1 (x) = x$ and $y_2 (x) = x^2$ are solutions to the complementary equation.
+\end{example}
+
+\newpage
+
+\begin{notes}
+\noindent\underline{Key idea:} Use variation of parameters on the two constants.
+
+We know that the general solution to the complementary equation is
+	\begin{align*}
+	y (x) = c_1 x + c_2 x^2 .
+	\end{align*}
+We will change $c_1$ and $c_2$ by two functions $u_1$ and $u_2$ to find a particular solution to the ODE. So we let 
+	\begin{align*}
+	y_{par} (x) = y(x) = u_1 (x) x + u_2 (x) x^2 .
+	\end{align*}
+We can then compute $y'$ and $y''$. We have
+	\begin{align*}
+	y' = u_1' x + u_1 + u_2' x^2 + 2u_2 x .
+	\end{align*}
+We will impose one condition on $u_1, u_2$ to make things easier. We will assume that $u_1$ and $u_2$ are chosen so that
+	\begin{align}
+	u_1'x + u_2' x^2 = 0 .
+	\end{align}
+Therefore, the derivative of $y$ is simply given by
+	\begin{align*}
+	y' = u_1 + 2u_2 x .
+	\end{align*}
+In other words, we have taken the derivative of $x$ and $x^2$ in the expression of $y$ and leaving $u_1$ and $u_2$ untouched. 
+
+With this expression of $y'$, we can obtain the second derivative
+	\begin{align*}
+	y'' = u_1' + 2u_2' x + 2u_2 .
+	\end{align*}
+We can then replace $y$, $y'$ and $y''$ in the ODE and after simplifying we get
+	\begin{align*}
+	x^2 u_1' + 2x^3 u_2' = x^{9/2} .
+	\end{align*}
+
+We then have to find the functions $u_1, u_2$ satisfying the system of differential equations:
+	\begin{align*}
+	\left\{ \begin{matrix}
+	u_1' x + u_2' x^2 = 0 \\
+	x^2 u_1' + 2x^3 u_2' = x^{9/2} .
+	\end{matrix} \right.
+	\end{align*}
+From the first equation, we see that $u_1' = -u_2'x$. Replacing this in the second equation, we obtain
+	\begin{align*}
+	-x^3 u_2' + 2x^3 u_2' = x^{9/2}
+	\end{align*}
+and therefore $u_2' = -x^{3/2}$. This also means that $u_1' = x^{5/2}$. Integrating with respect to $x$, we obtain
+	\begin{align*}
+	u_1 (x) = -\frac{2}{7} x^{7/2} \quad \text{ and } \quad u_2 (x) = \frac{2}{5} x^{5/2} .
+	\end{align*}
+Therefore, replacing in $y_{par}$, we obtain
+	\begin{align*}
+	y_{par} (x) = -\frac{2}{5} x^{9/2} + \frac{2}{7} x^{9/2} = \frac{4}{35} x^{9/2} .
+	\end{align*}
+	
+Finally, the general solution to the original ODE is
+	\begin{align*}
+	y (x) = y_{par} (x) + c_1 x + c_2 x^2 = \frac{4}{35} x^{9/2} + c_1 x + c_2 x^2 .
+	\end{align*}
+	
+\end{notes}
+
+\phantom{1}
+
+\newpage
+
+\subsection{General Procedure}
+To find a particular solution to
+	\begin{align*}
+	P_0 (x) y'' + P_1 (x) y' + P_0 (x) y = F(x)
+	\end{align*}
+knowing two solutions $y_1 (x)$ and $y_2 (x)$ to the complementary equation, we follow these steps:
+	\begin{itemize}
+	\item Write $y_{par} (x) = u_1(x) y_1 (x) + u_2 (x) y_2 (x)$.
+	\item Write the system
+		\begin{align*}
+		u_1' y_1 + u_2' y_2 &= 0 \\
+		u_1' y_1' + u_2' y_2' &= \frac{F}{P_0} .
+		\end{align*}
+	\item Solve the system for $u_1'$ and $u_2'$:
+		\begin{align*}
+		u_1' = -\frac{Fy_2}{P_0 (y_1 y_2' - y_1' y_2)} \quad \text{ and } \quad u_2' = \frac{Fy_1 }{P_0 (y_1 y_2' - y_1' y_2)} .
+		\end{align*}
+	\item Obtain $u_1$ and $u_2$ by integrating $u_1'$ and $u_2'$ respectively.
+	\item Substitute $u_1$ and $u_2$ in $y_{par}(x)$ to obtain the particular solution.
+	\end{itemize}
+	
+\vspace*{16pt}
+	
+\begin{example}
+Find a particular solution to 
+	\begin{align*}
+	y'' + 3y' + 2y = \frac{1}{1 + e^x} .
+	\end{align*}
+\end{example}
+\begin{notes}
+The general solution to the complementary equation $y'' + 3y' + 2y = 0$ is
+	\begin{align*}
+	y (x) = c_1 e^{-2 x} + c_2 e^{-x} .
+	\end{align*}
+So we set
+	\begin{align*}
+	y_{par} (x) = y(x) = u_1 (x) e^{-2x} + u_2 (x) e^{-x} .
+	\end{align*}
+We add the restriction 
+	\begin{align*}
+	u_1' e^{-2x} + u_2' e^{-x} = 0 \iff u_1' + u_2' e^{x} = 0.
+	\end{align*}
+Therefore, the derivative of $y$ is
+	\begin{align*}
+	y' = -2 u_1 e^{-2x} - u_2 e^{-x} 
+	\end{align*}
+and the second derivative is
+	\begin{align*}
+	y'' = -2u_1' e^{-2x} + 4 u_1 e^{-2x} - u_2' e^{-x} + u_2 e^{-x} .
+	\end{align*}
+Replacing this in the initial ODE and simplifying, we get
+	\begin{align*}
+	-2u_1' - u_2' e^x = \frac{e^{2x}}{1 + e^x} .
+	\end{align*}
+Therefore, $u_1$ and $u_2$ must satisfy the following system of ODEs:
+	\begin{align*}
+	\left\{ \begin{matrix}
+	u_1' + u_2' e^{x} = 0 \\
+	-2u_1' - u_2' e^x = \frac{e^{2x}}{1 + e^x} .
+	\end{matrix} \right.
+	\end{align*}
+From the first equation, we see that $u_1' = -u_2' e^x$. Replacing this into the second equation, we see that
+	\begin{align*}
+	2u_2' e^x - u_2' e^x = \frac{e^{2x}}{1 + e^x} \iff u_2' = \frac{e^x}{1 + e^x} .
+	\end{align*}
+	Plugging this in the expression of $u_1'$, we see that 
+		\begin{align*}
+		u_1' = -\frac{e^{2x}}{1 + e^x} .
+		\end{align*}
+	Integrating $u_2' = \frac{e^x}{1 + e^x}$ with the change of variable $v = 1 + e^x$, we see that
+		\begin{align*}
+		u_2 (x) = \ln (1 + e^x )
+		\end{align*}
+	where the absolute value was removed because $1 + e^x$ is always positive for any $x$. To integrate $u_1' = -\frac{e^{2x}}{1 + e^x}$, we make the change of variable $v = e^x$ and then integrate $v/(1 + v) = v + 1$. Therefore, we see that
+		\begin{align*}
+		u_1 (x) = e^{2x} + e^x .
+		\end{align*}
+	Plugging into $y_{par}$, we obtain
+		\begin{align*}
+		y_{par} (x) = e^{-2x} (e^{2x} + e^x) + e^{-x} \ln (1 + e^x) = 1 + e^{-x} + e^{-x} \ln (1 + e^x ) .
+		\end{align*}
+		
+		The general solution to the ODE is then
+			\begin{align*}
+			y (x) = y_{par} (x) + c_1 e^{-2x} + c_2 e^{-x} = 1 + e^{-x} + e^{-x} \ln (1 + e^x ) + c_1 e^{-2x} + c_2 e^{-x} .
+			\end{align*}
+\end{notes}
+
+\newpage
+
+\phantom{2}
+
+\end{document}

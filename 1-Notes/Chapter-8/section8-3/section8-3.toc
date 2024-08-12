@@ -1,0 +1,6 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Piecewise Continuous Functions}{2}{section*.1}%
+\contentsline {section}{Unit Step Function}{4}{section*.3}%
+\contentsline {subsection}{Basic Operations}{4}{subsection*.5}%
+\contentsline {section}{Laplace Transform of The Unit Step Function}{7}{section*.6}%
+\contentsline {section}{ODE Revisited}{9}{section*.7}%

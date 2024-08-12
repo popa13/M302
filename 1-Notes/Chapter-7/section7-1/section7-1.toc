@@ -1,0 +1,10 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Why Power Series?}{2}{section*.1}%
+\contentsline {section}{Basic Definitions}{2}{section*.2}%
+\contentsline {section}{Calculus Operations with Power Series}{4}{section*.3}%
+\contentsline {subsection}{Differentiation}{4}{subsection*.4}%
+\contentsline {subsection}{Identity Principle or Uniqueness of Power series}{5}{subsection*.5}%
+\contentsline {section}{Algebraic Operations with Power Series}{6}{section*.6}%
+\contentsline {subsection}{Sum, Difference and Multiplication by A Constant}{6}{subsection*.7}%
+\contentsline {subsection}{Product with Polynomials}{7}{subsection*.8}%
+\contentsline {subsection}{Shifting}{9}{subsection*.9}%

@@ -1,0 +1,8 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{What Does The Word ``Convolution'' Mean?}{2}{section*.1}%
+\contentsline {subsection}{The Story of The Matches}{2}{subsection*.2}%
+\contentsline {section}{Convolution And Laplace Transform}{3}{section*.4}%
+\contentsline {subsection}{Definition}{3}{subsection*.5}%
+\contentsline {subsection}{Laplace Transform}{5}{subsection*.6}%
+\contentsline {section}{Laplace Transforms of Integrals}{7}{section*.7}%
+\contentsline {section}{Integro-Differential Equations}{8}{section*.8}%

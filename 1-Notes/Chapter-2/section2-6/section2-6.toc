@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{What's An Integrating Factor}{2}{section*.1}%
+\contentsline {section}{Finding Integrating Factors}{3}{section*.2}%
